@@ -1,0 +1,12 @@
+ -----
+ VisuSalaire
+ -----
+ Frédéric Dos Santos
+ -----
+  18/01/2013
+
+Visualisation des bulletins de salaire
+
+ Cette application permet de visualiser les bulletins de salaire de l'historique au format web.
+ 
+ Pour plus d'informations, voir la {{{./docs/Applis_Java_Mairie.pdf}documentation}} au format PDF.

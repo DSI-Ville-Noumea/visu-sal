@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: jt400.jar DroitsApplisClient.jar Mairie_Commun.jar Mairie_
+ Framework.jar
+
