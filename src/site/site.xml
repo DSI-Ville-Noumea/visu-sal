@@ -1,0 +1,40 @@
+<project name="VisuSalaire - Visualisation des bulletins de salaires">
+	<bannerLeft>
+		<name>DSI - Mairie de Nouméa</name>
+		<src>img/DSI-logo-blason-or.png</src>
+		<href>http://svpsp/dsi/Pages/Accueil.aspx</href>
+		<alt>http://svpsp/dsi/Pages/Accueil.aspx</alt>
+	</bannerLeft>
+	
+    <publishDate position="right"/>
+    <version position="right"/>
+    
+    <skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-stylus-skin</artifactId>
+		<version>1.4</version>
+	</skin>
+
+    <body>
+        <links>
+            <item name="Référence APT" href="references/format.html"/>
+        </links>
+
+        <breadcrumbs>
+            <item name="Accueil" href="home.html"/>
+        </breadcrumbs>
+        
+        <menu name="Documentation">
+        	<item name="Présentation" href="home.html"/>
+        	<item name="Documents" href="documents.html"/>
+        </menu>
+        
+		<menu name="Exploitation">
+        	<item name="Mise en recette" href="exploitation/mise_recette.html"/>
+        	<item name="Releases" href="exploitation/releases.html"/>
+        	<item name="Fichier context.xml" href="exploitation/context.html"/>
+        </menu>
+
+        <menu ref="reports"/>
+    </body>
+</project>
