@@ -3,14 +3,13 @@ package nc.mairie.visusal.servlets;
 import javax.servlet.http.HttpServletRequest;
 
 import nc.mairie.droitsapplis.client.CheckDroits;
-import nc.mairie.visusal.robot.RobotSalRap;
 import nc.mairie.servlets.Frontale;
 import nc.mairie.technique.Transaction;
 import nc.mairie.technique.UserAppli;
 
 /**
- * Ins�rez la description du type ici.
- * Date de cr�ation : (30/10/2002 14:15:09)
+ * Insérez la description du type ici.
+ * Date de création : (30/10/2002 14:15:09)
  * @author: 
  */
 public class ServletSalRap extends nc.mairie.servlets.Frontale {
@@ -19,8 +18,8 @@ public class ServletSalRap extends nc.mairie.servlets.Frontale {
 	 */
 	private static final long serialVersionUID = -8083786799882558216L;
 /**
- * Ins�rez la description de la m�thode ici.
- *  Date de cr�ation : (05/11/2002 09:00:21)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (05/11/2002 09:00:21)
  */
 	public ServletSalRap() {
 		super();
@@ -30,7 +29,7 @@ public class ServletSalRap extends nc.mairie.servlets.Frontale {
  * @author: Luc Bourdil
  */
 	protected nc.mairie.robot.Robot getServletRobot() {
-		return new RobotSalRap();
+		return new nc.mairie.visusal.robot.RobotSalRap();
 	}
 
 	public void init() {
@@ -71,7 +70,7 @@ protected boolean performControleHabilitation(HttpServletRequest request)
                                initialiseHabilitations(request);
                               //Si pas d'habilitation alors erreur
                                if (aUserAppli.getListeDroits().size() == 0) {
-                                           String message = "L'utilisateur "+aUserAppli.getUserName()+" n'est pas habilit� � utiliser l'application";
+                                           String message = "L'utilisateur "+aUserAppli.getUserName()+" n'est pas habilité à utiliser l'application";
                                            System.out.println(message);
                                            //throw new Exception (message);
                                            //return false;

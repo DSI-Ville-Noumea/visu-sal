@@ -1,5 +1,5 @@
 /*
- * Created on 6 f�vr. 2009
+ * Created on 6 févr. 2009
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
@@ -14,7 +14,7 @@ import java.util.Locale;
 
 /**
  * @author fonol77
- * M�thodes g�n�riques utilitaires
+ * Méthodes génériques utilitaires
  * 
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
@@ -27,7 +27,7 @@ public class Utils {
 	 * 
 	 * @param l1
 	 * @param l2
-	 * @return ArrayListe l1 ayant �l�min� de la liste l1 les �l�ments en communs avec l2
+	 * @return ArrayListe l1 ayant éléminé de la liste l1 les éléments en communs avec l2
 	 * fonctionne uniquement avec une liste l1 n'ayant pas 2 elements identiques
 	 */
 	public static ArrayList Elim_doubure(ArrayList l1,ArrayList l2)
@@ -57,7 +57,7 @@ public class Utils {
 	/**
 	 * 
 	 * @param al
-	 * @return ArrayList entr�e moins ses doublons.
+	 * @return ArrayList entrée moins ses doublons.
 	 */
 	public static ArrayList antiDoublon(ArrayList al) {
         
@@ -149,7 +149,7 @@ public class Utils {
 		double dNombre;
 		// NB US=123,456,789.23
 		// NB IT=123.456.789,23
-		// NB FR=123�456�789,23
+		// NB FR=123 456 789,23
 		NumberFormat nfi = NumberFormat.getInstance(Locale.ITALY);
 		nfi.setMaximumFractionDigits(2);
 		nfi.setMinimumFractionDigits(iNombreVirgule);
@@ -180,10 +180,10 @@ public class Utils {
 	
 	/**
 	 * 
-	 * Fonction qui transforme les heures en jours (8 heures par jour), � la demi journ�e pr�s.
+	 * Fonction qui transforme les heures en jours (8 heures par jour), à la demi journée près.
 	 * @author fonol77
 	 * @param fHeures un certain nombre d'heures
-	 * @return le nombre de jour � la demi journ�e pr�s (123 ou 132,5)
+	 * @return le nombre de jour à la demi journée près (123 ou 132,5)
 	 */
 	public static String getJoursDemiJourneePres(Float fHeures){
 		String sJours="";
@@ -197,9 +197,9 @@ public class Utils {
 		return sJours;
 	}
 	/**
-	 * Fonction qui transforme les heures en demi journ�e (� la demi journ�e pr�s)
+	 * Fonction qui transforme les heures en demi journée (à la demi journée près)
 	 * @param fHeures
-	 * @return le nombre de demi journ�es dans un entier
+	 * @return le nombre de demi journées dans un entier
 	 */
 	public static String getDemiJournees(Float fHeures){
 		double dHeures=fHeures.doubleValue();

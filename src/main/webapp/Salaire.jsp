@@ -9,17 +9,13 @@
 </HEAD>
 <%
 	//System.out.println("TESTPAGE"+nc.mairie.technique.VariableActivite.ACTIVITE_TEST);
-	if (!nc.mairie.visusal.servlets.ServletSalRap.controlerHabilitation(request)) {
+	if (!ServletSalRap.controlerHabilitation(request)) {
 	//System.out.println("controlerHabilitation ServletSalRap = false");
 		response.setStatus(response.SC_UNAUTHORIZED); 
 		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour la Mairie\"");
 		javax.servlet.ServletContext sc= getServletContext();
-		javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("/ConnectionInsulte.jsp");
-		try {
-			rd.forward(request,response);
-		} catch (Exception e) {
-			System.out.println("Impossible de forwarder la JSP : "+e);
-		}
+		javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("ConnectionInsulte.jsp");
+		rd.forward(request,response);
 	}
 
 %>

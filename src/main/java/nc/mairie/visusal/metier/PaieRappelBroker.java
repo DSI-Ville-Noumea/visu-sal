@@ -2,7 +2,7 @@ package nc.mairie.visusal.metier;
 
 import nc.mairie.technique.BasicRecord;
 /**
- * Broker de l'Objet m�tier PaieRappel
+ * Broker de l'Objet métier PaieRappel
  */
 public class PaieRappelBroker extends nc.mairie.technique.BasicBroker {
 /**
@@ -68,7 +68,7 @@ public boolean supprimerPaieRappel(nc.mairie.technique.Transaction aTransaction)
 	return supprimer(aTransaction);
 }
 /**
- * Retourne un ArrayList d'objet m�tier : PaieRappel.
+ * Retourne un ArrayList d'objet métier : PaieRappel.
  * @return java.util.ArrayList
  */
 public java.util.ArrayList listerPaieRappel(nc.mairie.technique.Transaction aTransaction, String NoMatr, String PeriodeCou, String NoRubrique) throws Exception {

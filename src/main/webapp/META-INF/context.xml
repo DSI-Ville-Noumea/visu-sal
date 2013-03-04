@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -29,16 +29,17 @@
 		maxWait="30000" initialSize="10" removeAbandonedTimeout="500"
 		removeAbandoned="true" logAbandoned="true" minEvictableIdleTimeMillis="30000"
 		jmxEnabled="true" username="***REMOVED***" password="***REMOVED***"
-		driverClassName="com.ibm.as400.access.AS400JDBCDriver" url="jdbc:as400://noumea" />
+		driverClassName="com.ibm.as400.access.AS400JDBCDriver" url="jdbc:as400://robinnw" />
 		
 		
 	
 	<Parameter description="Hote SGBD (ROBINNW ou NOUMA)" name="HOST_SGBD" override="false" value="DS" />
-	<Parameter description="Environnement starjet (DVLP, TEST ou PROD)" name="STARJET_MODE" override="false" value="PROD" />
-	<Parameter description="Nom de l'application déclarée SIDRAP pour connaitre les droits" name="APPLICATION" override="false" value="VisuSalaire" />
-	<Parameter description="Critère de recherche LDAP" name="CRITERE_RECHERCHE_LDAP" override="false" value="samaccountname" />
+	<Parameter description="Environnement starjet (DVLP, TEST ou PROD)" name="STARJET_MODE" override="false" value="DVLP" />
+	<Parameter description="Serveur starjet (nom du serveur)" name="STARJET_SERVER" override="false" value="STARJET" />
+	<Parameter description="Nom de l'application dÃƒÂ©clarÃƒÂ©e SIDRAP pour connaitre les droits" name="APPLICATION" override="false" value="VisuSalaire" />
+	<Parameter description="CritÃƒÂ¨re de recherche LDAP" name="CRITERE_RECHERCHE_LDAP" override="false" value="samaccountname" />
 	<Parameter description="Admin LDAP" name="HOST_LDAP_ADMIN" override="false" value="cn=***REMOVED***,ou=WAS,ou=APPLI,ou=Z-users" />
-	<Parameter description="Hôte LDAP" name="HOST_LDAP" override="false" value="ldap://***REMOVED***:389/ ldap://***REMOVED***:389/ ldap://***REMOVED***:389/" />
+	<Parameter description="HÃƒÂ´te LDAP" name="HOST_LDAP" override="false" value="ldap://***REMOVED***:389/ ldap://***REMOVED***:389/ ldap://***REMOVED***:389/" />
 	<Parameter description="Init CTX LDAP" name="INITCTX_LDAP" override="false" value="com.sun.jndi.ldap.LdapCtxFactory" />
 	<Parameter description="Mot de passe LDAP" name="HOST_LDAP_PASSWORD" override="false" value="***REMOVED***" />
 	<Parameter description="Base LDAP" name="BASE_LDAP" override="false" value="dc=site-mairie,dc=noumea,dc=nc" />

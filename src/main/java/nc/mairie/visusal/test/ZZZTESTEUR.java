@@ -6,23 +6,23 @@ import nc.mairie.technique.*;
 import nc.mairie.commun.process.*;
 /**
  * Process ZZZTESTEUR
- * Date de cr�ation : (23/01/03 15:13:31)
- * @author : G�n�rateur de process
+ * Date de création : (23/01/03 15:13:31)
+ * @author : Générateur de process
 */
 public class ZZZTESTEUR extends nc.mairie.robot.Testeur {
 /**
  * Constructeur du process ZZZTESTEUR.
- * Date de cr�ation : (23/01/03 15:13:31)
- * @author : G�n�rateur de process
+ * Date de création : (23/01/03 15:13:31)
+ * @author : Générateur de process
  */
 public ZZZTESTEUR() {
 	super();
 }
 /**
- * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+ * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
  * NOM_LB_PROCESS_SELECT
- * Date de cr�ation : (27/01/03 15:56:56)
- * @author : G�n�rateur de process
+ * Date de création : (27/01/03 15:56:56)
+ * @author : Générateur de process
  */
 public java.lang.String [] definirListeProcess() {
 	String [] res = {	
@@ -32,21 +32,21 @@ public java.lang.String [] definirListeProcess() {
 }
 /**
  * Retourne le nom de la JSP du process
- * Zone � utiliser dans un champ cach� dans chaque formulaire de la JSP.
- * Date de cr�ation : (27/01/03 15:56:56)
- * @author : G�n�rateur de process
+ * Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
+ * Date de création : (27/01/03 15:56:56)
+ * @author : Générateur de process
  */
 public String getJSP() {
 	return "ZZZTESTEUR.jsp";
 }
 
 /**
- * Initialisation des zones � afficher dans la JSP
+ * Initialisation des zones à afficher dans la JSP
  * Alimentation des listes, s'il y en a, avec setListeLB_XXX()
  * ATTENTION : Les Objets dans la liste doivent avoir les Fields PUBLIC
- * Utilisation de la m�thode addZone(getNOMxxx, String);
- * Date de cr�ation : (23/01/03 15:13:31)
- * @author : G�n�rateur de process
+ * Utilisation de la méthode addZone(getNOMxxx, String);
+ * Date de création : (23/01/03 15:13:31)
+ * @author : Générateur de process
  */
 public void initialiseTestAppel(javax.servlet.http.HttpServletRequest request) throws Exception{
 	java.sql.Connection conn = null;

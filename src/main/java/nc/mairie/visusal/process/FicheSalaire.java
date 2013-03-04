@@ -1,12 +1,13 @@
 package nc.mairie.visusal.process;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import nc.mairie.visusal.servlets.ServletSalRap;
-import nc.mairie.technique.*;
 import nc.mairie.visusal.metier.AgentMairie;
 import nc.mairie.visusal.metier.BulletinElement;
 import nc.mairie.visusal.metier.PaieElement;
@@ -15,10 +16,17 @@ import nc.mairie.visusal.metier.PaieMutuelle;
 import nc.mairie.visusal.metier.PaieRappel;
 import nc.mairie.visusal.metier.PaieRubrique;
 import nc.mairie.visusal.metier.Utils;
+import nc.mairie.visusal.servlets.ServletSalRap;
+import nc.mairie.technique.*;
+import nc.mairie.visusal.metier.Utils;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.vfs.FileObject;
+
 /**
  * Process FicheSalaire
- * Date de cr�ation : (23/02/09 15:35:45)
- * @author : G�n�rateur de process
+ * Date de création : (23/02/09 15:35:45)
+ * @author : Générateur de process
  */
 public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	public static final int STATUT_RECHERCHER_AGENT = 1;
@@ -33,6 +41,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	private java.util.ArrayList  listeElementsPaye;
 	public static double dValeurEuroXPF=119.331742;
 	private String starjetMode = (String)ServletSalRap.getMesParametres().get("STARJET_MODE");
+	private String starjetServer = (String)ServletSalRap.getMesParametres().get("STARJET_SERVER");
 	private String script;
 	private java.util.ArrayList<BulletinElement>  listeBulletinSalarie=null;
 	private java.util.ArrayList<BulletinElement>  listeBulletinPatronal=null;
@@ -48,12 +57,12 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	private String sDemiJoursRCN_1="0";
 
 	/**
-	 * Initialisation des zones � afficher dans la JSP
+	 * Initialisation des zones à afficher dans la JSP
 	 * Alimentation des listes, s'il y en a, avec setListeLB_XXX()
 	 * ATTENTION : Les Objets dans la liste doivent avoir les Fields PUBLIC
-	 * Utilisation de la m�thode addZone(getNOMxxx, String);
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Utilisation de la méthode addZone(getNOMxxx, String);
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public void initialiseZones(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
@@ -91,7 +100,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	}
 	
 	/**
-	 * Initialise le Menu de gauche o� les mois travaill�s s'affichent 
+	 * Initialise le Menu de gauche où les mois travaillés s'affichent 
 	 * @param request
 	 * @throws Exception
 	 */
@@ -161,7 +170,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 				addZone(getNOM_ST_GRADE(),sGrade);
 			}
 			
-			//traitement forfaite ou index�
+			//traitement forfaite ou indexé
 			if (paieEnteteMoisCourant.getForf()!=null&&paieEnteteMoisCourant.getForf().equals("0")==false&&paieEnteteMoisCourant.getForf().equals("0,00")==false)
 				addZone(getNOM_ST_INDICES(),Utils.TraiterNombreIt(paieEnteteMoisCourant.getForf()));
 			else{
@@ -216,7 +225,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						soldepris=0;
 					}
 
-					//on enl�ve le solde pris � l'ann�e n-1 et si c'est n�gatif on continue d'enlever sur ann�e n
+					//on enlève le solde pris à l'année n-1 et si c'est négatif on continue d'enlever sur année n
 					solden_1=solden_1-soldepris;
 					if (solden_1<0){
 						solden=solden+solden_1;
@@ -234,8 +243,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			addZone(getNOM_ST_DROITS_RC_N(), rcn);
 			addZone(getNOM_ST_DROITS_RC_N_1(), rcn_1);
 			
-			//On n'ajoute pas les jours de garde pour les pompiers car ca n'a pas �t� valid� en production. R�gle=(JoursCong�s DIV3) jours de gardes.
-			//il faudrait la condition �tre un pompier donc tester si dans SPSOLD par nomatr o� BASCON='F'
+			//On n'ajoute pas les jours de garde pour les pompiers car ca n'a pas été validé en production. Règle=(JoursCongés DIV3) jours de gardes.
+			//il faudrait la condition être un pompier donc tester si dans SPSOLD par nomatr où BASCON='F'
 			addZone(getNOM_ST_DROITS_CONGES(),"01/"+paieEnteteMoisCourant.getPercou().substring(4)+"   "+ joursconges +" Jrs");
 			
 			addZone(getNOM_ST_DROITS_RC_N(),rcn);
@@ -291,10 +300,10 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	}
 	
 	/**
-	 * M�thode appel�e par la servlet qui aiguille le traitement : 
+	 * Méthode appelée par la servlet qui aiguille le traitement : 
 	 * en fonction du bouton de la JSP 
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public boolean recupererStatut(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
@@ -322,24 +331,24 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			}
 		}
 		
-		//Si TAG INPUT non g�r� par le process
-		//Si pas de retour d�finit
-		setStatut(STATUT_MEME_PROCESS,false,"Erreur : TAG INPUT non g�r� par le process");
+		//Si TAG INPUT non géré par le process
+		//Si pas de retour définit
+		setStatut(STATUT_MEME_PROCESS,false,"Erreur : TAG INPUT non géré par le process");
 		return false;
 	}
 	/**
 	 * Constructeur du process FicheSalaire.
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public FicheSalaire() {
 		super();
 	}
 	/**
 	 * Retourne le nom de la JSP du process
-	 * Zone � utiliser dans un champ cach� dans chaque formulaire de la JSP.
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public String getJSP() {
 		return "FicheSalaire.jsp";
@@ -347,17 +356,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_BASE_HORAIRE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_BASE_HORAIRE() {
 		return "NOM_ST_BASE_HORAIRE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_BASE_HORAIRE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_BASE_HORAIRE() {
 		return getZone(getNOM_ST_BASE_HORAIRE());
@@ -365,17 +374,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_BASE_REGLEMENT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_BASE_REGLEMENT() {
 		return "NOM_ST_BASE_REGLEMENT";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_BASE_REGLEMENT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_BASE_REGLEMENT() {
 		return getZone(getNOM_ST_BASE_REGLEMENT());
@@ -383,17 +392,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_CATEGORIE_ADMINISTRATIVE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_CATEGORIE_ADMINISTRATIVE() {
 		return "NOM_ST_CATEGORIE_ADMINISTRATIVE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_CATEGORIE_ADMINISTRATIVE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_CATEGORIE_ADMINISTRATIVE() {
 		return getZone(getNOM_ST_CATEGORIE_ADMINISTRATIVE());
@@ -401,17 +410,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_COEFF_MAJORATION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_COEFF_MAJORATION() {
 		return "NOM_ST_COEFF_MAJORATION";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_COEFF_MAJORATION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_COEFF_MAJORATION() {
 		return getZone(getNOM_ST_COEFF_MAJORATION());
@@ -419,17 +428,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_DOMICILIATION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_DOMICILIATION() {
 		return "NOM_ST_DOMICILIATION";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_DOMICILIATION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_DOMICILIATION() {
 		return getZone(getNOM_ST_DOMICILIATION());
@@ -437,17 +446,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_DROITS_CONGES
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_DROITS_CONGES() {
 		return "NOM_ST_DROITS_CONGES";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_DROITS_CONGES
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_DROITS_CONGES() {
 		return getZone(getNOM_ST_DROITS_CONGES());
@@ -455,17 +464,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_DROITS_RC_N
-	 * Date de cr�ation : (16/05/11 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (16/05/11 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_DROITS_RC_N() {
 		return "NOM_ST_DROITS_RC_N";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_DROITS_RC_N
-	 * Date de cr�ation : (16/05/11 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (16/05/11 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_DROITS_RC_N() {
 		return getZone(getNOM_ST_DROITS_RC_N());
@@ -473,17 +482,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_DROITS_RC_N_1
-	 * Date de cr�ation : (16/05/11 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (16/05/11 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_DROITS_RC_N_1() {
 		return "NOM_ST_DROITS_RC_N_1";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_DROITS_RC_N_1
-	 * Date de cr�ation : (16/05/11 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (16/05/11 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_DROITS_RC_N_1() {
 		return getZone(getNOM_ST_DROITS_RC_N_1());
@@ -491,17 +500,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_GRADE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_GRADE() {
 		return "NOM_ST_GRADE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_GRADE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_GRADE() {
 		return getZone(getNOM_ST_GRADE());
@@ -509,17 +518,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_GRADE2
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_GRADE2() {
 		return "NOM_ST_GRADE2";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_GRADE2
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	
 	public java.lang.String getVAL_ST_GRADE2() {
@@ -528,17 +537,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_INDEX_CORRECTION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_INDEX_CORRECTION() {
 		return "NOM_ST_INDEX_CORRECTION";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_INDEX_CORRECTION
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_INDEX_CORRECTION() {
 		return getZone(getNOM_ST_INDEX_CORRECTION());
@@ -546,17 +555,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_INDICES
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_INDICES() {
 		return "NOM_ST_INDICES";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_INDICES
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_INDICES() {
 		return getZone(getNOM_ST_INDICES());
@@ -564,17 +573,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_MATRICULE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_MATRICULE() {
 		return "NOM_ST_MATRICULE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_MATRICULE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_MATRICULE() {
 		return getZone(getNOM_ST_MATRICULE());
@@ -582,17 +591,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_EUROS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_EUROS() {
 		return "NOM_ST_NET_EUROS";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_EUROS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_EUROS() {
 		return getZone(getNOM_ST_NET_EUROS());
@@ -600,17 +609,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_IMPOS_CUMULS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_IMPOS_CUMULS() {
 		return "NOM_ST_NET_IMPOS_CUMULS";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_IMPOS_CUMULS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_IMPOS_CUMULS() {
 		return getZone(getNOM_ST_NET_IMPOS_CUMULS());
@@ -618,17 +627,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_IMPOS_MOIS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_IMPOS_MOIS() {
 		return "NOM_ST_NET_IMPOS_MOIS";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_IMPOS_MOIS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_IMPOS_MOIS() {
 		return getZone(getNOM_ST_NET_IMPOS_MOIS());
@@ -636,17 +645,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_NONIMPOS_CUMULS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_NONIMPOS_CUMULS() {
 		return "NOM_ST_NET_NONIMPOS_CUMULS";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_NONIMPOS_CUMULS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_NONIMPOS_CUMULS() {
 		return getZone(getNOM_ST_NET_NONIMPOS_CUMULS());
@@ -654,17 +663,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_NONIMPOS_MOIS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_NONIMPOS_MOIS() {
 		return "NOM_ST_NET_NONIMPOS_MOIS";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_NONIMPOS_MOIS
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_NONIMPOS_MOIS() {
 		return getZone(getNOM_ST_NET_NONIMPOS_MOIS());
@@ -672,17 +681,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NET_XPF
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NET_XPF() {
 		return "NOM_ST_NET_XPF";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NET_XPF
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NET_XPF() {
 		return getZone(getNOM_ST_NET_XPF());
@@ -690,17 +699,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NOM
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NOM() {
 		return "NOM_ST_NOM";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NOM
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NOM() {
 		return getZone(getNOM_ST_NOM());
@@ -708,17 +717,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NUM_COMPTE_BANCAIRE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NUM_COMPTE_BANCAIRE() {
 		return "NOM_ST_NUM_COMPTE_BANCAIRE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NUM_COMPTE_BANCAIRE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NUM_COMPTE_BANCAIRE() {
 		return getZone(getNOM_ST_NUM_COMPTE_BANCAIRE());
@@ -726,17 +735,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NUM_MUTUELLE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NUM_MUTUELLE() {
 		return "NOM_ST_NUM_MUTUELLE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NUM_MUTUELLE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NUM_MUTUELLE() {
 		return getZone(getNOM_ST_NUM_MUTUELLE());
@@ -744,17 +753,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_NUM_RETRAITE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_NUM_RETRAITE() {
 		return "NOM_ST_NUM_RETRAITE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_NUM_RETRAITE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_NUM_RETRAITE() {
 		return getZone(getNOM_ST_NUM_RETRAITE());
@@ -762,17 +771,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_PERIODE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_PERIODE() {
 		return "NOM_ST_PERIODE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_PERIODE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_PERIODE() {
 		return getZone(getNOM_ST_PERIODE());
@@ -780,17 +789,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_POINT_CAFAT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_POINT_CAFAT() {
 		return "NOM_ST_POINT_CAFAT";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_POINT_CAFAT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_POINT_CAFAT() {
 		return getZone(getNOM_ST_POINT_CAFAT());
@@ -798,17 +807,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_SERVICE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_SERVICE() {
 		return "NOM_ST_SERVICE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_SERVICE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_SERVICE() {
 		return getZone(getNOM_ST_SERVICE());
@@ -816,17 +825,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_SERVICE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_ECOL() {
 		return "NOM_ST_ECOL";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_SERVICE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_ECOL() {
 		return getZone(getNOM_ST_ECOL());
@@ -834,17 +843,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_SMIG
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_SMIG() {
 		return "NOM_ST_SMIG";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_SMIG
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_SMIG() {
 		return getZone(getNOM_ST_SMIG());
@@ -852,17 +861,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_TBA
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_TBA() {
 		return "NOM_ST_TBA";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_TBA
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_TBA() {
 		return getZone(getNOM_ST_TBA());
@@ -870,17 +879,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_TOTAUX_APAYER
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_TOTAUX_APAYER() {
 		return "NOM_ST_TOTAUX_APAYER";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_TOTAUX_APAYER
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_TOTAUX_APAYER() {
 		return getZone(getNOM_ST_TOTAUX_APAYER());
@@ -888,17 +897,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_TOTAUX_ARETENIR
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_TOTAUX_ARETENIR() {
 		return "NOM_ST_TOTAUX_ARETENIR";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_TOTAUX_ARETENIR
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_TOTAUX_ARETENIR() {
 		return getZone(getNOM_ST_TOTAUX_ARETENIR());
@@ -906,17 +915,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_VALEUR_POINT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_VALEUR_POINT() {
 		return "NOM_ST_VALEUR_POINT";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_VALEUR_POINT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_VALEUR_POINT() {
 		return getZone(getNOM_ST_VALEUR_POINT());
@@ -924,8 +933,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Getter de la liste avec un lazy initialize :
 	 * LB_ELEMENTS_PAIE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	private String [] getLB_ELEMENTS_PAIE() {
 		if (LB_ELEMENTS_PAIE == null)
@@ -935,8 +944,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Setter de la liste:
 	 * LB_ELEMENTS_PAIE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	private void setLB_ELEMENTS_PAIE(java.lang.String[] newLB_ELEMENTS_PAIE) {
 		LB_ELEMENTS_PAIE = newLB_ELEMENTS_PAIE;
@@ -944,37 +953,37 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne le nom de la zone pour la JSP :
 	 * NOM_LB_ELEMENTS_PAIE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_LB_ELEMENTS_PAIE() {
 		return "NOM_LB_ELEMENTS_PAIE";
 	}
 	/**
-	 * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+	 * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
 	 * NOM_LB_ELEMENTS_PAIE_SELECT
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_LB_ELEMENTS_PAIE_SELECT() {
 		return "NOM_LB_ELEMENTS_PAIE_SELECT";
 	}
 	/**
-	 * M�thode � personnaliser
-	 * Retourne la valeur � afficher pour la zone de la JSP :
+	 * Méthode à personnaliser
+	 * Retourne la valeur à afficher pour la zone de la JSP :
 	 * LB_ELEMENTS_PAIE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String [] getVAL_LB_ELEMENTS_PAIE() {
 		return getLB_ELEMENTS_PAIE();
 	}
 	/**
-	 * M�thode � personnaliser
-	 * Retourne l'indice � s�lectionner pour la zone de la JSP :
+	 * Méthode à personnaliser
+	 * Retourne l'indice à sélectionner pour la zone de la JSP :
 	 * LB_ELEMENTS_PAIE
-	 * Date de cr�ation : (23/02/09 15:35:45)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:35:45)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_LB_ELEMENTS_PAIE_SELECT() {
 		return getZone(getNOM_LB_ELEMENTS_PAIE_SELECT());
@@ -982,8 +991,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne le nom d'un bouton pour la JSP :
 	 * PB_RECHERCHER
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_PB_RECHERCHER() {
 		return "NOM_PB_RECHERCHER";
@@ -998,11 +1007,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	}
 	/**
 	 * - Traite et affecte les zones saisies dans la JSP.
-	 * - Impl�mente les r�gles de gestion du process
-	 * - Positionne un statut en fonction de ces r�gles :
+	 * - Implémente les règles de gestion du process
+	 * - Positionne un statut en fonction de ces règles :
 	 *   setStatut(STATUT, boolean veutRetour) ou setStatut(STATUT,Message d'erreur)
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public boolean performPB_RECHERCHER(javax.servlet.http.HttpServletRequest request) throws Exception {
 		//setActivite("AgentSelection");
@@ -1016,15 +1025,15 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		//setActivite("AgentSelection");
 		//setStatut(STATUT_RECHERCHER_AGENT,true);
 		
-		//	Test si ligne s�lectionn�e
+		//	Test si ligne sélectionnée
 		int numligne = (Services.estNumerique(getZone(getNOM_LB_MOIS_ANCIENNETE_SELECT())) ? Integer.parseInt(getZone(getNOM_LB_MOIS_ANCIENNETE_SELECT())) : -1);
 		if (numligne == -1 || getListeMoisAnciennete().size() == 0 || numligne > getListeMoisAnciennete().size() -1 ) {
-			//"ERR997","Aucun �l�ment n'est s�lectionn� dans la liste des @."
-			getTransaction().declarerErreur(MairieMessages.getMessage("ERR997","mois d'anciennet�"));
+			//"ERR997","Aucun élément n'est sélectionné dans la liste des @."
+			getTransaction().declarerErreur(MairieMessages.getMessage("ERR997","mois d'ancienneté"));
 			return false;
 		}
 		
-		//R�cup du courant
+		//Récup du courant
 		PaieElement pe = (PaieElement)getListeMoisAnciennete().get(numligne);
 		setPaieElementMoisCourant(pe);
 		VariableGlobale.ajouter(request,MOIS_COURANT,pe);
@@ -1042,17 +1051,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_AGENT_NOM
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_AGENT_NOM() {
 		return "NOM_ST_AGENT_NOM";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_AGENT_NOM
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_AGENT_NOM() {
 		return getZone(getNOM_ST_AGENT_NOM());
@@ -1060,17 +1069,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_AGENT_PRENOM
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_AGENT_PRENOM() {
 		return "NOM_ST_AGENT_PRENOM";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_AGENT_PRENOM
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_AGENT_PRENOM() {
 		return getZone(getNOM_ST_AGENT_PRENOM());
@@ -1078,17 +1087,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne pour la JSP le nom de la zone statique :
 	 * ST_AGENT_MATRICULE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_ST_AGENT_MATRICULE() {
 		return "NOM_ST_AGENT_MATRICULE";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP  pour la zone :
+	 * Retourne la valeur à afficher par la JSP  pour la zone :
 	 * ST_AGENT_MATRICULE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_ST_AGENT_MATRICULE() {
 		return getZone(getNOM_ST_AGENT_MATRICULE());
@@ -1096,17 +1105,17 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne le nom d'une zone de saisie pour la JSP :
 	 * EF_AGENT
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_EF_AGENT() {
 		return "NOM_EF_AGENT";
 	}
 	/**
-	 * Retourne la valeur � afficher par la JSP pour la zone de saisie  :
+	 * Retourne la valeur à afficher par la JSP pour la zone de saisie  :
 	 * EF_AGENT
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_EF_AGENT() {
 		return getZone(getNOM_EF_AGENT());
@@ -1114,8 +1123,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Getter de la liste avec un lazy initialize :
 	 * LB_MOIS_ANCIENNETE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	private String [] getLB_MOIS_ANCIENNETE() {
 		if (LB_MOIS_ANCIENNETE == null)
@@ -1125,8 +1134,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Setter de la liste:
 	 * LB_MOIS_ANCIENNETE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	private void setLB_MOIS_ANCIENNETE(java.lang.String[] newLB_MOIS_ANCIENNETE) {
 		LB_MOIS_ANCIENNETE = newLB_MOIS_ANCIENNETE;
@@ -1134,37 +1143,37 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * Retourne le nom de la zone pour la JSP :
 	 * NOM_LB_MOIS_ANCIENNETE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_LB_MOIS_ANCIENNETE() {
 		return "NOM_LB_MOIS_ANCIENNETE";
 	}
 	/**
-	 * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+	 * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
 	 * NOM_LB_MOIS_ANCIENNETE_SELECT
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getNOM_LB_MOIS_ANCIENNETE_SELECT() {
 		return "NOM_LB_MOIS_ANCIENNETE_SELECT";
 	}
 	/**
-	 * M�thode � personnaliser
-	 * Retourne la valeur � afficher pour la zone de la JSP :
+	 * Méthode à personnaliser
+	 * Retourne la valeur à afficher pour la zone de la JSP :
 	 * LB_MOIS_ANCIENNETE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String [] getVAL_LB_MOIS_ANCIENNETE() {
 		return getLB_MOIS_ANCIENNETE();
 	}
 	/**
-	 * M�thode � personnaliser
-	 * Retourne l'indice � s�lectionner pour la zone de la JSP :
+	 * Méthode à personnaliser
+	 * Retourne l'indice à sélectionner pour la zone de la JSP :
 	 * LB_MOIS_ANCIENNETE
-	 * Date de cr�ation : (23/02/09 15:40:50)
-	 * @author : G�n�rateur de process
+	 * Date de création : (23/02/09 15:40:50)
+	 * @author : Générateur de process
 	 */
 	public java.lang.String getVAL_LB_MOIS_ANCIENNETE_SELECT() {
 		return getZone(getNOM_LB_MOIS_ANCIENNETE_SELECT());
@@ -1176,7 +1185,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	public boolean performPB_IMPRIMER(javax.servlet.http.HttpServletRequest request) throws Exception {
 		
-		generateBulletinPDFData();
+		generateCommonsVFSBulletinPDFData();
 		
 		return true;
 	}
@@ -1216,11 +1225,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	
 //	ATTENTION APPEND.(STRING_BUFFER) NE MARCHE PAS SUR STRING BUFFER !!!!!!
-//  ATTENTION LES STRING.REPLACEALL doivent �tre test�s avant d'�tre effectu�s, car si le caract�re � remplacer n'y est pas, il renvoit chaine vide !!	
+//  ATTENTION LES STRING.REPLACEALL doivent être testés avant d'être effectués, car si le caractère à remplacer n'y est pas, il renvoit chaine vide !!	
 /**
  * 
  * Affichage des elements de paie de la fiche de salaire.
- * Si le num�ro de la rubrique est dans les 8000 (rubriques de rappel) on affiche un lien qui d�roule les mois de rappel
+ * Si le numéro de la rubrique est dans les 8000 (rubriques de rappel) on affiche un lien qui déroule les mois de rappel
  * @return
  * @throws Exception
  * @throws NumberFormatException
@@ -1232,7 +1241,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		BulletinElement bulletinElemPat=null;
 		//Elements Globaux
 		StringBuffer sbElements = new StringBuffer();
-		//Elements Salari�s
+		//Elements Salariés
 		StringBuffer sbElementsSal = new StringBuffer();
 		//Elements Patronaux
 		StringBuffer sbElementsPat = new StringBuffer();
@@ -1246,7 +1255,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		sbElements.append("<TABLE width=\"100%\" border=\"0\">");
 		sbElements.append("<TBODY>");
 		sbElements.append("<TR>");
-		sbElements.append("<TD class=\"sigp2-majuscule-titre\" style=\"text-align:center;\" width=\"44%\">ELEMENTS�DE�PAIE</TD>");
+		sbElements.append("<TD class=\"sigp2-majuscule-titre\" style=\"text-align:center;\" width=\"44%\">ELEMENTS DE PAIE</TD>");
 		sbElements.append("<TD class=\"sigp2-majuscule-titre\" style=\"text-align:center;\" width=\"14%\">NOMBRE ou TAUX</TD>");
 		sbElements.append("<TD class=\"sigp2-majuscule-titre\" style=\"text-align:center;\" width=\"14%\">BASE ou ASSIETTE</TD>");
 		sbElements.append("<TD class=\"sigp2-majuscule-titre\" style=\"text-align:center;\" width=\"14%\">A RETENIR</TD>");
@@ -1282,7 +1291,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			int iARetenirCafatPat=0;
 			String sBaseAssietteCafatPat="";
 
-			//Pour garder le fonctionnement s�quentiel de cette fonction il est important que listeElementsPaye soit class� par ordre de NORUBR
+			//Pour garder le fonctionnement séquentiel de cette fonction il est important que listeElementsPaye soit classé par ordre de NORUBR
 			if (null!=listeElementsPaye && listeElementsPaye.size()>0){
 				//on liste les elements
 				for (java.util.ListIterator list = listeElementsPaye.listIterator(); list.hasNext(); ) {
@@ -1293,7 +1302,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 					
 					int iNoRubrique=Integer.parseInt(pe.getNorubr());
 
-					//Conditions Sp�ciales d'affichage:
+					//Conditions Spéciales d'affichage:
 					if (iNoRubrique==9000){
 						//SALAIRE NET
 						addZone(getNOM_ST_NET_XPF(),Utils.TraiterNombreIt(pe.getMtpsal()));
@@ -1371,7 +1380,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						//Nombre ou taux
 						nombreTauxSal = new StringBuffer(calculerNombreTaux(pe,true));
 						nombreTauxPat = new StringBuffer(calculerNombreTaux(pe,false));
-						//test sur la virgule pour savoir si c'est bien un taux renvoy� par AS400
+						//test sur la virgule pour savoir si c'est bien un taux renvoyé par AS400
 						if (nombreTauxSal.indexOf(",")!=-1)
 							bulletinElemSal.setTaux(nombreTauxSal.toString().replace(",", ""));
 						else
@@ -1420,7 +1429,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							bulletinElemPat.setSigne("R");
 						}
 
-						//DEBUT Elements CAFAT Patronal � regrouper (id RUBR compris entre 2900 et 2909) ou (id RUBR compris entre 8220 et 8229 pour les rappels cafat)
+						//DEBUT Elements CAFAT Patronal à regrouper (id RUBR compris entre 2900 et 2909) ou (id RUBR compris entre 8220 et 8229 pour les rappels cafat)
 						if((iNoRubrique>2900&&iNoRubrique<=2909)||(iNoRubrique>8220&&iNoRubrique<=8229)){
 							dTauxCafatPat=dTauxCafatPat+Double.parseDouble(pe.getTxpat());
 							if(Integer.parseInt(pe.getMtppat())>0)
@@ -1428,12 +1437,12 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							else if (Integer.parseInt(pe.getMtppat())<0)
 								iARetenirCafatPat=iARetenirCafatPat+Integer.parseInt(pe.getMtppat());
 							sBaseAssietteCafatPat=baseAssiette.toString();
-							//pour ne pas afficher les �l�ments 2900 � 2909 courant ainsi que leurs rappels en 8220 � 8229
+							//pour ne pas afficher les éléments 2900 à 2909 courant ainsi que leurs rappels en 8220 à 8229
 							iPPat=0;
 						}
 
 						if(!alreadyTreatedCAFATPat2900&&iNoRubrique>2909){
-							//on affiche la rubrique 2900 avec les somme concat�n�es. 
+							//on affiche la rubrique 2900 avec les somme concaténées. 
 							if(iARetenirCafatPat!=0||iAPayerCafatPat!=0){
 								dTauxCafatPat=dTauxCafatPat*100;
 								String sARetenirCafatPat=((iARetenirCafatPat)!=0)?"("+Utils.TraiterNombreIt(new String(""+iARetenirCafatPat).substring(1))+")":"";
@@ -1473,7 +1482,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						}
 
 						if(!alreadyTreatedCAFATPat8220&&iNoRubrique>8229){
-							//on affiche la rubrique 8220 avec les sommes aditionn�es. 
+							//on affiche la rubrique 8220 avec les sommes aditionnées. 
 							//dTauxCafatPat=dTauxCafatPat*100;
 							if(iARetenirCafatPat!=0||iAPayerCafatPat!=0){
 								String sARetenirCafatPat=((iARetenirCafatPat)!=0)?"("+Utils.TraiterNombreIt(new String(""+iARetenirCafatPat).substring(1))+")":"";
@@ -1519,7 +1528,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							iARetenirCafatPat=0;
 							sBaseAssietteCafatPat="";
 						}
-						//FIN Elements CAFAT Patronal � regrouper (id compris entre 2900 et 2909) ou (id RUBR compris entre 8220 et 8229 pour les rappels cafat)
+						//FIN Elements CAFAT Patronal à regrouper (id compris entre 2900 et 2909) ou (id RUBR compris entre 8220 et 8229 pour les rappels cafat)
 
 						//cas des rappels, lien cliquable
 						if (iNoRubrique>=8000){ 
@@ -1533,15 +1542,15 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 									a=PaieRappel.listerPaieRappel(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou(), paieRubriquedeRappel.getNorubr());
 								
 								
-								//Bizarrerie: si la rubrique est 8000 ou 8001 (RAPPELS DE SALAIRE), la rubrique de rappel peut �tre ind�pendament 1001 ou 1003
+								//Bizarrerie: si la rubrique est 8000 ou 8001 (RAPPELS DE SALAIRE), la rubrique de rappel peut être indépendament 1001 ou 1003
 								if (!alreadyTreated8000or8001 && pe.getNorubr().equals("8000")){
-									//rub 1003 correspond � la rubrique rappel 8001
+									//rub 1003 correspond à la rubrique rappel 8001
 									a.addAll(PaieRappel.listerPaieRappel(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou(),"1003"));
 									alreadyTreated8000or8001=true;
 								}
 								if (!alreadyTreated8000or8001 && pe.getNorubr().equals("8001")){
 									paieRubriquedeRappel=(PaieRubrique)PaieRubrique.chercherPaieRubriqueRappelCorrespondante(getTransaction(),"8000");
-									//rub 1001 correspond � la rubrique rappel 8000
+									//rub 1001 correspond à la rubrique rappel 8000
 									a.addAll(PaieRappel.listerPaieRappel(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou(),"1001"));
 									alreadyTreated8000or8001=true;
 								}
@@ -1684,8 +1693,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						}
 
 						//les autres cas: juste du texte, pas un lien cliquable
-						//Dans le cas o� le rappel n'a pas d'associ� dans sprapl, le rappel n'est pas un lien:
-						//OU Dans le cas o� on est en RAPPEL CAFAT
+						//Dans le cas où le rappel n'a pas d'associé dans sprapl, le rappel n'est pas un lien:
+						//OU Dans le cas où on est en RAPPEL CAFAT
 						if(!bAffichRappSal && !bAffichRappPat){
 							elementPaie=new StringBuffer("");
 							elementPaie.append(pe.getNorubr()).append(" ").append(sNomRubrique);
@@ -1801,9 +1810,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	}
 
 	/**
-	 * En fonction du noRubrique retourne la valeur � afficher dans la colonne Taux
+	 * En fonction du noRubrique retourne la valeur à afficher dans la colonne Taux
 	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salari�, false si on veut le taux patronal
+	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
 	 * @return
 	 */
 	private String calculerNombreTaux(String noRubr, String nBre, String TxSal, String TxPat, boolean isTauxSal){
@@ -1813,8 +1822,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 
 			if (isTauxSal){
 
-				//cas o� on cherche le taux salari�
-				//ici on restreint les conditions du switch qui en a d�j� bcp:
+				//cas où on cherche le taux salarié
+				//ici on restreint les conditions du switch qui en a déjà bcp:
 				if (iNoRubrique>=8900 && iNoRubrique<=8940)
 					iNoRubrique=8900;
 
@@ -1830,7 +1839,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 				case 8001: case 8041: case 8052: case 8053: /*case 8091:*/ case 8092: case 8093:
 				case 8094: /*case 8095:*/ case 8100: case 8101: case 8102: case 8109: case 8116:
 				case 8120: case 8121: case 8122: case 8123: case 8180: case 8190: case 8299:
-				case 8300: case 8324: case 8325: case 8332: case 8900: /* de 8900 � 8940 */
+				case 8300: case 8324: case 8325: case 8332: case 8900: /* de 8900 à 8940 */
 					NombreouTaux=Utils.TraiterNombreIt(nBre,2);
 					break;
 
@@ -1848,12 +1857,12 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 					NombreouTaux=Utils.TraiterNombreIt(""+(Double.parseDouble(TxSal)*100),2);			
 					break;
 
-					//Prime d'anciennet�
+					//Prime d'ancienneté
 				case 1200: case 8050: case 8091: case 8095: case 2700:
 					NombreouTaux=Utils.TraiterNombreIt(""+(Double.parseDouble(TxSal)*10),2);
 					break;
 					
-					//Prime VIE CH�RE (pr�sentation) 
+					//Prime VIE CHèRE (présentation) 
 				case 1250: case 8051:
 					NombreouTaux=Utils.TraiterNombreIt(""+(Double.parseDouble(TxSal)*100),2);
 					break;
@@ -1866,7 +1875,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 
 
 			}else{
-				//cas o� on cherche le taux patronal
+				//cas où on cherche le taux patronal
 				switch (iNoRubrique){
 				case 2700:
 					NombreouTaux=Utils.TraiterNombreIt(""+(Double.parseDouble(TxPat)*10),2);
@@ -1889,7 +1898,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 
 			}
 			
-			//Un nombre ou un taux ne peut pas �tre n�gatif
+			//Un nombre ou un taux ne peut pas être négatif
 			try{
 				if (NombreouTaux.startsWith("-")){
 					NombreouTaux=NombreouTaux.substring(1);
@@ -1918,7 +1927,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * 
 	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salari�, false si on veut le taux patronal
+	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
 	 * @return
 	 */
 	public String calculerNombreTaux(PaieElement pe, boolean isTauxSal){
@@ -1928,7 +1937,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * 
 	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salari�, false si on veut le taux patronal
+	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
 	 * @return
 	 */
 	public String calculerNombreTaux(PaieRappel pr, boolean isTauxSal){
@@ -2028,11 +2037,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			pw.print(Services.rpad(paieEnteteMoisCourant.getLiecol().trim(),40," "));
 			//odreg mode de reglement
 			pw.print(Services.lpad(paieEnteteMoisCourant.getModreg(),2," "));
-			//ppomp IPOMP (jours de garde pour les pompiers): on n'impl�mente pas car ce n'a pas �t� mis en production. Affichage serait (Nbrjoursgarde g.)
+			//ppomp IPOMP (jours de garde pour les pompiers): on n'implémente pas car ce n'a pas été mis en production. Affichage serait (Nbrjoursgarde g.)
 			pw.print(Services.rpad("",1," "));
-			//Repos Compendateurs Solde1 Ann�e N (heures)
+			//Repos Compendateurs Solde1 Année N (heures)
 			pw.print(Services.lpad(sDemiJoursRCN,3," "));
-			//Repos Compendateurs Solde2 Ann�e N-1 (heures)
+			//Repos Compendateurs Solde2 Année N-1 (heures)
 			pw.print(Services.lpad(sDemiJoursRCN_1,3," "));
 
 			pw.println();
@@ -2135,6 +2144,212 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			throw e;
 		}
 			setScript(g.getScriptOuverture());		
+
+	}
+	
+	/**
+	 * Genere le fichier des DATA pour l'affichage dans le PDF.
+	 * @throws Exception
+	 */
+	private void generateCommonsVFSBulletinPDFData() throws Exception{
+	
+		
+		String sPscript="bul2.sp";
+		String sPdata="bul2";
+		
+		//A partir de 201103 le format du bulletin de salaire change, ajout des Repos Compensateurs sur le bulletin
+		try{
+			int iPercou=Integer.parseInt(paieEnteteMoisCourant.getPercou());
+			if (iPercou>=201103){
+				sPscript="bul4.sp";
+				sPdata="bul4";
+			}
+		}catch(Exception e){
+			sPscript="bul2.sp";
+			sPdata="bul2";
+		}
+		
+		StarjetGeneration g = new StarjetGeneration(getTransaction(), "MAIRIE", starjetMode, "SALAIRERAPPELS", sPscript, sPdata);
+		g.setStarjetServer(starjetServer);
+		FileObject f = g.getFileObjectData();
+		OutputStream output = f.getContent().getOutputStream();
+		OutputStreamWriter ouw = new OutputStreamWriter(output, "8859_1");
+		BufferedWriter out = new BufferedWriter(ouw);
+		try {
+
+		
+			/*******************
+			  		ENTETE
+			 *******************/
+			out.write("1");
+			//mois
+			out.write(StringUtils.rightPad(Utils.TraiterMoisFr(paieEnteteMoisCourant.getPercou()),9," "));
+			//annee
+			System.out.println(paieEnteteMoisCourant.getPercou());
+			out.write(StringUtils.leftPad(Utils.TraiterAnneeFr(paieEnteteMoisCourant.getPercou()),4," "));
+			//libcat
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLicate().trim(),30," "));
+			//nomatr
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getNomatr().trim(),5," "));
+			//nom prenom
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getNom().trim()+" "+paieEnteteMoisCourant.getPrenom().trim(),40," "));
+			//grade
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLigrad().trim(),43," "));
+			//base reglement
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLimodr().trim(),15," "));
+			//Indice ou Forfait: MtBase
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getForf().replace(",","").trim(),9," "));
+			//pnetan INA
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getIna(),4," "));
+			//plebar IBAN
+			String iban="";
+			try{
+				iban=""+Integer.parseInt(paieEnteteMoisCourant.getIban());
+			}catch (Exception ei){
+				iban=paieEnteteMoisCourant.getIban();
+			}
+			out.write(StringUtils.leftPad(iban,7," "));
+			//pajore INM
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getInm(),4," "));
+			//pmajor INM
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getInm(),4," "));
+			//numero retraite
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getNuretr().trim(),8," "));
+			//numero mutuelle
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getNumutu(),15," "));
+			//Service
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLiserv(),60," "));
+			
+			//at conges
+			out.write(StringUtils.rightPad("01/"+paieEnteteMoisCourant.getPercou().substring(4),5," "));
+			//Nb conges
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getNbcong().replace(",",""),7," "));
+			//index de correction paux
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getIndcor().replace(",",""),5," "));
+			//valeur du point en euro pap
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getVap().replace(",",""),9," "));
+			//pase TBA (inm x vap)
+			out.write(StringUtils.leftPad(sTBA.replace(",",""),9," "));
+			//coeff de majoration pcv
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getCoef().replace(",",""),5," "));
+			//point CAFAT pcv
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getPtcafat().replace(",",""),5," "));
+			//smig
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getSmig().replace(",",""),5," "));
+			//BASE HORAIRE pibhor
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLibhor(),30," "));
+			//pbecol   liecol
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLiecol().trim(),40," "));
+			//odreg mode de reglement
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getModreg(),2," "));
+			//ppomp IPOMP (jours de garde pour les pompiers): on n'implï¿½mente pas car ce n'a pas ï¿½tï¿½ mis en production. Affichage serait (Nbrjoursgarde g.)
+			out.write(StringUtils.rightPad("",1," "));
+			//Repos Compendateurs Solde1 Annï¿½e N (heures)
+			out.write(StringUtils.leftPad(sDemiJoursRCN,3," "));
+			//Repos Compendateurs Solde2 Annï¿½e N-1 (heures)
+			out.write(StringUtils.leftPad(sDemiJoursRCN_1,3," "));
+
+			out.write("\n");
+
+			/*******************
+	  			Part salariale
+			 *******************/
+			if (null!=listeBulletinSalarie&& listeBulletinSalarie.size()>0){
+				for (int i=0; i<listeBulletinSalarie.size(); i++){
+					out.write("2");
+					//norubr
+					out.write(StringUtils.rightPad(listeBulletinSalarie.get(i).getNoRubr(),4," "));
+					//lirubr
+					String lirubr="";
+					try{
+						lirubr=listeBulletinSalarie.get(i).getLiRubr().substring(0,40);
+					}catch (Exception elex){
+						lirubr=listeBulletinSalarie.get(i).getLiRubr();
+					}
+					out.write(StringUtils.rightPad(lirubr.trim(),40," "));
+					//nbresal
+					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getNombre(),5," "));
+					//TauxSal
+					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getTaux(),5," "));
+					//MtBase
+					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getMtBases(),9," "));
+					//MtSal
+					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getMontant(),7," "));
+					//Signe
+					out.write(StringUtils.rightPad(listeBulletinSalarie.get(i).getSigne(),1," ")); //P=A PAYER    R=A RETENIR
+					
+					out.write("\n");
+				}
+			}
+			
+			/*******************
+	  			Part patronale
+			 *******************/
+			if (null!=listeBulletinPatronal&& listeBulletinPatronal.size()>0){
+				for (int i=0; i<listeBulletinPatronal.size(); i++){
+					out.write("3");
+					//norubr
+					out.write(StringUtils.rightPad(listeBulletinPatronal.get(i).getNoRubr(),4," "));
+					//lirubr
+					String lirubr="";
+					try{
+						lirubr=listeBulletinPatronal.get(i).getLiRubr().substring(0,40);
+					}catch (Exception elex){
+						lirubr=listeBulletinPatronal.get(i).getLiRubr();
+					}
+					out.write(StringUtils.rightPad(lirubr.trim(),40," "));
+					//tauxpat
+					out.write(StringUtils.leftPad(listeBulletinPatronal.get(i).getTaux(),5," "));
+					//MtBase
+					out.write(StringUtils.leftPad(listeBulletinPatronal.get(i).getMtBases(),9," "));
+					//MtPat
+					out.write(StringUtils.leftPad(listeBulletinPatronal.get(i).getMontant(),7," "));
+					//Signe
+					out.write(StringUtils.rightPad(listeBulletinPatronal.get(i).getSigne(),1," ")); //P=A PAYER    R=A RETENIR
+					
+					out.write("\n");
+				}
+			}
+			/*******************
+	  			Total
+			 *******************/
+			out.write("4");
+			//totret
+			out.write(StringUtils.leftPad(totalRetenir,7," "));
+			//totpay
+			out.write(StringUtils.leftPad(totalPayer,7," "));
+			//netimp
+			out.write(StringUtils.leftPad(netImposMois,7," "));
+			//nonimp
+			out.write(StringUtils.leftPad(nonImposMois,7," "));
+			//netpay
+			out.write(StringUtils.leftPad(netPayer,7," "));
+			//netian
+			out.write(StringUtils.leftPad(netImposCumul,7," "));
+			//nonian
+			out.write(StringUtils.leftPad(nonImposCumul,7," "));
+			//cdbanq
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getCdbanq(),5," "));
+			//cdguic
+			out.write(StringUtils.leftPad(Utils.ConcatDebutValeurStringTaille(paieEnteteMoisCourant.getCdguic(),"0",5),5," "));
+			//nocpte
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getNocpte(),11," "));
+			//clerib
+			out.write(StringUtils.leftPad(paieEnteteMoisCourant.getClerib(),2," "));
+			//banque
+			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLibanq(),29," "));
+				
+			out.write("\n");
+		
+			out.flush();
+			out.close();
+			ouw.close();
+		} catch (Exception e) {
+			output.close();
+			f.close();
+			throw e;
+		}
+			setScript(g.getCommonsVFSScriptOuverture());		
 
 	}
 	

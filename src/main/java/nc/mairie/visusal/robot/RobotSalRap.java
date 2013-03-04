@@ -1,13 +1,13 @@
 package nc.mairie.visusal.robot;
 
-import nc.mairie.technique.BasicProcess;
 import nc.mairie.visusal.process.FicheSalaire;
 import nc.mairie.visusal.process.OeAGENTSelection;
 import nc.mairie.visusal.test.ZZZTESTEUR;
+import nc.mairie.technique.BasicProcess;
 
 /**
- * Ins�rez la description du type � cet endroit.
- *  Date de cr�ation : (28/10/02 10:14:36)
+ * Insérez la description du type à cet endroit.
+ *  Date de création : (28/10/02 10:14:36)
  * @author : Luc Bourdil
  */
 public class RobotSalRap extends nc.mairie.robot.Robot{ 
@@ -18,32 +18,32 @@ public RobotSalRap() {
 	super();
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
- *  Date de cr�ation : (28/10/02 10:16:34)
+ * Insérez la description de la méthode à cet endroit.
+ *  Date de création : (28/10/02 10:16:34)
  */
 public BasicProcess getDefaultProcess() {
 	return new FicheSalaire();
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
- *  Date de cr�ation : (28/10/02 10:16:34)
+ * Insérez la description de la méthode à cet endroit.
+ *  Date de création : (28/10/02 10:16:34)
  */
 public BasicProcess getFirstProcess(String activite) throws Exception {
 
 	//System.out.println("ACTIVITE="+activite);
 	if (activite.equals("FicheSalaire")) {
-		return new FicheSalaire();
+		return new nc.mairie.visusal.process.FicheSalaire();
 	}else {
 		//return null;
 		System.out.println("ACTIVITE IMPOSSIBLE: "+activite);
 	}
 
-	throw new Exception("Activite "+activite+" non d�clar�e dans le robot de navigation");
+	throw new Exception("Activite "+activite+" non déclarée dans le robot de navigation");
 	
 }
 /**
- * Ins�rez la description de la m�thode ici.
- *  Date de cr�ation : (28/10/2002 11:59:52)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (28/10/2002 11:59:52)
  * @return java.util.Hashtable
  */
 protected java.util.Hashtable initialiseNavigation() {
@@ -56,8 +56,8 @@ protected java.util.Hashtable initialiseNavigation() {
 	return navigation;
 }
 /**
- * Ins�rez la description de la m�thode ici.
- *  Date de cr�ation : (28/10/2002 11:59:52)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (28/10/2002 11:59:52)
  * @return java.util.Hashtable
  */
 protected nc.mairie.robot.Testeur initialiseTesteur() {

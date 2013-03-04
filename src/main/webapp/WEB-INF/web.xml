@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>Mairie_VisuSal</display-name>
 <!-- 	<context-param> -->
@@ -22,7 +22,7 @@
 <!--          <param-value>PROD</param-value> -->
 <!--     </context-param> -->
 <!--     <context-param> -->
-<!-- 		<description>Nom de l'application déclarée SIDRAP pour connaitre les droits</description> -->
+<!-- 		<description>Nom de l'application dÃƒÂ©clarÃƒÂ©e SIDRAP pour connaitre les droits</description> -->
 <!-- 		<param-name>APPLICATION</param-name> -->
 <!-- 		<param-value>VisuSalaire</param-value> -->
 <!-- 	</context-param> -->
@@ -48,7 +48,7 @@
 		<url-pattern>/SalaireRappels</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>Accueil.jsp</welcome-file>
+		<!-- <welcome-file>Accueil.jsp</welcome-file> -->
 		<welcome-file>Salaire.jsp</welcome-file>
 	</welcome-file-list>
 	  <error-page>

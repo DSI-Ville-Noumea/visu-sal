@@ -2,7 +2,7 @@ package nc.mairie.visusal.metier;
 
 import nc.mairie.technique.BasicRecord;
 /**
- * Broker de l'Objet m�tier AgentMairie
+ * Broker de l'Objet métier AgentMairie
  */
 public class AgentMairieBroker extends nc.mairie.technique.BasicBroker {
 /**
@@ -91,7 +91,7 @@ public boolean supprimerAgentMairie(nc.mairie.technique.Transaction aTransaction
 	return supprimer(aTransaction);
 }
 /**
- * Retourne un ArrayList d'objet m�tier : AgentMairie.
+ * Retourne un ArrayList d'objet métier : AgentMairie.
  * @return java.util.ArrayList
  */
 public java.util.ArrayList listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception {

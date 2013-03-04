@@ -2,7 +2,7 @@ package nc.mairie.visusal.metier;
 
 import nc.mairie.technique.MairieMessages;
 /**
- * Objet m�tier PaieEntete
+ * Objet métier PaieEntete
  */
 public class PaieEntete extends nc.mairie.technique.BasicMetier {
 	public String nomatr;
@@ -454,28 +454,28 @@ public void setNbrcp(String newNbrcp) {
 	nbrcp = newNbrcp;
 }
 /**
- Methode � d�finir dans chaque objet M�tier pour instancier un Broker 
+ Methode à définir dans chaque objet Métier pour instancier un Broker 
 */
 protected nc.mairie.technique.BasicBroker definirMyBroker() { 
 	return new PaieEnteteBroker(this); 
 }
 /**
- Methode � d�finir dans chaque objet M�tier pour instancier un Broker 
+ Methode à définir dans chaque objet Métier pour instancier un Broker 
 */
 protected PaieEnteteBroker getMyPaieEnteteBroker() {
 	return (PaieEnteteBroker)getMyBasicBroker();
 }
 /**
-* Renvoie une cha�ne correspondant � la valeur de cet objet.
-* @return une repr�sentation sous forme de cha�ne du destinataire
+* Renvoie une chaîne correspondant à la valeur de cet objet.
+* @return une représentation sous forme de chaîne du destinataire
 */
 public String toString() {
-	// Ins�rez ici le code pour finaliser le destinataire
-	// Cette impl�mentation transmet le message au super. Vous pouvez remplacer ou compl�ter le message.
+	// Insérez ici le code pour finaliser le destinataire
+	// Cette implémentation transmet le message au super. Vous pouvez remplacer ou compléter le message.
 	return super.toString();
 }
 /**
- * Retourne un ArrayList d'objet m�tier : PaieEntete.
+ * Retourne un ArrayList d'objet métier : PaieEntete.
  * @return java.util.ArrayList
  */
 public static java.util.ArrayList listerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception{

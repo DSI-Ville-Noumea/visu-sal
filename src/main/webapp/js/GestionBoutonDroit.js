@@ -1,4 +1,4 @@
-if (window.Event) 
+﻿if (window.Event) 
 document.captureEvents(Event.MOUSEUP); 
 function fonctions_de_la_page_desactivees() 
 {
