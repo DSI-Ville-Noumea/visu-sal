@@ -1,25 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<!-- The contents of this file will be loaded for each web application -->
 <Context>
 
-    <!-- Default set of monitored resources -->
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 
 	<Resource name="jdbc/DS" auth="Container" type="javax.sql.DataSource"
 		factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
@@ -30,29 +12,40 @@
 		removeAbandoned="true" logAbandoned="true" minEvictableIdleTimeMillis="30000"
 		jmxEnabled="true" username="***REMOVED***" password="***REMOVED***"
 		driverClassName="com.ibm.as400.access.AS400JDBCDriver" url="jdbc:as400://robinnw" />
-		
-		
-	
-	<Parameter description="Hote SGBD (ROBINNW ou NOUMA)" name="HOST_SGBD" override="false" value="DS" />
-	<Parameter description="Environnement starjet (DVLP, TEST ou PROD)" name="STARJET_MODE" override="false" value="DVLP" />
-	<Parameter description="Serveur starjet (nom du serveur)" name="STARJET_SERVER" override="false" value="STARJET" />
-	<Parameter description="Nom de l'application dÃƒÂ©clarÃƒÂ©e SIDRAP pour connaitre les droits" name="APPLICATION" override="false" value="VisuSalaire" />
-	<Parameter description="CritÃƒÂ¨re de recherche LDAP" name="CRITERE_RECHERCHE_LDAP" override="false" value="samaccountname" />
-	<Parameter description="Admin LDAP" name="HOST_LDAP_ADMIN" override="false" value="cn=***REMOVED***,ou=WAS,ou=APPLI,ou=Z-users" />
-	<Parameter description="HÃƒÂ´te LDAP" name="HOST_LDAP" override="false" value="ldap://***REMOVED***:389/ ldap://***REMOVED***:389/ ldap://***REMOVED***:389/" />
-	<Parameter description="Init CTX LDAP" name="INITCTX_LDAP" override="false" value="com.sun.jndi.ldap.LdapCtxFactory" />
-	<Parameter description="Mot de passe LDAP" name="HOST_LDAP_PASSWORD" override="false" value="***REMOVED***" />
-	<Parameter description="Base LDAP" name="BASE_LDAP" override="false" value="dc=site-mairie,dc=noumea,dc=nc" />
-	
-    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
-    <!--
-    <Manager pathname="" />
-    -->
 
-    <!-- Uncomment this to enable Comet connection tacking (provides events
-         on session expiration as well as webapp lifecycle) -->
-    <!--
-    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
-    -->
+
+
+	<Parameter name="HOST_SGBD" value="DS" 
+	    description="Hote SGBD (ROBINNW ou NOUMEA)" override="false" />
+	
+	<Parameter name="STARJET_MODE" value="DVLP" 
+	    description="Environnement starjet (DVLP, TEST ou PROD)" override="false" />
+	
+	<Parameter name="STARJET_SERVER" value="STARJET" 
+	    description="Serveur starjet (nom du serveur)" override="false" />
+	
+	<Parameter name="APPLICATION" value="VisuSalaire" 
+		description="Nom de l'application déclarée SIDRAP pour connaître les droits" override="false" />
+	
+	<Parameter name="CRITERE_RECHERCHE_LDAP" value="samaccountname"
+		override="false" />
+	
+	<Parameter name="HOST_LDAP_ADMIN" value="cn=***REMOVED***,ou=WAS,ou=APPLI,ou=Z-users" 
+	    override="false" />
+	
+	<Parameter name="HOST_LDAP" value="ldap://***REMOVED***.site-mairie.noumea.nc:389 ldap://***REMOVED***.site-mairie.noumea.nc:389 ldap://***REMOVED***.site-mairie.noumea.nc:389" 
+	    override="false" />
+	
+	<Parameter name="INITCTX_LDAP" value="com.sun.jndi.ldap.LdapCtxFactory" 
+	    override="false" />
+	
+	<Parameter name="HOST_LDAP_PASSWORD" value="***REMOVED***" 
+	    override="false"/>
+	
+	<Parameter name="BASE_LDAP" value="dc=site-mairie,dc=noumea,dc=nc" 
+	    override="false" />
+	
+	<Parameter name="VERSION" value="${project.version}" 
+	    description="Version" override="false" />
 
 </Context>
