@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page import="nc.mairie.visusal.servlets.ServletSalRap"%>
 <HTML>
 <HEAD>
@@ -14,7 +14,7 @@
 		response.setStatus(response.SC_UNAUTHORIZED); 
 		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour la Mairie\"");
 		javax.servlet.ServletContext sc= getServletContext();
-		javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("ConnectionInsulte.jsp");
+		javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("/ConnectionInsulte.jsp");
 		rd.forward(request,response);
 	}
 
