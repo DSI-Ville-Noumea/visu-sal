@@ -35,7 +35,7 @@ frm.submit();
 }
 
 </SCRIPT>
-<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </HEAD>
 <jsp:useBean class="nc.mairie.visusal.process.OeAGENTSelection" id="process" scope="session"></jsp:useBean>
 <BODY bgcolor="#ffffff" background="images/fond_menu.jpg" text="#000000" style="cursor : auto;" onload="return setfocus('<%=process.getFocus() %>')"><BASEFONT FACE="Arial" SIZE=2> 
@@ -76,7 +76,7 @@ frm.submit();
 										type="radio" align="bottom"
 										<%= process.forRadioHTML(process.getNOM_RG_RECHERCHE(),process.getNOM_RB_RECH_NOM())%>> </TD>
 									<TD class="sigp2" width="200" valign="top">Matricule ou début du nom de l'agent</TD>
-									<TD rowspan="2"><INPUT size="1" type="text" class="sigp2-saisie" maxlength="1" name="ZoneTampon" style="display : 'none';">
+									<TD rowspan="2"><INPUT size="1" type="text" class="sigp2-saisie" maxlength="1" name="ZoneTampon" style="display : none;">
 <INPUT class="sigp2-saisie" maxlength="60" name="<%= process.getNOM_EF_NOM_AGENT() %>" size="20" type="text" value="<%= process.getVAL_EF_NOM_AGENT() %>">
 </TD>
                   <TD rowspan="2"><INPUT type="submit" value="Rechercher" class="sigp2-Bouton-100" name="<%=process.getNOM_PB_RECHERCHER()%>" accesskey="R"></TD>
