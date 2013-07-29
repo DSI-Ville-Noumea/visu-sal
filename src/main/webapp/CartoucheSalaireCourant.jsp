@@ -1,4 +1,4 @@
-﻿<LINK href="theme/sigp2.css" rel="stylesheet" type="text/css">
+<LINK href="theme/sigp2.css" rel="stylesheet" type="text/css">
 <TR><TD width="100%">
 	<FIELDSET style="text-align : center;">
 	<TABLE width="100%" border="0" cellpadding="0" cellspacing="0">

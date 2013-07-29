@@ -1,8 +1,9 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
+<%@page contentType="text/html;charset=UTF-8"%> <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <TITLE>Main</TITLE>
 <SCRIPT language="javascript" src="js/GestionBoutonDroit.js"></SCRIPT>
 <SCRIPT language="javascript" src="js/GestionMenu.js"> </SCRIPT>

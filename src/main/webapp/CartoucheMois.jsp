@@ -1,4 +1,4 @@
-﻿<TR valign="top">
+<TR valign="top">
 	<TD>
 	<FIELDSET style="text-align : center;">
 <SELECT class="sigp2-liste" name="<%= process.getNOM_LB_MOIS_ANCIENNETE() %>" onclick='executeBouton("<%=process.getNOM_PB_MOIS_ANCIENNETE()%>")' size="15" style="width : 100%;">

@@ -1,4 +1,4 @@
-﻿<TR valign="top">
+<TR valign="top">
 	<TD>
 	<FIELDSET style="text-align : center;">
 	<TABLE border="0">

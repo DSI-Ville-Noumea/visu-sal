@@ -1,4 +1,4 @@
-﻿<!-- Sample JSP file --> <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- Sample JSP file --> <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
@@ -35,7 +35,7 @@ frm.submit();
 }
 
 </SCRIPT>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@page contentType="text/html;charset=UTF-8"%> <meta http-equiv="X-UA-Compatible" content="chrome=1">
 </HEAD>
 <jsp:useBean class="nc.mairie.visusal.process.OeAGENTSelection" id="process" scope="session"></jsp:useBean>
 <BODY bgcolor="#ffffff" background="images/fond_menu.jpg" text="#000000" style="cursor : auto;" onload="return setfocus('<%=process.getFocus() %>')"><BASEFONT FACE="Arial" SIZE=2> 
