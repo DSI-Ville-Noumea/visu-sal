@@ -68,7 +68,7 @@
 						<TR>
 							<TD class="sigp2-majuscule-titre" colspan="2" width="21%">NÂ° RETRAITE</TD>
 							<TD class="sigp2-texte-fond1" width="21%"><%= cscbp.getVAL_ST_NUM_RETRAITE() %></TD>
-							<TD class="sigp2-majuscule-titre" width="21%">N° MUTUELLE</TD>
+							<TD class="sigp2-majuscule-titre" width="21%">NÂ° MUTUELLE</TD>
 							<TD class="sigp2-texte-fond1" width="37%"><%= cscbp.getVAL_ST_NUM_MUTUELLE() %></TD>
 						</TR>
 						<TR>
@@ -142,7 +142,7 @@
 			<TD class="sigp2-texte-fond1" style="text-align:right;"><%= cscbp.getVAL_ST_NET_NONIMPOS_CUMULS() %></TD>
 			<TD></TD>
 		<TR>
-			<TD class="sigp2-majuscule-titre" colspan="2">N° DE COMPTE BANCAIRE</TD>
+			<TD class="sigp2-majuscule-titre" colspan="2">NÂ° DE COMPTE BANCAIRE</TD>
 			<TD class="sigp2-majuscule-titre" colspan="3">DOMICILIATION</TD>
 			<TD class="sigp2-texte-fond1" style="text-align:right;" colspan="2" rowspan="2">SOIT: <%= cscbp.getVAL_ST_NET_EUROS() %> &euro;</TD></TR>
 		<TR>
