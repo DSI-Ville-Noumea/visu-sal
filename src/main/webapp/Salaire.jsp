@@ -1,12 +1,10 @@
-<%@page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page import="nc.mairie.visusal.servlets.ServletSalRap"%>
 <HTML>
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<META http-equiv="Content-Type" content="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<%@page contentType="text/html;charset=UTF-8"%> <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <TITLE>Visualisation du Salaire</TITLE>
 <SCRIPT language="javascript" src="js/GestionBoutonDroit.js"></SCRIPT>
 </HEAD>

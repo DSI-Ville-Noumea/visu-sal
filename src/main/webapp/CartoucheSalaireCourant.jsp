@@ -1,4 +1,3 @@
-<%@page contentType="text/html;charset=UTF-8"%>
 <%@page import="nc.mairie.visusal.process.FicheSalaire"%>
 <% FicheSalaire cscbp = (FicheSalaire)request.getSession().getAttribute("process"); %>
 <LINK href="theme/sigp2.css" rel="stylesheet" type="text/css">
