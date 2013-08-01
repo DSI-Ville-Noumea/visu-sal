@@ -99,9 +99,15 @@
 						<configuration>
 							<tasks>
 								<copy
-									tofile="src/site/resources/war/${project.artifactId}##${project.version}.war"
-									file="${project.build.directory}/${project.build.finalName}.${project.packaging}">
+									file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+									tofile="src/site/resources/war/${project.version}/${project.artifactId}##${project.version}.${project.packaging}">
 								</copy>
+								<copy
+									file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+									tofile="${project.build.directory}/${project.artifactId}##${project.version}.${project.packaging}">
+								</copy>
+								<delete
+									file="${project.build.directory}/${project.build.finalName}.${project.packaging}" />
 								<checksum algorithm="md5">
 									<fileset dir="src/site/resources/war/${project.version}">
 										<include name="*.war" />
@@ -109,6 +115,7 @@
 									</fileset>
 								</checksum>
 							</tasks>
+
 						</configuration>
 						<goals>
 							<goal>run</goal>
