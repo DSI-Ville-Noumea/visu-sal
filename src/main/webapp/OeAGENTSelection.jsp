@@ -35,7 +35,7 @@ frm.submit();
 }
 
 </SCRIPT>
-<%@page contentType="text/html;charset=UTF-8"%> <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<%@page contentType="text/html;charset=UTF-8"%>
 </HEAD>
 <jsp:useBean class="nc.mairie.visusal.process.OeAGENTSelection" id="process" scope="session"></jsp:useBean>
 <BODY bgcolor="#ffffff" background="images/fond_menu.jpg" text="#000000" style="cursor : auto;" onload="return setfocus('<%=process.getFocus() %>')"><BASEFONT FACE="Arial" SIZE=2> 

@@ -3,7 +3,7 @@
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<%@page contentType="text/html;charset=UTF-8"%> <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<%@page contentType="text/html;charset=UTF-8"%>
 <TITLE>Visualisation des Salaires</TITLE>
 <SCRIPT language="JavaScript"> 
 function simpleDialog(msg) { 

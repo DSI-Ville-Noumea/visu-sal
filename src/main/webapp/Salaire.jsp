@@ -5,8 +5,6 @@
 <HEAD>
 <META name="GENERATOR" content="IBM WebSphere Page Designer V3.5.3 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<META http-equiv="Content-Type" content="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
 <TITLE>Visualisation du Salaire</TITLE>
 <SCRIPT language="javascript" src="js/GestionBoutonDroit.js"></SCRIPT>
 </HEAD>
