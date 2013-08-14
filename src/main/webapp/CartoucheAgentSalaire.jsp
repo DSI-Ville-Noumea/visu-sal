@@ -8,9 +8,7 @@
 			<TR>
 				<TD class="sigp2-majuscule-titre" width="46">Agent:</TD>
 				<TD align="center" width="103">
-<%-- 				<INPUT src="images/jumelle.gif"  name="<%=casbp.getNOM_PB_RECHERCHER()%>" alt="Rechercher Agent" title="Rechercher Agent"> --%>
-				<img src="images/jumelle.gif" onclick='executeBouton("<%=casbp.getNOM_PB_RECHERCHER()%>")' style="cursor: pointer;"/>
-				<input type='submit' name='<%=casbp.getNOM_PB_RECHERCHER()%>' style='display:none'/>
+				<INPUT type="image" src="images/jumelle.gif"  name="<%=casbp.getNOM_PB_RECHERCHER()%>" alt="Rechercher Agent" title="Rechercher Agent">				
 				</TD>
 			</TR>
 			<TR>
