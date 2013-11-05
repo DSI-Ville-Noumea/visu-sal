@@ -8,6 +8,13 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import nc.mairie.technique.FormateListe;
+import nc.mairie.technique.MairieMessages;
+import nc.mairie.technique.Services;
+import nc.mairie.technique.StarjetGeneration;
+import nc.mairie.technique.StarjetGenerationVFS;
+import nc.mairie.technique.VariableActivite;
+import nc.mairie.technique.VariableGlobale;
 import nc.mairie.visusal.metier.AgentMairie;
 import nc.mairie.visusal.metier.BulletinElement;
 import nc.mairie.visusal.metier.PaieElement;
@@ -17,8 +24,6 @@ import nc.mairie.visusal.metier.PaieRappel;
 import nc.mairie.visusal.metier.PaieRubrique;
 import nc.mairie.visusal.metier.Utils;
 import nc.mairie.visusal.servlets.ServletSalRap;
-import nc.mairie.technique.*;
-import nc.mairie.visusal.metier.Utils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.vfs.FileObject;
@@ -2155,23 +2160,22 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 		
 		String sPscript="bul2.sp";
-		String sPdata="bul2";
+		String sPdata="bul2.dat";
 		
 		//A partir de 201103 le format du bulletin de salaire change, ajout des Repos Compensateurs sur le bulletin
 		try{
 			int iPercou=Integer.parseInt(paieEnteteMoisCourant.getPercou());
 			if (iPercou>=201103){
 				sPscript="bul4.sp";
-				sPdata="bul4";
+				sPdata="bul4.dat";
 			}
 		}catch(Exception e){
 			sPscript="bul2.sp";
-			sPdata="bul2";
+			sPdata="bul2.dat";
 		}
 		
-		StarjetGeneration g = new StarjetGeneration(getTransaction(), "MAIRIE", starjetMode, "SALAIRERAPPELS", sPscript, sPdata);
-		g.setStarjetServer(starjetServer);
-		FileObject f = g.getFileObjectData();
+		StarjetGenerationVFS g = new StarjetGenerationVFS(getTransaction(), sPscript, sPdata);
+		FileObject f = g.getFileData();
 		OutputStream output = f.getContent().getOutputStream();
 		OutputStreamWriter ouw = new OutputStreamWriter(output, "8859_1");
 		BufferedWriter out = new BufferedWriter(ouw);
@@ -2349,7 +2353,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			f.close();
 			throw e;
 		}
-			setScript(g.getCommonsVFSScriptOuverture());		
+			setScript(g.getScriptOuverture());		
 
 	}
 	
