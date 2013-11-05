@@ -20,13 +20,14 @@
 		<artifactId>${project.artifactId}</artifactId>
 		<version>${project.version}</version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<svnurl>https://svn.ville-noumea.nc/sed/visu-sal</svnurl>
 	</properties>
 
 
 	<scm>
-		<connection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</connection>
-		<developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</developerConnection>
-		<url>https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</url>
+		<connection>scm:svn:${svnurl}/trunk</connection>
+		<developerConnection>scm:svn:${svnurl}/trunk</developerConnection>
+		<url>${svnurl}/trunk</url>
 	</scm>
 
 
