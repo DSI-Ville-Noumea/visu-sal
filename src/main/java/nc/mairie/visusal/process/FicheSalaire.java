@@ -2125,7 +2125,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			//netpay
 			pw.print(Services.lpad(netPayer,7," "));
 			//netian
-			pw.print(Services.lpad(netImposCumul,7," "));
+			pw.print(Services.lpad(netImposCumul,9," "));
 			//nonian
 			pw.print(Services.lpad(nonImposCumul,7," "));
 			//cdbanq
@@ -2159,19 +2159,19 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	private void generateCommonsVFSBulletinPDFData() throws Exception{
 	
 		
-		String sPscript="bul2.sp";
-		String sPdata="bul2.dat";
+		String sPscript="bula.sp";
+		String sPdata="bull.dat";
 		
 		//A partir de 201103 le format du bulletin de salaire change, ajout des Repos Compensateurs sur le bulletin
 		try{
 			int iPercou=Integer.parseInt(paieEnteteMoisCourant.getPercou());
 			if (iPercou>=201103){
-				sPscript="bul4.sp";
-				sPdata="bul4.dat";
+				sPscript="bulf.sp";
+				sPdata="bull.dat";
 			}
 		}catch(Exception e){
-			sPscript="bul2.sp";
-			sPdata="bul2.dat";
+			sPscript="bula.sp";
+			sPdata="bull.dat";
 		}
 		
 		StarjetGenerationVFS g = new StarjetGenerationVFS(getTransaction(), sPscript, sPdata);

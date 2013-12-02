@@ -27,7 +27,7 @@ protected PaieElement getMyPaieElement() {
  * Retourne le nom de la table.
  */
 protected java.lang.String definirNomTable() {
-	return "MAIRIE.SPSALR";
+	return "MAIRIE.SPSALRV1";
 }
 /**
  * Retourne le mappage de chaque colonne de la table.
