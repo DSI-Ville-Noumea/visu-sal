@@ -2180,6 +2180,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		OutputStreamWriter ouw = new OutputStreamWriter(output, "8859_1");
 		BufferedWriter out = new BufferedWriter(ouw);
 		try {
+			
+			/*******************
+	  				INFO
+			 *******************/
+			out.write("0Ce bulletin a été édité par l'application de Visualisation des salaires.\n");
 
 		
 			/*******************
