@@ -2334,7 +2334,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			//netpay
 			out.write(StringUtils.leftPad(netPayer,7," "));
 			//netian
-			out.write(StringUtils.leftPad(netImposCumul,7," "));
+			out.write(StringUtils.leftPad(netImposCumul,9," "));
 			//nonian
 			out.write(StringUtils.leftPad(nonImposCumul,7," "));
 			//cdbanq
