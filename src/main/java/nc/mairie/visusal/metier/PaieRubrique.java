@@ -1,6 +1,6 @@
 package nc.mairie.visusal.metier;
 
-import nc.mairie.technique.MairieMessages;
+
 /**
  * Objet métier PaieRubrique
  */
@@ -153,7 +153,7 @@ public String toString() {
  * Retourne un ArrayList d'objet métier : PaieRubrique.
  * @return java.util.ArrayList
  */
-public static java.util.ArrayList listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception{
+public static java.util.ArrayList<PaieRubrique> listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	PaieRubrique unPaieRubrique = new PaieRubrique();
 	return unPaieRubrique.getMyPaieRubriqueBroker().listerPaieRubrique(aTransaction);
 }

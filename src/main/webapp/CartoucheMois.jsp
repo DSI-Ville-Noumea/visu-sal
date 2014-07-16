@@ -7,7 +7,7 @@
 <%=cmbp.forComboHTML(cmbp.getVAL_LB_MOIS_ANCIENNETE(), cmbp.getVAL_LB_MOIS_ANCIENNETE_SELECT()) %>
 </SELECT>
 	</FIELDSET>
+	<INPUT type="submit" style="visibility : hidden;" name="<%=cmbp.getNOM_PB_MOIS_ANCIENNETE()%>">
 	</TD>
-<INPUT type="submit" style="visibility : hidden;" name="<%=cmbp.getNOM_PB_MOIS_ANCIENNETE()%>">
 </TR>
 

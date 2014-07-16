@@ -1,6 +1,6 @@
 package nc.mairie.visusal.metier;
 
-import nc.mairie.technique.MairieMessages;
+
 /**
  * Objet métier AgentMairie
  */
@@ -465,17 +465,17 @@ public String toString() {
  * Retourne un ArrayList d'objet métier : AgentMairie.
  * @return java.util.ArrayList
  */
-public static java.util.ArrayList listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception{
+public static java.util.ArrayList<AgentMairie> listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	AgentMairie unAgentMairie = new AgentMairie();
 	return unAgentMairie.getMyAgentMairieBroker().listerAgentMairie(aTransaction);
 }
 
-public static java.util.ArrayList listerAgentAvecNomCommencant(nc.mairie.technique.Transaction aTransaction, String debNom) throws Exception{
+public static java.util.ArrayList<AgentMairie> listerAgentAvecNomCommencant(nc.mairie.technique.Transaction aTransaction, String debNom) throws Exception{
 	AgentMairie unAgentMairie = new AgentMairie();
 	return unAgentMairie.getMyAgentMairieBroker().listerAgentMairieAvecNomCommencant(aTransaction, debNom);
 }
 
-public static java.util.ArrayList listerAgentAvecPrenomCommencant(nc.mairie.technique.Transaction aTransaction, String debPrenom) throws Exception{
+public static java.util.ArrayList<AgentMairie> listerAgentAvecPrenomCommencant(nc.mairie.technique.Transaction aTransaction, String debPrenom) throws Exception{
 	AgentMairie unAgentMairie = new AgentMairie();
 	return unAgentMairie.getMyAgentMairieBroker().listerAgentMairieAvecPrenomCommencant(aTransaction, debPrenom);
 }

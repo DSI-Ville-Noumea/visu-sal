@@ -121,7 +121,8 @@ frm.submit();
             </TABLE>
 
 <SELECT class="sigp2-liste" name="<%= process.getNOM_LB_AGENT() %>" ondblclick='executeBouton("<%=process.getNOM_PB_OK()%>")' size="10" style="width : 100%;">
-<%=process.forComboHTML(process.getVAL_LB_AGENT(), process.getVAL_LB_AGENT_SELECT()) %>
+	<%=process.forComboHTML(process.getVAL_LB_AGENT(), process.getVAL_LB_AGENT_SELECT()) %>
+</SELECT>
                  </TD>
                 </TR>
               </TBODY>

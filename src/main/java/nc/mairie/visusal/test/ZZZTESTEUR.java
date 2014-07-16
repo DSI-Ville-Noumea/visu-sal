@@ -2,14 +2,16 @@ package nc.mairie.visusal.test;
 
 import javax.servlet.http.HttpServletRequest;
 
-import nc.mairie.technique.*;
-import nc.mairie.commun.process.*;
 /**
  * Process ZZZTESTEUR
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
 */
 public class ZZZTESTEUR extends nc.mairie.robot.Testeur {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2506434411980163029L;
 /**
  * Constructeur du process ZZZTESTEUR.
  * Date de création : (23/01/03 15:13:31)

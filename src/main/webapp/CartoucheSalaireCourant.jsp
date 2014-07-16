@@ -1,3 +1,5 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@page import="nc.mairie.visusal.process.FicheSalaire"%>
 <% FicheSalaire cscbp = (FicheSalaire)request.getSession().getAttribute("process"); %>

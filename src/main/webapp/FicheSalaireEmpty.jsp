@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page import="nc.mairie.technique.UserAppli"%>
 <%@page import="nc.mairie.technique.VariableGlobale"%>
 <%@page import="nc.mairie.servlets.Frontale"%>

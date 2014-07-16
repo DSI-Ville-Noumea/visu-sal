@@ -32,8 +32,8 @@ protected java.lang.String definirNomTable() {
 /**
  * Retourne le mappage de chaque colonne de la table.
  */
-protected java.util.Hashtable definirMappageTable() throws NoSuchFieldException {
-	java.util.Hashtable mappage = new java.util.Hashtable();
+protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException {
+	java.util.Hashtable<String, BasicRecord> mappage = new java.util.Hashtable<String, BasicRecord>();
 	mappage.put("PERCOU", new BasicRecord("PERCOU", "NUMERIC", getMyPaieRappel().getClass().getField("percou"), "STRING"));
 	mappage.put("PERRAP", new BasicRecord("PERRAP", "NUMERIC", getMyPaieRappel().getClass().getField("perrap"), "STRING"));
 	mappage.put("NOMATR", new BasicRecord("NOMATR", "NUMERIC", getMyPaieRappel().getClass().getField("nomatr"), "STRING"));
@@ -71,7 +71,7 @@ public boolean supprimerPaieRappel(nc.mairie.technique.Transaction aTransaction)
  * Retourne un ArrayList d'objet métier : PaieRappel.
  * @return java.util.ArrayList
  */
-public java.util.ArrayList listerPaieRappel(nc.mairie.technique.Transaction aTransaction, String NoMatr, String PeriodeCou, String NoRubrique) throws Exception {
+public java.util.ArrayList<PaieRappel> listerPaieRappel(nc.mairie.technique.Transaction aTransaction, String NoMatr, String PeriodeCou, String NoRubrique) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" where NOMATR="+NoMatr+" AND PERCOU="+PeriodeCou+" AND NORUBR="+NoRubrique+" ORDER BY PERRAP desc with UR");
 }
 /**

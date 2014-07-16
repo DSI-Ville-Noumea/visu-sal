@@ -11,8 +11,12 @@ import nc.mairie.technique.*;
  * @author : Générateur de process
 */
 public class OeAGENTSelection extends nc.mairie.technique.BasicProcess {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5219407766956162601L;
 	private java.lang.String[] LB_AGENT;
-	private java.util.ArrayList listeAgent;
+	private java.util.ArrayList<AgentMairie> listeAgent;
 	private nc.mairie.visusal.metier.AgentMairie AgentMActivite;
 	public String focus = null;
 	private boolean first = true;
@@ -48,9 +52,9 @@ private String [] getLB_AGENT() {
  *  Date de création : (01/01/2003 09:51:40)
  * @return java.util.ArrayList
  */
-private java.util.ArrayList getListeAgent() {
+private java.util.ArrayList<AgentMairie> getListeAgent() {
 	if (listeAgent==null){
-		listeAgent = new java.util.ArrayList();
+		listeAgent = new java.util.ArrayList<AgentMairie>();
 	}
 	return listeAgent;
 }
@@ -192,7 +196,7 @@ public boolean performPB_OK(javax.servlet.http.HttpServletRequest request) throw
 
 	//Alimentation de la variable GLOBALE
 	//VariableGlobale.ajouter(request, VariableGlobale.GLOBAL_AGENT_MAIRIE, getListeAgent().get(indice));
-	VariableActivite.ajouter(this, VariableActivite.ACTIVITE_AGENT_MAIRIE, ((AgentMairie)getListeAgent().get(indice)).getNomatr());
+	VariableActivite.ajouter(this, VariableActivite.ACTIVITE_AGENT_MAIRIE, getListeAgent().get(indice).getNomatr());
 	VariableActivite.ajouter(this, VariableActivite.ACTIVITE_CARTOUCHE, "true");
 	getTransaction().setErreur(false);
 	setStatut(STATUT_PROCESS_APPELANT);
@@ -209,7 +213,7 @@ public boolean performPB_OK(javax.servlet.http.HttpServletRequest request) throw
 public boolean performPB_RECHERCHER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
 	String zone = getZone(getNOM_EF_NOM_AGENT());
-	java.util.ArrayList aListe = new java.util.ArrayList();
+	java.util.ArrayList<AgentMairie> aListe = new java.util.ArrayList<AgentMairie>();
 	
 		
 	//Si rien de saisi, recherche de tous lmes agents
@@ -222,7 +226,7 @@ public boolean performPB_RECHERCHER(javax.servlet.http.HttpServletRequest reques
 		if (getTransaction().isErreur())  {
 			getTransaction().traiterErreur();
 		} else {
-			aListe = new java.util.ArrayList();
+			aListe = new java.util.ArrayList<AgentMairie>();
 			aListe.add(aAgent);
 		}
 	//Sinon, les agents dont le nom commence par
@@ -236,7 +240,7 @@ public boolean performPB_RECHERCHER(javax.servlet.http.HttpServletRequest reques
 	//S'il y a un agent en entrée alors on l'enlève de la liste
 	if (getAgentMActivite()!=null) {
 		for (int i = 0; i < aListe.size(); i++){
-			AgentMairie a = (AgentMairie)aListe.get(i);
+			AgentMairie a = aListe.get(i);
 			if (a.getNomatr().equals(getAgentMActivite().getNomatr())) {
 				aListe.remove(a);
 			}
@@ -281,7 +285,7 @@ private void setLB_AGENT(java.lang.String[] newLB_AGENT) {
  *  Date de création : (01/01/2003 09:51:40)
  * @param newListeAgent java.util.ArrayList
  */
-private void setListeAgent(java.util.ArrayList newListeAgent) {
+private void setListeAgent(java.util.ArrayList<AgentMairie> newListeAgent) {
 	listeAgent = newListeAgent;
 }
 /**
@@ -474,7 +478,7 @@ public boolean performPB_TRI(javax.servlet.http.HttpServletRequest request) thro
 	String [] attr = {"nomatr","nom","prenom"};
 	String [] colonnes = {tri};
 	boolean []ordres = {true};
-	ArrayList a = Services.trier(getListeAgent(),colonnes,ordres);
+	ArrayList<AgentMairie> a = Services.trier(getListeAgent(),colonnes,ordres);
 	FormateListe aFormateListe = new FormateListe(tailles, a, attr);
 	setLB_AGENT(aFormateListe.getListeFormatee());
 	return true;

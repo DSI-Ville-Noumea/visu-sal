@@ -1,6 +1,6 @@
 package nc.mairie.visusal.metier;
 
-import nc.mairie.technique.MairieMessages;
+
 /**
  * Objet métier PaieElement
  */
@@ -166,12 +166,12 @@ public String toString() {
  * Retourne un ArrayList d'objet métier : PaieElement.
  * @return java.util.ArrayList
  */
-public static java.util.ArrayList listerPaieElement(nc.mairie.technique.Transaction aTransaction) throws Exception{
+public static java.util.ArrayList<PaieElement> listerPaieElement(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	PaieElement unPaieElement = new PaieElement();
 	return unPaieElement.getMyPaieElementBroker().listerPaieElement(aTransaction);
 }
 
-public static java.util.ArrayList listerPaieElement(nc.mairie.technique.Transaction aTransaction, String nomatr,String percou) throws Exception{
+public static java.util.ArrayList<PaieElement> listerPaieElement(nc.mairie.technique.Transaction aTransaction, String nomatr,String percou) throws Exception{
 	PaieElement unPaieElement = new PaieElement();
 	return unPaieElement.getMyPaieElementBroker().listerPaieElement(aTransaction, nomatr, percou);
 }
@@ -208,7 +208,7 @@ public boolean supprimerPaieElement(nc.mairie.technique.Transaction aTransaction
 	return getMyPaieElementBroker().supprimerPaieElement(aTransaction);
 }
 
-public static java.util.ArrayList listerdatesPaiesforAgent(nc.mairie.technique.Transaction aTransaction, String matriculeAgent) throws Exception{
+public static java.util.ArrayList<PaieElement> listerdatesPaiesforAgent(nc.mairie.technique.Transaction aTransaction, String matriculeAgent) throws Exception{
 	PaieElement unPaieElement = new PaieElement();
 	return unPaieElement.getMyPaieElementBroker().listerdatesPayesforAgent(aTransaction, matriculeAgent);
 }

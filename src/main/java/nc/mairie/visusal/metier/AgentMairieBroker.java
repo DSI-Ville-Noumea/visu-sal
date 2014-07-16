@@ -32,8 +32,8 @@ protected java.lang.String definirNomTable() {
 /**
  * Retourne le mappage de chaque colonne de la table.
  */
-protected java.util.Hashtable definirMappageTable() throws NoSuchFieldException {
-	java.util.Hashtable mappage = new java.util.Hashtable();
+protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException {
+	java.util.Hashtable<String, BasicRecord> mappage = new java.util.Hashtable<String, BasicRecord>();
 	mappage.put("IDINDI", new BasicRecord("IDINDI", "DECIMAL", getMyAgentMairie().getClass().getField("idindi"), "STRING"));
 	mappage.put("NOMATR", new BasicRecord("NOMATR", "NUMERIC", getMyAgentMairie().getClass().getField("nomatr"), "STRING"));
 	mappage.put("NOM", new BasicRecord("NOM", "CHAR", getMyAgentMairie().getClass().getField("nom"), "STRING"));
@@ -94,15 +94,15 @@ public boolean supprimerAgentMairie(nc.mairie.technique.Transaction aTransaction
  * Retourne un ArrayList d'objet métier : AgentMairie.
  * @return java.util.ArrayList
  */
-public java.util.ArrayList listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception {
+public java.util.ArrayList<AgentMairie> listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
 }
 
-public java.util.ArrayList listerAgentMairieAvecNomCommencant(nc.mairie.technique.Transaction aTransaction, String debNom) throws Exception {
+public java.util.ArrayList<AgentMairie> listerAgentMairieAvecNomCommencant(nc.mairie.technique.Transaction aTransaction, String debNom) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" where upper(nom) like '"+debNom.toUpperCase()+"%' order by nom with UR");
 }
 
-public java.util.ArrayList listerAgentMairieAvecPrenomCommencant(nc.mairie.technique.Transaction aTransaction, String debPrenom) throws Exception {
+public java.util.ArrayList<AgentMairie> listerAgentMairieAvecPrenomCommencant(nc.mairie.technique.Transaction aTransaction, String debPrenom) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" where upper(prenom) like '"+debPrenom.toUpperCase()+"%' order by nom with UR");
 }
 /**

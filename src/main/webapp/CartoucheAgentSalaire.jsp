@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@page import="nc.mairie.visusal.process.FicheSalaire"%>
 <% FicheSalaire casbp = (FicheSalaire)request.getSession().getAttribute("process"); %>
 <TR valign="top">

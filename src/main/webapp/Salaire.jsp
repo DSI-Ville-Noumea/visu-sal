@@ -12,7 +12,7 @@
 	//System.out.println("TESTPAGE"+nc.mairie.technique.VariableActivite.ACTIVITE_TEST);
 	if (!ServletSalRap.controlerHabilitation(request)) {
 	//System.out.println("controlerHabilitation ServletSalRap = false");
-		response.setStatus(response.SC_UNAUTHORIZED); 
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); 
 		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour la Mairie\"");
 		javax.servlet.ServletContext sc= getServletContext();
 		javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("/ConnectionInsulte.jsp");
@@ -21,11 +21,11 @@
 
 %>
 
-<frameset rows="12%, *" frameborder="0" border="0" framespacing="0">
+<frameset rows="12%, *" border="0" framespacing="0">
 	<FRAME src="SalaireLogo.jsp" name="Logo" scrolling="NO" noresize
-			marginwidth="0" marginheight="0">
+			marginwidth="0" marginheight="0" frameborder="0" >
 		<FRAME src="SalaireRappels?ACTIVITE=FicheSalaire" name="Main" marginwidth="0"
-			marginheight="0">
+			marginheight="0" frameborder="0">
 	<NOFRAMES>
 	<BODY>
 	<P>L'affichage de cette page requiert un navigateur prenant en charge les cadres. </P>

@@ -1,6 +1,6 @@
 package nc.mairie.visusal.metier;
 
-import nc.mairie.technique.MairieMessages;
+
 /**
  * Objet métier PaieEntete
  */
@@ -478,7 +478,7 @@ public String toString() {
  * Retourne un ArrayList d'objet métier : PaieEntete.
  * @return java.util.ArrayList
  */
-public static java.util.ArrayList listerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception{
+public static java.util.ArrayList<PaieEntete> listerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	PaieEntete unPaieEntete = new PaieEntete();
 	return unPaieEntete.getMyPaieEnteteBroker().listerPaieEntete(aTransaction);
 }

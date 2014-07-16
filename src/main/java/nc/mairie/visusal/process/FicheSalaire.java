@@ -1,17 +1,13 @@
 package nc.mairie.visusal.process;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import nc.mairie.technique.FormateListe;
 import nc.mairie.technique.MairieMessages;
 import nc.mairie.technique.Services;
-import nc.mairie.technique.StarjetGeneration;
 import nc.mairie.technique.StarjetGenerationVFS;
 import nc.mairie.technique.VariableActivite;
 import nc.mairie.technique.VariableGlobale;
@@ -23,7 +19,6 @@ import nc.mairie.visusal.metier.PaieMutuelle;
 import nc.mairie.visusal.metier.PaieRappel;
 import nc.mairie.visusal.metier.PaieRubrique;
 import nc.mairie.visusal.metier.Utils;
-import nc.mairie.visusal.servlets.ServletSalRap;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.vfs.FileObject;
@@ -34,6 +29,10 @@ import org.apache.commons.vfs.FileObject;
  * @author : Générateur de process
  */
 public class FicheSalaire extends nc.mairie.technique.BasicProcess {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5571225984096176183L;
 	public static final int STATUT_RECHERCHER_AGENT = 1;
 	public static final int STATUT_SALAIRE_RAPPEL = 2;
 	public static final String MOIS_COURANT ="MOIS_COURANT";
@@ -42,11 +41,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	private AgentMairie agentMCourant=null;
 	private PaieElement paieElementMoisCourant=null;
 	private PaieEntete paieEnteteMoisCourant=null;
-	private java.util.ArrayList  listeMoisAnciennete;
-	private java.util.ArrayList  listeElementsPaye;
+	private java.util.ArrayList<PaieElement>  listeMoisAnciennete;
+	private java.util.ArrayList<PaieElement>  listeElementsPaye;
 	public static double dValeurEuroXPF=119.331742;
-	private String starjetMode = (String)ServletSalRap.getMesParametres().get("STARJET_MODE");
-	private String starjetServer = (String)ServletSalRap.getMesParametres().get("STARJET_SERVER");
 	private String script;
 	private java.util.ArrayList<BulletinElement>  listeBulletinSalarie=null;
 	private java.util.ArrayList<BulletinElement>  listeBulletinPatronal=null;
@@ -112,7 +109,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	public void initialiseMenuGauche(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
 		//System.out.println("PASS initZone initialiseMenuGauche allmois");
-		java.util.ArrayList a;
+		java.util.ArrayList<PaieElement> a;
 			if(null==getListeMoisAnciennete()){
 				//long timestart=System.currentTimeMillis();
 					a=PaieElement.listerdatesPaiesforAgent(getTransaction(),agentMCourant.getNomatr());
@@ -130,8 +127,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		if (a.size() !=0 ) {
 			int tailles [] = {15};
 			FormateListe aFormat = new FormateListe(tailles);
-			for (java.util.ListIterator list = a.listIterator(); list.hasNext(); ) {
-				String mois = Utils.TraiterDateFr(((PaieElement)(list.next())).getPercou());
+			for (java.util.ListIterator<PaieElement> list = a.listIterator(); list.hasNext(); ) {
+				String mois = Utils.TraiterDateFr((list.next()).getPercou());
 				String ligne [] = {mois};
 				aFormat.ajouteLigne(ligne);
 			}
@@ -160,7 +157,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			
 			paieEnteteMoisCourant=PaieEntete.chercherPaieEntete(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou());
 			
-			java.util.ArrayList a =PaieElement.listerPaieElement(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou());
+			java.util.ArrayList<PaieElement> a =PaieElement.listerPaieElement(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou());
 			getTransaction().rollbackTransaction();
 			setListeElementsPaye(a);
 		}
@@ -947,15 +944,6 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		return LB_ELEMENTS_PAIE;
 	}
 	/**
-	 * Setter de la liste:
-	 * LB_ELEMENTS_PAIE
-	 * Date de création : (23/02/09 15:35:45)
-	 * @author : Générateur de process
-	 */
-	private void setLB_ELEMENTS_PAIE(java.lang.String[] newLB_ELEMENTS_PAIE) {
-		LB_ELEMENTS_PAIE = newLB_ELEMENTS_PAIE;
-	}
-	/**
 	 * Retourne le nom de la zone pour la JSP :
 	 * NOM_LB_ELEMENTS_PAIE
 	 * Date de création : (23/02/09 15:35:45)
@@ -1039,7 +1027,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		}
 		
 		//Récup du courant
-		PaieElement pe = (PaieElement)getListeMoisAnciennete().get(numligne);
+		PaieElement pe = getListeMoisAnciennete().get(numligne);
 		setPaieElementMoisCourant(pe);
 		VariableGlobale.ajouter(request,MOIS_COURANT,pe);
 		
@@ -1201,16 +1189,16 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	public void setAgentMCourant(AgentMairie agentMCourant) {
 		this.agentMCourant = agentMCourant;
 	}
-	public java.util.ArrayList getListeElementsPaye() {
+	public java.util.ArrayList<PaieElement> getListeElementsPaye() {
 		return listeElementsPaye;
 	}
-	public void setListeElementsPaye(java.util.ArrayList listeElementsPaye) {
+	public void setListeElementsPaye(java.util.ArrayList<PaieElement> listeElementsPaye) {
 		this.listeElementsPaye = listeElementsPaye;
 	}
-	public java.util.ArrayList getListeMoisAnciennete() {
+	public java.util.ArrayList<PaieElement> getListeMoisAnciennete() {
 		return listeMoisAnciennete;
 	}
-	public void setListeMoisAnciennete(java.util.ArrayList listeMoisAnciennete) {
+	public void setListeMoisAnciennete(java.util.ArrayList<PaieElement> listeMoisAnciennete) {
 		this.listeMoisAnciennete = listeMoisAnciennete;
 	}
 	
@@ -1282,7 +1270,6 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		
 		try{
 			
-			int i=0;
 			boolean alreadyTreated8000or8001=false;
 			int iSalaireBrutAPayer=0;
 			int iSalaireBrutARetenir=0;
@@ -1299,9 +1286,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			//Pour garder le fonctionnement séquentiel de cette fonction il est important que listeElementsPaye soit classé par ordre de NORUBR
 			if (null!=listeElementsPaye && listeElementsPaye.size()>0){
 				//on liste les elements
-				for (java.util.ListIterator list = listeElementsPaye.listIterator(); list.hasNext(); ) {
-					i++;
-					PaieElement pe = (PaieElement)(list.next());
+				for (java.util.ListIterator<PaieElement> list = listeElementsPaye.listIterator(); list.hasNext(); ) {
+					PaieElement pe = (list.next());
 					
 					//System.out.println("LIGNE:"+i+" RUBRNBR="+pe.getNorubr());
 					
@@ -1541,7 +1527,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							//la rubrique correspondante entre 1000 et 8000
 							PaieRubrique paieRubriquedeRappel=(PaieRubrique)PaieRubrique.chercherPaieRubriqueRappelCorrespondante(getTransaction(),pe.getNorubr());
 							if (null!=paieRubriquedeRappel.getNorubr() || pe.getNorubr().equals("8000") || pe.getNorubr().equals("8001")){
-								java.util.ArrayList a=new ArrayList();
+								java.util.ArrayList<PaieRappel> a=new ArrayList<PaieRappel>();
 								
 								if(null!=paieRubriquedeRappel.getNorubr())
 									a=PaieRappel.listerPaieRappel(getTransaction(), agentMCourant.getNomatr(), paieElementMoisCourant.getPercou(), paieRubriquedeRappel.getNorubr());
@@ -1607,8 +1593,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 								bAffichRappPat=false;
 								bAffichRappSal=false;
 								if (a.size() !=0 ) {
-									for (java.util.ListIterator listrappels = a.listIterator(); listrappels.hasNext(); ) {
-										PaieRappel paieRappel=(PaieRappel)(listrappels.next());
+									for (java.util.ListIterator<PaieRappel> listrappels = a.listIterator(); listrappels.hasNext(); ) {
+										PaieRappel paieRappel=(listrappels.next());
 
 										String sNomRubriqueRappel="";
 										StringBuffer nombreTauxRappelSal  = new StringBuffer("");

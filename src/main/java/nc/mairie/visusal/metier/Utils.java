@@ -30,7 +30,7 @@ public class Utils {
 	 * @return ArrayListe l1 ayant éléminé de la liste l1 les éléments en communs avec l2
 	 * fonctionne uniquement avec une liste l1 n'ayant pas 2 elements identiques
 	 */
-	public static ArrayList Elim_doubure(ArrayList l1,ArrayList l2)
+	public static ArrayList<?> Elim_doubure(ArrayList<?> l1,ArrayList<?> l2)
 	{
 		//System.out.println("L1="+l1);
 		//System.out.println("L2="+l2);
@@ -59,9 +59,9 @@ public class Utils {
 	 * @param al
 	 * @return ArrayList entrée moins ses doublons.
 	 */
-	public static ArrayList antiDoublon(ArrayList al) {
+	public static ArrayList<Object> antiDoublon(ArrayList<?> al) {
         
-        ArrayList al2 = new ArrayList();
+        ArrayList<Object> al2 = new ArrayList<Object>();
         for (int i=0; i<al.size(); i++) {
             Object o = al.get(i);
             if (!al2.contains(o))

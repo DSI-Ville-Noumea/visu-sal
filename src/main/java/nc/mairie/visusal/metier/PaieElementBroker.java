@@ -32,8 +32,8 @@ protected java.lang.String definirNomTable() {
 /**
  * Retourne le mappage de chaque colonne de la table.
  */
-protected java.util.Hashtable definirMappageTable() throws NoSuchFieldException {
-	java.util.Hashtable mappage = new java.util.Hashtable();
+protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException {
+	java.util.Hashtable<String, BasicRecord> mappage = new java.util.Hashtable<String, BasicRecord>();
 	mappage.put("PERCOU", new BasicRecord("PERCOU", "NUMERIC", getMyPaieElement().getClass().getField("percou"), "STRING"));
 	mappage.put("NOMATR", new BasicRecord("NOMATR", "NUMERIC", getMyPaieElement().getClass().getField("nomatr"), "STRING"));
 	mappage.put("NORUBR", new BasicRecord("NORUBR", "NUMERIC", getMyPaieElement().getClass().getField("norubr"), "STRING"));
@@ -71,7 +71,7 @@ public boolean supprimerPaieElement(nc.mairie.technique.Transaction aTransaction
  * Retourne un ArrayList d'objet métier : PaieElement.
  * @return java.util.ArrayList
  */
-public java.util.ArrayList listerPaieElement(nc.mairie.technique.Transaction aTransaction) throws Exception {
+public java.util.ArrayList<PaieElement> listerPaieElement(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
 }
 /**
@@ -83,12 +83,12 @@ public PaieElement chercherPaieElement(nc.mairie.technique.Transaction aTransact
 }
 
 
-public java.util.ArrayList listerdatesPayesforAgent(nc.mairie.technique.Transaction aTransaction, String matriculeAgent) throws Exception {
+public java.util.ArrayList<PaieElement> listerdatesPayesforAgent(nc.mairie.technique.Transaction aTransaction, String matriculeAgent) throws Exception {
 	//return executeSelectListe(aTransaction,"select distinct PERCOU from "+getTable()+" WHERE NOMATR="+matriculeAgent+" order by PERCOU DESC");
 	return executeSelectListe(aTransaction,"with toto as (select percou from "+getTable()+" where nomatr = "+matriculeAgent+") select percou from toto group by percou order by percou desc with UR");
 }
 
-public java.util.ArrayList listerPaieElement(nc.mairie.technique.Transaction aTransaction, String nomatr, String percou) throws Exception {
+public java.util.ArrayList<PaieElement> listerPaieElement(nc.mairie.technique.Transaction aTransaction, String nomatr, String percou) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" WHERE NOMATR ="+nomatr+" AND PERCOU="+percou+" order by NORUBR with UR");
 }
 }

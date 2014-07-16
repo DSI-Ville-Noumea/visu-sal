@@ -26,7 +26,7 @@ document.leForm.elements[nom].focus();
 </HEAD>
 <BODY bgcolor="#ffffff" background="images/fond_menu.jpg" text="#000000" onload="" style="cursor : auto;"><BASEFONT FACE="Arial" SIZE=2> 
 
-<nobr>
+<nobr></nobr>
 <TABLE>
 <TR><TD>
 

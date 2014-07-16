@@ -36,7 +36,7 @@ window.open(nom,"impression",features);
 <jsp:useBean class="nc.mairie.visusal.process.FicheSalaire" id="process" scope="session"></jsp:useBean>
 <BODY bgcolor="#ffffff" background="images/fond_menu.jpg" text="#000000" onload="" style="cursor : auto;"><BASEFONT FACE="Arial" SIZE=2> 
     <%@ include file="BanniereErreur.jsp" %>
-<nobr>
+<nobr></nobr>
 <FORM name="leForm" method="POST" target="Main" action="SalaireRappelsServlet">
 <TABLE>
 <TR valign="top"><TD width="20%">
@@ -44,7 +44,7 @@ window.open(nom,"impression",features);
 <%  
 	nc.mairie.technique.UserAppli aUserAppli = (nc.mairie.technique.UserAppli)nc.mairie.technique.VariableGlobale.recuperer(request,nc.mairie.technique.VariableGlobale.GLOBAL_USER_APPLI);
 	
-	java.util.ArrayList listeDroits = aUserAppli.getListeDroits();
+	java.util.ArrayList<String> listeDroits = aUserAppli.getListeDroits();
 	
 if (null!=listeDroits&&listeDroits.size()>0&&listeDroits.contains("VisuDesSalaires")){ %>
 <%@ include file="CartoucheAgentSalaire.jsp" %>

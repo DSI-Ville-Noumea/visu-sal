@@ -12,6 +12,10 @@ import nc.mairie.technique.BasicProcess;
  */
 public class RobotSalRap extends nc.mairie.robot.Robot{ 
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1372860056078662006L;
+/**
  * Commentaire relatif au constructeur Robot.
  */
 public RobotSalRap() {
@@ -46,9 +50,9 @@ public BasicProcess getFirstProcess(String activite) throws Exception {
  *  Date de création : (28/10/2002 11:59:52)
  * @return java.util.Hashtable
  */
-protected java.util.Hashtable initialiseNavigation() {
+protected java.util.Hashtable<String, String> initialiseNavigation() {
 
-	java.util.Hashtable navigation = new java.util.Hashtable();
+	java.util.Hashtable<String, String> navigation = new java.util.Hashtable<String, String>();
 
 	//Classe FicheSalaire
 	navigation.put(FicheSalaire.class.getName() + FicheSalaire.STATUT_RECHERCHER_AGENT, OeAGENTSelection.class.getName());

@@ -32,8 +32,8 @@ protected java.lang.String definirNomTable() {
 /**
  * Retourne le mappage de chaque colonne de la table.
  */
-protected java.util.Hashtable definirMappageTable() throws NoSuchFieldException {
-	java.util.Hashtable mappage = new java.util.Hashtable();
+protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException {
+	java.util.Hashtable<String, BasicRecord> mappage = new java.util.Hashtable<String, BasicRecord>();
 	mappage.put("NORUBR", new BasicRecord("NORUBR", "NUMERIC", getMyPaieRubrique().getClass().getField("norubr"), "STRING"));
 	mappage.put("LIRUBR", new BasicRecord("LIRUBR", "CHAR", getMyPaieRubrique().getClass().getField("lirubr"), "STRING"));
 	mappage.put("TYIMPO", new BasicRecord("TYIMPO", "CHAR", getMyPaieRubrique().getClass().getField("tyimpo"), "STRING"));
@@ -70,7 +70,7 @@ public boolean supprimerPaieRubrique(nc.mairie.technique.Transaction aTransactio
  * Retourne un ArrayList d'objet métier : PaieRubrique.
  * @return java.util.ArrayList
  */
-public java.util.ArrayList listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception {
+public java.util.ArrayList<PaieRubrique> listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
 }
 /**
