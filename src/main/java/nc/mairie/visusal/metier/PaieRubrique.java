@@ -22,6 +22,7 @@ public PaieRubrique() {
 }
 /**
  * Getter de l'attribut norubr.
+ * @return String
  */
 public String getNorubr() {
 	return norubr;
@@ -29,11 +30,15 @@ public String getNorubr() {
 /**
  * Setter de l'attribut norubr.
  */
+/**
+ * @param newNorubr newNorubr
+ */
 public void setNorubr(String newNorubr) { 
 	norubr = newNorubr;
 }
 /**
  * Getter de l'attribut lirubr.
+ * @return String
  */
 public String getLirubr() {
 	return lirubr;
@@ -41,11 +46,15 @@ public String getLirubr() {
 /**
  * Setter de l'attribut lirubr.
  */
+/**
+ * @param newLirubr newLirubr
+ */
 public void setLirubr(String newLirubr) { 
 	lirubr = newLirubr;
 }
 /**
  * Getter de l'attribut tyimpo.
+ * @return String
  */
 public String getTyimpo() {
 	return tyimpo;
@@ -53,11 +62,15 @@ public String getTyimpo() {
 /**
  * Setter de l'attribut tyimpo.
  */
+/**
+ * @param newTyimpo newTyimpo
+ */
 public void setTyimpo(String newTyimpo) { 
 	tyimpo = newTyimpo;
 }
 /**
  * Getter de l'attribut cdrcaf.
+ * @return String
  */
 public String getCdrcaf() {
 	return cdrcaf;
@@ -65,11 +78,15 @@ public String getCdrcaf() {
 /**
  * Setter de l'attribut cdrcaf.
  */
+/**
+ * @param newCdrcaf newCdrcaf
+ */
 public void setCdrcaf(String newCdrcaf) { 
 	cdrcaf = newCdrcaf;
 }
 /**
  * Getter de l'attribut rubrap.
+ * @return String
  */
 public String getRubrap() {
 	return rubrap;
@@ -77,11 +94,15 @@ public String getRubrap() {
 /**
  * Setter de l'attribut rubrap.
  */
+/**
+ * @param newRubrap newRubrap
+ */
 public void setRubrap(String newRubrap) { 
 	rubrap = newRubrap;
 }
 /**
  * Getter de l'attribut typrim.
+ * @return String
  */
 public String getTyprim() {
 	return typrim;
@@ -89,11 +110,15 @@ public String getTyprim() {
 /**
  * Setter de l'attribut typrim.
  */
+/**
+ * @param newTyprim newTyprim
+ */
 public void setTyprim(String newTyprim) { 
 	typrim = newTyprim;
 }
 /**
  * Getter de l'attribut tyrubr.
+ * @return String
  */
 public String getTyrubr() {
 	return tyrubr;
@@ -101,11 +126,15 @@ public String getTyrubr() {
 /**
  * Setter de l'attribut tyrubr.
  */
+/**
+ * @param newTyrubr newTyrubr
+ */
 public void setTyrubr(String newTyrubr) { 
 	tyrubr = newTyrubr;
 }
 /**
  * Getter de l'attribut catpos.
+ * @return String
  */
 public String getCatpos() {
 	return catpos;
@@ -113,17 +142,24 @@ public String getCatpos() {
 /**
  * Setter de l'attribut catpos.
  */
+/**
+ * @param newCatpos newCatpos
+ */
 public void setCatpos(String newCatpos) { 
 	catpos = newCatpos;
 }
 /**
  * Getter de l'attribut datina.
+ * @return String
  */
 public String getDatina() {
 	return datina;
 }
 /**
  * Setter de l'attribut datina.
+ */
+/**
+ * @param newDatina newDatina
  */
 public void setDatina(String newDatina) { 
 	datina = newDatina;
@@ -136,6 +172,7 @@ protected nc.mairie.technique.BasicBroker definirMyBroker() {
 }
 /**
  Methode à définir dans chaque objet Métier pour instancier un Broker 
+ * @return PaieRubriqueBroker
 */
 protected PaieRubriqueBroker getMyPaieRubriqueBroker() {
 	return (PaieRubriqueBroker)getMyBasicBroker();
@@ -152,14 +189,19 @@ public String toString() {
 /**
  * Retourne un ArrayList d'objet métier : PaieRubrique.
  * @return java.util.ArrayList
- */
+ * @param aTransaction Transaction
+ * @throws Exception Exception
+*/
 public static java.util.ArrayList<PaieRubrique> listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	PaieRubrique unPaieRubrique = new PaieRubrique();
 	return unPaieRubrique.getMyPaieRubriqueBroker().listerPaieRubrique(aTransaction);
 }
 /**
  * Retourne un PaieRubrique.
+ * @param aTransaction aTransaction
+ * @param code code
  * @return PaieRubrique
+ * @throws Exception Exception
  */
 public static PaieRubrique chercherPaieRubrique(nc.mairie.technique.Transaction aTransaction, String code) throws Exception{
 	PaieRubrique unPaieRubrique = new PaieRubrique();
@@ -173,6 +215,9 @@ public static PaieRubrique chercherPaieRubriqueRappelCorrespondante(nc.mairie.te
 /**
  * Methode creerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean creerPaieRubrique(nc.mairie.technique.Transaction aTransaction )  throws Exception {
 	//Creation du PaieRubrique
@@ -181,6 +226,9 @@ public boolean creerPaieRubrique(nc.mairie.technique.Transaction aTransaction ) 
 /**
  * Methode modifierObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean modifierPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	//Modification du PaieRubrique
@@ -189,6 +237,9 @@ public boolean modifierPaieRubrique(nc.mairie.technique.Transaction aTransaction
 /**
  * Methode supprimerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean supprimerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	//Suppression de l'PaieRubrique

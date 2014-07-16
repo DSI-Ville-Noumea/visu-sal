@@ -25,6 +25,7 @@ public ZZZTESTEUR() {
  * NOM_LB_PROCESS_SELECT
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public java.lang.String [] definirListeProcess() {
 	String [] res = {	
@@ -49,6 +50,8 @@ public String getJSP() {
  * Utilisation de la méthode addZone(getNOMxxx, String);
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @param request request
+ * @throws Exception Exception
  */
 public void initialiseTestAppel(javax.servlet.http.HttpServletRequest request) throws Exception{
 	java.sql.Connection conn = null;

@@ -23,6 +23,7 @@ public PaieRappel() {
 }
 /**
  * Getter de l'attribut percou.
+ * @return String
  */
 public String getPercou() {
 	return percou;
@@ -30,11 +31,15 @@ public String getPercou() {
 /**
  * Setter de l'attribut percou.
  */
+/**
+ * @param newPercou newPercou
+ */
 public void setPercou(String newPercou) { 
 	percou = newPercou;
 }
 /**
  * Getter de l'attribut perrap.
+ * @return String
  */
 public String getPerrap() {
 	return perrap;
@@ -42,11 +47,15 @@ public String getPerrap() {
 /**
  * Setter de l'attribut perrap.
  */
+/**
+ * @param newPerrap newPerrap
+ */
 public void setPerrap(String newPerrap) { 
 	perrap = newPerrap;
 }
 /**
  * Getter de l'attribut nomatr.
+ * @return String
  */
 public String getNomatr() {
 	return nomatr;
@@ -54,11 +63,15 @@ public String getNomatr() {
 /**
  * Setter de l'attribut nomatr.
  */
+/**
+ * @param newNomatr newNomatr
+ */
 public void setNomatr(String newNomatr) { 
 	nomatr = newNomatr;
 }
 /**
  * Getter de l'attribut norubr.
+ * @return String
  */
 public String getNorubr() {
 	return norubr;
@@ -66,11 +79,15 @@ public String getNorubr() {
 /**
  * Setter de l'attribut norubr.
  */
+/**
+ * @param newNorubr newNorubr
+ */
 public void setNorubr(String newNorubr) { 
 	norubr = newNorubr;
 }
 /**
  * Getter de l'attribut txsal.
+ * @return String
  */
 public String getTxsal() {
 	return txsal;
@@ -78,11 +95,15 @@ public String getTxsal() {
 /**
  * Setter de l'attribut txsal.
  */
+/**
+ * @param newTxsal newTxsal
+ */
 public void setTxsal(String newTxsal) { 
 	txsal = newTxsal;
 }
 /**
  * Getter de l'attribut nb.
+ * @return String
  */
 public String getNb() {
 	return nb;
@@ -90,11 +111,15 @@ public String getNb() {
 /**
  * Setter de l'attribut nb.
  */
+/**
+ * @param newNb newNb
+ */
 public void setNb(String newNb) { 
 	nb = newNb;
 }
 /**
  * Getter de l'attribut mtbase.
+ * @return String
  */
 public String getMtbase() {
 	return mtbase;
@@ -102,11 +127,15 @@ public String getMtbase() {
 /**
  * Setter de l'attribut mtbase.
  */
+/**
+ * @param newMtbase newMtbase
+ */
 public void setMtbase(String newMtbase) { 
 	mtbase = newMtbase;
 }
 /**
  * Getter de l'attribut mtpsal.
+ * @return String
  */
 public String getMtpsal() {
 	return mtpsal;
@@ -114,11 +143,15 @@ public String getMtpsal() {
 /**
  * Setter de l'attribut mtpsal.
  */
+/**
+ * @param newMtpsal newMtpsal
+ */
 public void setMtpsal(String newMtpsal) { 
 	mtpsal = newMtpsal;
 }
 /**
  * Getter de l'attribut txpat.
+ * @return String
  */
 public String getTxpat() {
 	return txpat;
@@ -126,17 +159,24 @@ public String getTxpat() {
 /**
  * Setter de l'attribut txpat.
  */
+/**
+ * @param newTxpat newTxpat
+ */
 public void setTxpat(String newTxpat) { 
 	txpat = newTxpat;
 }
 /**
  * Getter de l'attribut mtppat.
+ * @return String
  */
 public String getMtppat() {
 	return mtppat;
 }
 /**
  * Setter de l'attribut mtppat.
+ */
+/**
+ * @param newMtppat newMtppat
  */
 public void setMtppat(String newMtppat) { 
 	mtppat = newMtppat;
@@ -149,7 +189,8 @@ protected nc.mairie.technique.BasicBroker definirMyBroker() {
 }
 /**
  Methode à définir dans chaque objet Métier pour instancier un Broker 
-*/
+ * @return PaieRappelBroker
+ */
 protected PaieRappelBroker getMyPaieRappelBroker() {
 	return (PaieRappelBroker)getMyBasicBroker();
 }
@@ -165,14 +206,22 @@ public String toString() {
 /**
  * Retourne un ArrayList d'objet métier : PaieRappel.
  * @return java.util.ArrayList
- */
+ * @param aTransaction Transaction
+ * @param NoMatr NoMatr
+ * @param PeriodeCou PeriodeCou
+ * @param NoRubrique NoRubrique
+ * @throws Exception Exception
+*/
 public static java.util.ArrayList<PaieRappel> listerPaieRappel(nc.mairie.technique.Transaction aTransaction, String NoMatr, String PeriodeCou, String NoRubrique) throws Exception{
 	PaieRappel unPaieRappel = new PaieRappel();
 	return unPaieRappel.getMyPaieRappelBroker().listerPaieRappel(aTransaction, NoMatr, PeriodeCou, NoRubrique);
 }
 /**
  * Retourne un PaieRappel.
+ * @param aTransaction aTransaction
+ * @param code code
  * @return PaieRappel
+ * @throws Exception Exception
  */
 public static PaieRappel chercherPaieRappel(nc.mairie.technique.Transaction aTransaction, String code) throws Exception{
 	PaieRappel unPaieRappel = new PaieRappel();
@@ -181,6 +230,9 @@ public static PaieRappel chercherPaieRappel(nc.mairie.technique.Transaction aTra
 /**
  * Methode creerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean creerPaieRappel(nc.mairie.technique.Transaction aTransaction )  throws Exception {
 	//Creation du PaieRappel
@@ -189,6 +241,9 @@ public boolean creerPaieRappel(nc.mairie.technique.Transaction aTransaction )  t
 /**
  * Methode modifierObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean modifierPaieRappel(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	//Modification du PaieRappel
@@ -197,6 +252,9 @@ public boolean modifierPaieRappel(nc.mairie.technique.Transaction aTransaction) 
 /**
  * Methode supprimerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean supprimerPaieRappel(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	//Suppression de l'PaieRappel

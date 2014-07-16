@@ -47,6 +47,7 @@ public PaieEntete() {
 }
 /**
  * Getter de l'attribut nomatr.
+ * @return String
  */
 public String getNomatr() {
 	return nomatr;
@@ -54,11 +55,15 @@ public String getNomatr() {
 /**
  * Setter de l'attribut nomatr.
  */
+/**
+ * @param newNomatr newNomatr
+ */
 public void setNomatr(String newNomatr) { 
 	nomatr = newNomatr;
 }
 /**
  * Getter de l'attribut percou.
+ * @return String
  */
 public String getPercou() {
 	return percou;
@@ -66,11 +71,15 @@ public String getPercou() {
 /**
  * Setter de l'attribut percou.
  */
+/**
+ * @param newPercou newPercou
+ */
 public void setPercou(String newPercou) { 
 	percou = newPercou;
 }
 /**
  * Getter de l'attribut licate.
+ * @return String
  */
 public String getLicate() {
 	return licate;
@@ -78,11 +87,15 @@ public String getLicate() {
 /**
  * Setter de l'attribut licate.
  */
+/**
+ * @param newLicate newLicate
+ */
 public void setLicate(String newLicate) { 
 	licate = newLicate;
 }
 /**
  * Getter de l'attribut ligrad.
+ * @return String
  */
 public String getLigrad() {
 	return ligrad;
@@ -90,11 +103,15 @@ public String getLigrad() {
 /**
  * Setter de l'attribut ligrad.
  */
+/**
+ * @param newLigrad newLigrad
+ */
 public void setLigrad(String newLigrad) { 
 	ligrad = newLigrad;
 }
 /**
  * Getter de l'attribut forf.
+ * @return String
  */
 public String getForf() {
 	return forf;
@@ -102,11 +119,15 @@ public String getForf() {
 /**
  * Setter de l'attribut forf.
  */
+/**
+ * @param newForf newForf
+ */
 public void setForf(String newForf) { 
 	forf = newForf;
 }
 /**
  * Getter de l'attribut iban.
+ * @return String
  */
 public String getIban() {
 	return iban;
@@ -114,11 +135,15 @@ public String getIban() {
 /**
  * Setter de l'attribut iban.
  */
+/**
+ * @param newIban newIban
+ */
 public void setIban(String newIban) { 
 	iban = newIban;
 }
 /**
  * Getter de l'attribut ina.
+ * @return String
  */
 public String getIna() {
 	return ina;
@@ -126,11 +151,15 @@ public String getIna() {
 /**
  * Setter de l'attribut ina.
  */
+/**
+ * @param newIna newIna
+ */
 public void setIna(String newIna) { 
 	ina = newIna;
 }
 /**
  * Getter de l'attribut inm.
+ * @return String
  */
 public String getInm() {
 	return inm;
@@ -138,11 +167,15 @@ public String getInm() {
 /**
  * Setter de l'attribut inm.
  */
+/**
+ * @param newInm newInm
+ */
 public void setInm(String newInm) { 
 	inm = newInm;
 }
 /**
  * Getter de l'attribut limodr.
+ * @return String
  */
 public String getLimodr() {
 	return limodr;
@@ -150,11 +183,15 @@ public String getLimodr() {
 /**
  * Setter de l'attribut limodr.
  */
+/**
+ * @param newLimodr newLimodr
+ */
 public void setLimodr(String newLimodr) { 
 	limodr = newLimodr;
 }
 /**
  * Getter de l'attribut libhor.
+ * @return String
  */
 public String getLibhor() {
 	return libhor;
@@ -162,11 +199,15 @@ public String getLibhor() {
 /**
  * Setter de l'attribut libhor.
  */
+/**
+ * @param newLibhor newLibhor
+ */
 public void setLibhor(String newLibhor) { 
 	libhor = newLibhor;
 }
 /**
  * Getter de l'attribut nbcong.
+ * @return String
  */
 public String getNbcong() {
 	return nbcong;
@@ -174,11 +215,15 @@ public String getNbcong() {
 /**
  * Setter de l'attribut nbcong.
  */
+/**
+ * @param newNbcong newNbcong
+ */
 public void setNbcong(String newNbcong) { 
 	nbcong = newNbcong;
 }
 /**
  * Getter de l'attribut nom.
+ * @return String
  */
 public String getNom() {
 	return nom;
@@ -186,11 +231,15 @@ public String getNom() {
 /**
  * Setter de l'attribut nom.
  */
+/**
+ * @param newNom newNom
+ */
 public void setNom(String newNom) { 
 	nom = newNom;
 }
 /**
  * Getter de l'attribut prenom.
+ * @return String
  */
 public String getPrenom() {
 	return prenom;
@@ -198,11 +247,15 @@ public String getPrenom() {
 /**
  * Setter de l'attribut prenom.
  */
+/**
+ * @param newPrenom newPrenom
+ */
 public void setPrenom(String newPrenom) { 
 	prenom = newPrenom;
 }
 /**
  * Getter de l'attribut nuretr.
+ * @return String
  */
 public String getNuretr() {
 	return nuretr;
@@ -210,11 +263,15 @@ public String getNuretr() {
 /**
  * Setter de l'attribut nuretr.
  */
+/**
+ * @param newNuretr newNuretr
+ */
 public void setNuretr(String newNuretr) { 
 	nuretr = newNuretr;
 }
 /**
  * Getter de l'attribut numutu.
+ * @return String
  */
 public String getNumutu() {
 	return numutu;
@@ -222,11 +279,15 @@ public String getNumutu() {
 /**
  * Setter de l'attribut numutu.
  */
+/**
+ * @param newNumutu newNumutu
+ */
 public void setNumutu(String newNumutu) { 
 	numutu = newNumutu;
 }
 /**
  * Getter de l'attribut liserv.
+ * @return String
  */
 public String getLiserv() {
 	return liserv;
@@ -234,11 +295,15 @@ public String getLiserv() {
 /**
  * Setter de l'attribut liserv.
  */
+/**
+ * @param newLiserv newLiserv
+ */
 public void setLiserv(String newLiserv) { 
 	liserv = newLiserv;
 }
 /**
  * Getter de l'attribut liecol.
+ * @return String
  */
 public String getLiecol() {
 	return liecol;
@@ -246,11 +311,15 @@ public String getLiecol() {
 /**
  * Setter de l'attribut liecol.
  */
+/**
+ * @param newLiecol newLiecol
+ */
 public void setLiecol(String newLiecol) { 
 	liecol = newLiecol;
 }
 /**
  * Getter de l'attribut cdcate.
+ * @return String
  */
 public String getCdcate() {
 	return cdcate;
@@ -258,11 +327,15 @@ public String getCdcate() {
 /**
  * Setter de l'attribut cdcate.
  */
+/**
+ * @param newCdcate newCdcate
+ */
 public void setCdcate(String newCdcate) { 
 	cdcate = newCdcate;
 }
 /**
  * Getter de l'attribut cdchar.
+ * @return String
  */
 public String getCdchar() {
 	return cdchar;
@@ -270,11 +343,15 @@ public String getCdchar() {
 /**
  * Setter de l'attribut cdchar.
  */
+/**
+ * @param newCdchar newCdchar
+ */
 public void setCdchar(String newCdchar) { 
 	cdchar = newCdchar;
 }
 /**
  * Getter de l'attribut cdbanq.
+ * @return String
  */
 public String getCdbanq() {
 	return cdbanq;
@@ -282,11 +359,15 @@ public String getCdbanq() {
 /**
  * Setter de l'attribut cdbanq.
  */
+/**
+ * @param newCdbanq newCdbanq
+ */
 public void setCdbanq(String newCdbanq) { 
 	cdbanq = newCdbanq;
 }
 /**
  * Getter de l'attribut cdguic.
+ * @return String
  */
 public String getCdguic() {
 	return cdguic;
@@ -294,11 +375,15 @@ public String getCdguic() {
 /**
  * Setter de l'attribut cdguic.
  */
+/**
+ * @param newCdguic newCdguic
+ */
 public void setCdguic(String newCdguic) { 
 	cdguic = newCdguic;
 }
 /**
  * Getter de l'attribut nocpte.
+ * @return String
  */
 public String getNocpte() {
 	return nocpte;
@@ -306,11 +391,15 @@ public String getNocpte() {
 /**
  * Setter de l'attribut nocpte.
  */
+/**
+ * @param newNocpte newNocpte
+ */
 public void setNocpte(String newNocpte) { 
 	nocpte = newNocpte;
 }
 /**
  * Getter de l'attribut clerib.
+ * @return String
  */
 public String getClerib() {
 	return clerib;
@@ -318,11 +407,15 @@ public String getClerib() {
 /**
  * Setter de l'attribut clerib.
  */
+/**
+ * @param newClerib newClerib
+ */
 public void setClerib(String newClerib) { 
 	clerib = newClerib;
 }
 /**
  * Getter de l'attribut libanq.
+ * @return String
  */
 public String getLibanq() {
 	return libanq;
@@ -330,11 +423,15 @@ public String getLibanq() {
 /**
  * Setter de l'attribut libanq.
  */
+/**
+ * @param newLibanq newLibanq
+ */
 public void setLibanq(String newLibanq) { 
 	libanq = newLibanq;
 }
 /**
  * Getter de l'attribut indcor.
+ * @return String
  */
 public String getIndcor() {
 	return indcor;
@@ -342,11 +439,15 @@ public String getIndcor() {
 /**
  * Setter de l'attribut indcor.
  */
+/**
+ * @param newIndcor newIndcor
+ */
 public void setIndcor(String newIndcor) { 
 	indcor = newIndcor;
 }
 /**
  * Getter de l'attribut vap.
+ * @return String
  */
 public String getVap() {
 	return vap;
@@ -354,11 +455,15 @@ public String getVap() {
 /**
  * Setter de l'attribut vap.
  */
+/**
+ * @param newVap newVap
+ */
 public void setVap(String newVap) { 
 	vap = newVap;
 }
 /**
  * Getter de l'attribut coef.
+ * @return String
  */
 public String getCoef() {
 	return coef;
@@ -366,11 +471,15 @@ public String getCoef() {
 /**
  * Setter de l'attribut coef.
  */
+/**
+ * @param newCoef newCoef
+ */
 public void setCoef(String newCoef) { 
 	coef = newCoef;
 }
 /**
  * Getter de l'attribut ptcafat.
+ * @return String
  */
 public String getPtcafat() {
 	return ptcafat;
@@ -378,11 +487,15 @@ public String getPtcafat() {
 /**
  * Setter de l'attribut ptcafat.
  */
+/**
+ * @param newPtcafat newPtcafat
+ */
 public void setPtcafat(String newPtcafat) { 
 	ptcafat = newPtcafat;
 }
 /**
  * Getter de l'attribut smig.
+ * @return String
  */
 public String getSmig() {
 	return smig;
@@ -390,11 +503,15 @@ public String getSmig() {
 /**
  * Setter de l'attribut smig.
  */
+/**
+ * @param newSmig newSmig
+ */
 public void setSmig(String newSmig) { 
 	smig = newSmig;
 }
 /**
  * Getter de l'attribut modreg.
+ * @return String
  */
 public String getModreg() {
 	return modreg;
@@ -402,11 +519,15 @@ public String getModreg() {
 /**
  * Setter de l'attribut modreg.
  */
+/**
+ * @param newModreg newModreg
+ */
 public void setModreg(String newModreg) { 
 	modreg = newModreg;
 }
 /**
  * Getter de l'attribut ipomp.
+ * @return String
  */
 public String getIpomp() {
 	return ipomp;
@@ -414,11 +535,15 @@ public String getIpomp() {
 /**
  * Setter de l'attribut ipomp.
  */
+/**
+ * @param newIpomp newIpomp
+ */
 public void setIPomp(String newIpomp) { 
 	ipomp = newIpomp;
 }
 /**
  * Getter de l'attribut solde1.
+ * @return String
  */
 public String getSolde1() {
 	return solde1;
@@ -426,11 +551,15 @@ public String getSolde1() {
 /**
  * Setter de l'attribut solde1.
  */
+/**
+ * @param newSolde1 newSolde1
+ */
 public void setSolde1(String newSolde1) { 
 	solde1 = newSolde1;
 }
 /**
  * Getter de l'attribut solde2.
+ * @return String
  */
 public String getSolde2() {
 	return solde2;
@@ -438,17 +567,24 @@ public String getSolde2() {
 /**
  * Setter de l'attribut solde2.
  */
+/**
+ * @param newSolde2 newSolde2
+ */
 public void setSolde2(String newSolde2) { 
 	solde2 = newSolde2;
 }
 /**
  * Getter de l'attribut nbrcp.
+ * @return String
  */
 public String getNbrcp() {
 	return nbrcp;
 }
 /**
  * Setter de l'attribut nbrcp.
+ */
+/**
+ * @param newNbrcp newNbrcp
  */
 public void setNbrcp(String newNbrcp) { 
 	nbrcp = newNbrcp;
@@ -461,6 +597,7 @@ protected nc.mairie.technique.BasicBroker definirMyBroker() {
 }
 /**
  Methode à définir dans chaque objet Métier pour instancier un Broker 
+ * @return PaieEnteteBroker
 */
 protected PaieEnteteBroker getMyPaieEnteteBroker() {
 	return (PaieEnteteBroker)getMyBasicBroker();
@@ -477,14 +614,20 @@ public String toString() {
 /**
  * Retourne un ArrayList d'objet métier : PaieEntete.
  * @return java.util.ArrayList
- */
+ * @param aTransaction Transaction
+ * @throws Exception Exception
+*/
 public static java.util.ArrayList<PaieEntete> listerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	PaieEntete unPaieEntete = new PaieEntete();
 	return unPaieEntete.getMyPaieEnteteBroker().listerPaieEntete(aTransaction);
 }
 /**
  * Retourne un PaieEntete.
+ * @param aTransaction aTransaction
+ * @param nomatr nomatr
+ * @param moiscourant moiscourant 
  * @return PaieEntete
+ * @throws Exception Exception 
  */
 public static PaieEntete chercherPaieEntete(nc.mairie.technique.Transaction aTransaction, String nomatr, String moiscourant) throws Exception{
 	PaieEntete unPaieEntete = new PaieEntete();
@@ -493,6 +636,9 @@ public static PaieEntete chercherPaieEntete(nc.mairie.technique.Transaction aTra
 /**
  * Methode creerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean creerPaieEntete(nc.mairie.technique.Transaction aTransaction )  throws Exception {
 	//Creation du PaieEntete
@@ -501,6 +647,9 @@ public boolean creerPaieEntete(nc.mairie.technique.Transaction aTransaction )  t
 /**
  * Methode modifierObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean modifierPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	//Modification du PaieEntete
@@ -509,6 +658,9 @@ public boolean modifierPaieEntete(nc.mairie.technique.Transaction aTransaction) 
 /**
  * Methode supprimerObjetMetier qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean supprimerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception{
 	//Suppression de l'PaieEntete

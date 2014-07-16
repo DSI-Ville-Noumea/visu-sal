@@ -103,8 +103,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	/**
 	 * Initialise le Menu de gauche où les mois travaillés s'affichent 
-	 * @param request
-	 * @throws Exception
+	 * @param request request
+	 * @throws Exception Exception
 	 */
 	public void initialiseMenuGauche(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
@@ -360,6 +360,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_BASE_HORAIRE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_BASE_HORAIRE() {
 		return "NOM_ST_BASE_HORAIRE";
@@ -369,6 +370,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_BASE_HORAIRE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_BASE_HORAIRE() {
 		return getZone(getNOM_ST_BASE_HORAIRE());
@@ -378,6 +380,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_BASE_REGLEMENT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_BASE_REGLEMENT() {
 		return "NOM_ST_BASE_REGLEMENT";
@@ -387,6 +390,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_BASE_REGLEMENT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_BASE_REGLEMENT() {
 		return getZone(getNOM_ST_BASE_REGLEMENT());
@@ -396,6 +400,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_CATEGORIE_ADMINISTRATIVE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_CATEGORIE_ADMINISTRATIVE() {
 		return "NOM_ST_CATEGORIE_ADMINISTRATIVE";
@@ -405,6 +410,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_CATEGORIE_ADMINISTRATIVE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_CATEGORIE_ADMINISTRATIVE() {
 		return getZone(getNOM_ST_CATEGORIE_ADMINISTRATIVE());
@@ -414,6 +420,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_COEFF_MAJORATION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_COEFF_MAJORATION() {
 		return "NOM_ST_COEFF_MAJORATION";
@@ -423,6 +430,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_COEFF_MAJORATION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_COEFF_MAJORATION() {
 		return getZone(getNOM_ST_COEFF_MAJORATION());
@@ -432,6 +440,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DOMICILIATION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_DOMICILIATION() {
 		return "NOM_ST_DOMICILIATION";
@@ -441,6 +450,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DOMICILIATION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_DOMICILIATION() {
 		return getZone(getNOM_ST_DOMICILIATION());
@@ -450,6 +460,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_CONGES
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_DROITS_CONGES() {
 		return "NOM_ST_DROITS_CONGES";
@@ -459,6 +470,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_CONGES
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_DROITS_CONGES() {
 		return getZone(getNOM_ST_DROITS_CONGES());
@@ -468,6 +480,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_RC_N
 	 * Date de création : (16/05/11 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_DROITS_RC_N() {
 		return "NOM_ST_DROITS_RC_N";
@@ -477,6 +490,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_RC_N
 	 * Date de création : (16/05/11 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_DROITS_RC_N() {
 		return getZone(getNOM_ST_DROITS_RC_N());
@@ -486,6 +500,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_RC_N_1
 	 * Date de création : (16/05/11 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_DROITS_RC_N_1() {
 		return "NOM_ST_DROITS_RC_N_1";
@@ -495,6 +510,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_DROITS_RC_N_1
 	 * Date de création : (16/05/11 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_DROITS_RC_N_1() {
 		return getZone(getNOM_ST_DROITS_RC_N_1());
@@ -504,6 +520,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_GRADE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_GRADE() {
 		return "NOM_ST_GRADE";
@@ -513,6 +530,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_GRADE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_GRADE() {
 		return getZone(getNOM_ST_GRADE());
@@ -522,6 +540,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_GRADE2
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_GRADE2() {
 		return "NOM_ST_GRADE2";
@@ -531,8 +550,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_GRADE2
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
-	
 	public java.lang.String getVAL_ST_GRADE2() {
 		return getZone(getNOM_ST_GRADE2());
 	}
@@ -541,6 +560,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_INDEX_CORRECTION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_INDEX_CORRECTION() {
 		return "NOM_ST_INDEX_CORRECTION";
@@ -550,6 +570,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_INDEX_CORRECTION
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_INDEX_CORRECTION() {
 		return getZone(getNOM_ST_INDEX_CORRECTION());
@@ -559,6 +580,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_INDICES
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_INDICES() {
 		return "NOM_ST_INDICES";
@@ -568,6 +590,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_INDICES
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_INDICES() {
 		return getZone(getNOM_ST_INDICES());
@@ -577,6 +600,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_MATRICULE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_MATRICULE() {
 		return "NOM_ST_MATRICULE";
@@ -586,6 +610,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_MATRICULE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_MATRICULE() {
 		return getZone(getNOM_ST_MATRICULE());
@@ -595,6 +620,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_EUROS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_EUROS() {
 		return "NOM_ST_NET_EUROS";
@@ -604,6 +630,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_EUROS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_EUROS() {
 		return getZone(getNOM_ST_NET_EUROS());
@@ -613,6 +640,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_IMPOS_CUMULS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_IMPOS_CUMULS() {
 		return "NOM_ST_NET_IMPOS_CUMULS";
@@ -622,6 +650,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_IMPOS_CUMULS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_IMPOS_CUMULS() {
 		return getZone(getNOM_ST_NET_IMPOS_CUMULS());
@@ -631,6 +660,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_IMPOS_MOIS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_IMPOS_MOIS() {
 		return "NOM_ST_NET_IMPOS_MOIS";
@@ -640,6 +670,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_IMPOS_MOIS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_IMPOS_MOIS() {
 		return getZone(getNOM_ST_NET_IMPOS_MOIS());
@@ -649,6 +680,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_NONIMPOS_CUMULS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_NONIMPOS_CUMULS() {
 		return "NOM_ST_NET_NONIMPOS_CUMULS";
@@ -658,6 +690,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_NONIMPOS_CUMULS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_NONIMPOS_CUMULS() {
 		return getZone(getNOM_ST_NET_NONIMPOS_CUMULS());
@@ -667,6 +700,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_NONIMPOS_MOIS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_NONIMPOS_MOIS() {
 		return "NOM_ST_NET_NONIMPOS_MOIS";
@@ -676,6 +710,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_NONIMPOS_MOIS
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_NONIMPOS_MOIS() {
 		return getZone(getNOM_ST_NET_NONIMPOS_MOIS());
@@ -685,6 +720,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_XPF
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NET_XPF() {
 		return "NOM_ST_NET_XPF";
@@ -694,6 +730,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NET_XPF
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NET_XPF() {
 		return getZone(getNOM_ST_NET_XPF());
@@ -703,6 +740,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NOM
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NOM() {
 		return "NOM_ST_NOM";
@@ -712,6 +750,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NOM
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NOM() {
 		return getZone(getNOM_ST_NOM());
@@ -721,6 +760,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_COMPTE_BANCAIRE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NUM_COMPTE_BANCAIRE() {
 		return "NOM_ST_NUM_COMPTE_BANCAIRE";
@@ -730,6 +770,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_COMPTE_BANCAIRE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NUM_COMPTE_BANCAIRE() {
 		return getZone(getNOM_ST_NUM_COMPTE_BANCAIRE());
@@ -739,6 +780,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_MUTUELLE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NUM_MUTUELLE() {
 		return "NOM_ST_NUM_MUTUELLE";
@@ -748,6 +790,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_MUTUELLE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NUM_MUTUELLE() {
 		return getZone(getNOM_ST_NUM_MUTUELLE());
@@ -757,6 +800,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_RETRAITE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_NUM_RETRAITE() {
 		return "NOM_ST_NUM_RETRAITE";
@@ -766,6 +810,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_NUM_RETRAITE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_NUM_RETRAITE() {
 		return getZone(getNOM_ST_NUM_RETRAITE());
@@ -775,6 +820,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_PERIODE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_PERIODE() {
 		return "NOM_ST_PERIODE";
@@ -784,6 +830,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_PERIODE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_PERIODE() {
 		return getZone(getNOM_ST_PERIODE());
@@ -793,6 +840,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_POINT_CAFAT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_POINT_CAFAT() {
 		return "NOM_ST_POINT_CAFAT";
@@ -802,6 +850,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_POINT_CAFAT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_POINT_CAFAT() {
 		return getZone(getNOM_ST_POINT_CAFAT());
@@ -811,6 +860,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SERVICE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_SERVICE() {
 		return "NOM_ST_SERVICE";
@@ -820,6 +870,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SERVICE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_SERVICE() {
 		return getZone(getNOM_ST_SERVICE());
@@ -829,6 +880,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SERVICE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_ECOL() {
 		return "NOM_ST_ECOL";
@@ -838,6 +890,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SERVICE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_ECOL() {
 		return getZone(getNOM_ST_ECOL());
@@ -847,6 +900,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SMIG
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_SMIG() {
 		return "NOM_ST_SMIG";
@@ -856,6 +910,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_SMIG
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_SMIG() {
 		return getZone(getNOM_ST_SMIG());
@@ -865,6 +920,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TBA
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_TBA() {
 		return "NOM_ST_TBA";
@@ -874,6 +930,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TBA
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_TBA() {
 		return getZone(getNOM_ST_TBA());
@@ -883,6 +940,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TOTAUX_APAYER
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_TOTAUX_APAYER() {
 		return "NOM_ST_TOTAUX_APAYER";
@@ -892,6 +950,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TOTAUX_APAYER
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_TOTAUX_APAYER() {
 		return getZone(getNOM_ST_TOTAUX_APAYER());
@@ -901,6 +960,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TOTAUX_ARETENIR
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_TOTAUX_ARETENIR() {
 		return "NOM_ST_TOTAUX_ARETENIR";
@@ -910,6 +970,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_TOTAUX_ARETENIR
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_TOTAUX_ARETENIR() {
 		return getZone(getNOM_ST_TOTAUX_ARETENIR());
@@ -919,6 +980,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_VALEUR_POINT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_VALEUR_POINT() {
 		return "NOM_ST_VALEUR_POINT";
@@ -928,6 +990,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_VALEUR_POINT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_VALEUR_POINT() {
 		return getZone(getNOM_ST_VALEUR_POINT());
@@ -948,6 +1011,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * NOM_LB_ELEMENTS_PAIE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_LB_ELEMENTS_PAIE() {
 		return "NOM_LB_ELEMENTS_PAIE";
@@ -957,6 +1021,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * NOM_LB_ELEMENTS_PAIE_SELECT
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_LB_ELEMENTS_PAIE_SELECT() {
 		return "NOM_LB_ELEMENTS_PAIE_SELECT";
@@ -967,6 +1032,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * LB_ELEMENTS_PAIE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String [] getVAL_LB_ELEMENTS_PAIE() {
 		return getLB_ELEMENTS_PAIE();
@@ -977,6 +1043,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * LB_ELEMENTS_PAIE
 	 * Date de création : (23/02/09 15:35:45)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_LB_ELEMENTS_PAIE_SELECT() {
 		return getZone(getNOM_LB_ELEMENTS_PAIE_SELECT());
@@ -986,6 +1053,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * PB_RECHERCHER
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_PB_RECHERCHER() {
 		return "NOM_PB_RECHERCHER";
@@ -1005,6 +1073,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 *   setStatut(STATUT, boolean veutRetour) ou setStatut(STATUT,Message d'erreur)
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @param request request
+	 * @return boolean
+	 * @throws Exception Exception 
 	 */
 	public boolean performPB_RECHERCHER(javax.servlet.http.HttpServletRequest request) throws Exception {
 		//setActivite("AgentSelection");
@@ -1046,6 +1117,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_NOM
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_AGENT_NOM() {
 		return "NOM_ST_AGENT_NOM";
@@ -1055,6 +1127,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_NOM
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_AGENT_NOM() {
 		return getZone(getNOM_ST_AGENT_NOM());
@@ -1064,6 +1137,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_PRENOM
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_AGENT_PRENOM() {
 		return "NOM_ST_AGENT_PRENOM";
@@ -1073,6 +1147,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_PRENOM
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_AGENT_PRENOM() {
 		return getZone(getNOM_ST_AGENT_PRENOM());
@@ -1082,6 +1157,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_MATRICULE
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_ST_AGENT_MATRICULE() {
 		return "NOM_ST_AGENT_MATRICULE";
@@ -1091,6 +1167,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * ST_AGENT_MATRICULE
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_ST_AGENT_MATRICULE() {
 		return getZone(getNOM_ST_AGENT_MATRICULE());
@@ -1100,6 +1177,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * EF_AGENT
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_EF_AGENT() {
 		return "NOM_EF_AGENT";
@@ -1109,6 +1187,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * EF_AGENT
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_EF_AGENT() {
 		return getZone(getNOM_EF_AGENT());
@@ -1138,6 +1217,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * NOM_LB_MOIS_ANCIENNETE
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_LB_MOIS_ANCIENNETE() {
 		return "NOM_LB_MOIS_ANCIENNETE";
@@ -1147,6 +1227,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * NOM_LB_MOIS_ANCIENNETE_SELECT
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getNOM_LB_MOIS_ANCIENNETE_SELECT() {
 		return "NOM_LB_MOIS_ANCIENNETE_SELECT";
@@ -1157,6 +1238,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * LB_MOIS_ANCIENNETE
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String [] getVAL_LB_MOIS_ANCIENNETE() {
 		return getLB_MOIS_ANCIENNETE();
@@ -1167,6 +1249,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 * LB_MOIS_ANCIENNETE
 	 * Date de création : (23/02/09 15:40:50)
 	 * @author : Générateur de process
+	 * @return String
 	 */
 	public java.lang.String getVAL_LB_MOIS_ANCIENNETE_SELECT() {
 		return getZone(getNOM_LB_MOIS_ANCIENNETE_SELECT());
@@ -1223,9 +1306,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
  * 
  * Affichage des elements de paie de la fiche de salaire.
  * Si le numéro de la rubrique est dans les 8000 (rubriques de rappel) on affiche un lien qui déroule les mois de rappel
- * @return
- * @throws Exception
- * @throws NumberFormatException
+ * @return String
+ * @throws Exception Exception
+ * @throws NumberFormatException NumberFormatException
  */
 	public String generateELEMENTS_PAIE() throws Exception, NumberFormatException{
 		listeBulletinSalarie= new ArrayList<BulletinElement> ();
@@ -1802,9 +1885,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 
 	/**
 	 * En fonction du noRubrique retourne la valeur à afficher dans la colonne Taux
-	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
-	 * @return
+	 * @return String
 	 */
 	private String calculerNombreTaux(String noRubr, String nBre, String TxSal, String TxPat, boolean isTauxSal){
 		String NombreouTaux="";
@@ -1917,9 +1998,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	/**
 	 * 
-	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
-	 * @return
+	 * @param pe pe
+	 * @param isTauxSal true si on veut le taux salarié, false si on veut le taux patronal
+	 * @return String
 	 */
 	public String calculerNombreTaux(PaieElement pe, boolean isTauxSal){
 		return calculerNombreTaux(pe.getNorubr(), pe.getNb(), pe.getTxsal(), pe.getTxpat(), isTauxSal);
@@ -1927,9 +2008,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	/**
 	 * 
-	 * @param pe
-	 * @param isTauxSal: true si on veut le taux salarié, false si on veut le taux patronal
-	 * @return
+	 * @param pr pr
+	 * @param isTauxSal  true si on veut le taux salarié, false si on veut le taux patronal
+	 * @return String
 	 */
 	public String calculerNombreTaux(PaieRappel pr, boolean isTauxSal){
 		return calculerNombreTaux(pr.getNorubr(), pr.getNb(), pr.getTxsal(), pr.getTxpat(), isTauxSal);
@@ -1938,7 +2019,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	/**
 	 * Genere le fichier des DATA pour l'affichage dans le PDF.
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	private void generateCommonsVFSBulletinPDFData() throws Exception{
 	

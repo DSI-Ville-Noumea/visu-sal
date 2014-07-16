@@ -7,6 +7,7 @@ import nc.mairie.technique.BasicRecord;
 public class PaieEnteteBroker extends nc.mairie.technique.BasicBroker {
 /**
  * Constructeur PaieEnteteBroker.
+ * @param aMetier aMetier 
  */
 public PaieEnteteBroker(nc.mairie.technique.BasicMetier aMetier) {
 	super(aMetier);
@@ -73,6 +74,9 @@ protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws 
 /**
  * Methode creerObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean creerPaieEntete(nc.mairie.technique.Transaction aTransaction)  throws Exception{
 	return creer(aTransaction);
@@ -80,6 +84,9 @@ public boolean creerPaieEntete(nc.mairie.technique.Transaction aTransaction)  th
 /**
  * Methode modifierObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean modifierPaieEntete(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return modifier(aTransaction);
@@ -87,6 +94,9 @@ public boolean modifierPaieEntete(nc.mairie.technique.Transaction aTransaction) 
 /**
  * Methode supprimerObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean supprimerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return supprimer(aTransaction);
@@ -94,13 +104,19 @@ public boolean supprimerPaieEntete(nc.mairie.technique.Transaction aTransaction)
 /**
  * Retourne un ArrayList d'objet métier : PaieEntete.
  * @return java.util.ArrayList
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public java.util.ArrayList<PaieEntete> listerPaieEntete(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
 }
 /**
  * Retourne un PaieEntete.
+ * @param aTransaction Traansaction
+ * @param nomatr nomatr 
+ * @param moiscourant moiscourant 
  * @return PaieEntete
+ * @throws Exception Exception
  */
 public PaieEntete chercherPaieEntete(nc.mairie.technique.Transaction aTransaction, String nomatr, String moiscourant) throws Exception {
 	return (PaieEntete)executeSelect(aTransaction,"select * from "+getTable()+" where NOMATR = "+nomatr+" AND PERCOU="+moiscourant+" with UR");

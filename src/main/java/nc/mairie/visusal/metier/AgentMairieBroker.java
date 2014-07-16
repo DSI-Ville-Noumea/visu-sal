@@ -7,6 +7,7 @@ import nc.mairie.technique.BasicRecord;
 public class AgentMairieBroker extends nc.mairie.technique.BasicBroker {
 /**
  * Constructeur AgentMairieBroker.
+ * @param aMetier aMetier
  */
 public AgentMairieBroker(nc.mairie.technique.BasicMetier aMetier) {
 	super(aMetier);
@@ -72,6 +73,9 @@ protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws 
 /**
  * Methode creerObjetMetierBroker qui retourne
  * true ou false
+ * @param aTransaction Transaction
+ * @return boolean
+ * @throws Exception Exception
  */
 public boolean creerAgentMairie(nc.mairie.technique.Transaction aTransaction)  throws Exception{
 	return creer(aTransaction);
@@ -79,6 +83,9 @@ public boolean creerAgentMairie(nc.mairie.technique.Transaction aTransaction)  t
 /**
  * Methode modifierObjetMetierBroker qui retourne
  * true ou false
+ * @param aTransaction Transaction
+ * @return boolean
+ * @throws Exception Exception
  */
 public boolean modifierAgentMairie(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return modifier(aTransaction);
@@ -86,13 +93,18 @@ public boolean modifierAgentMairie(nc.mairie.technique.Transaction aTransaction)
 /**
  * Methode supprimerObjetMetierBroker qui retourne
  * true ou false
+ * @param aTransaction Transaction
+ * @return boolean
+ * @throws Exception Exception
  */
 public boolean supprimerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return supprimer(aTransaction);
 }
 /**
  * Retourne un ArrayList d'objet métier : AgentMairie.
+ * @param aTransaction Transaction
  * @return java.util.ArrayList
+ * @throws Exception Exception
  */
 public java.util.ArrayList<AgentMairie> listerAgentMairie(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
@@ -107,7 +119,10 @@ public java.util.ArrayList<AgentMairie> listerAgentMairieAvecPrenomCommencant(nc
 }
 /**
  * Retourne un AgentMairie.
+ * @param aTransaction Transaction
+ * @param nomatr nomatr
  * @return AgentMairie
+ * @throws Exception Exception
  */
 public AgentMairie chercherAgentMairie(nc.mairie.technique.Transaction aTransaction, String nomatr) throws Exception {
 	return (AgentMairie)executeSelect(aTransaction,"select * from "+getTable()+" where nomatr = "+nomatr+" with UR");

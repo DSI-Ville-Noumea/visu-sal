@@ -7,6 +7,7 @@ import nc.mairie.technique.BasicRecord;
 public class PaieRubriqueBroker extends nc.mairie.technique.BasicBroker {
 /**
  * Constructeur PaieRubriqueBroker.
+ * @param aMetier aMetier
  */
 public PaieRubriqueBroker(nc.mairie.technique.BasicMetier aMetier) {
 	super(aMetier);
@@ -48,6 +49,9 @@ protected java.util.Hashtable<String, BasicRecord> definirMappageTable() throws 
 /**
  * Methode creerObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean creerPaieRubrique(nc.mairie.technique.Transaction aTransaction)  throws Exception{
 	return creer(aTransaction);
@@ -55,6 +59,9 @@ public boolean creerPaieRubrique(nc.mairie.technique.Transaction aTransaction)  
 /**
  * Methode modifierObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean modifierPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return modifier(aTransaction);
@@ -62,6 +69,9 @@ public boolean modifierPaieRubrique(nc.mairie.technique.Transaction aTransaction
 /**
  * Methode supprimerObjetMetierBroker qui retourne
  * true ou false
+ * @return boolean
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public boolean supprimerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws java.lang.Exception {
 	return supprimer(aTransaction);
@@ -69,13 +79,18 @@ public boolean supprimerPaieRubrique(nc.mairie.technique.Transaction aTransactio
 /**
  * Retourne un ArrayList d'objet métier : PaieRubrique.
  * @return java.util.ArrayList
+ * @param aTransaction Transaction
+ * @throws Exception Exception
  */
 public java.util.ArrayList<PaieRubrique> listerPaieRubrique(nc.mairie.technique.Transaction aTransaction) throws Exception {
 	return executeSelectListe(aTransaction,"select * from "+getTable()+" with UR");
 }
 /**
  * Retourne un PaieRubrique par NORUBR
+ * @param aTransaction aTransaction
+ * @param cle cle
  * @return PaieRubrique
+ * @throws Exception Exception
  */
 public PaieRubrique chercherPaieRubrique(nc.mairie.technique.Transaction aTransaction, String cle) throws Exception {
 	return (PaieRubrique)executeSelect(aTransaction,"select * from "+getTable()+" where NORUBR = "+cle+" with UR");
@@ -84,10 +99,10 @@ public PaieRubrique chercherPaieRubrique(nc.mairie.technique.Transaction aTransa
 /**
  * 
  * Retourne un PaieRubrique par RUBRAP
- * @param aTransaction
- * @param cle
- * @return
- * @throws Exception
+ * @param aTransaction aTransaction
+ * @param cle cle
+ * @return PaieRubrique
+ * @throws Exception Exception
  */
 public PaieRubrique chercherPaieRubriqueRappelCorrespondante(nc.mairie.technique.Transaction aTransaction, String cle) throws Exception {
 	return (PaieRubrique)executeSelect(aTransaction,"select * from "+getTable()+" where RUBRAP = "+cle+" with UR");

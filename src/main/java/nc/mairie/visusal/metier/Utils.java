@@ -25,8 +25,8 @@ public class Utils {
 	
 	/**
 	 * 
-	 * @param l1
-	 * @param l2
+	 * @param l1 l1
+	 * @param l2 l2
 	 * @return ArrayListe l1 ayant éléminé de la liste l1 les éléments en communs avec l2
 	 * fonctionne uniquement avec une liste l1 n'ayant pas 2 elements identiques
 	 */
@@ -56,7 +56,7 @@ public class Utils {
 	
 	/**
 	 * 
-	 * @param al
+	 * @param al al
 	 * @return ArrayList entrée moins ses doublons.
 	 */
 	public static ArrayList<Object> antiDoublon(ArrayList<?> al) {
@@ -198,7 +198,7 @@ public class Utils {
 	}
 	/**
 	 * Fonction qui transforme les heures en demi journée (à la demi journée près)
-	 * @param fHeures
+	 * @param fHeures fHeures
 	 * @return le nombre de demi journées dans un entier
 	 */
 	public static String getDemiJournees(Float fHeures){
