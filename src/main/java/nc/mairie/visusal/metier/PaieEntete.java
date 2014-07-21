@@ -54,8 +54,6 @@ public String getNomatr() {
 }
 /**
  * Setter de l'attribut nomatr.
- */
-/**
  * @param newNomatr newNomatr
  */
 public void setNomatr(String newNomatr) { 
@@ -70,8 +68,6 @@ public String getPercou() {
 }
 /**
  * Setter de l'attribut percou.
- */
-/**
  * @param newPercou newPercou
  */
 public void setPercou(String newPercou) { 
@@ -86,8 +82,6 @@ public String getLicate() {
 }
 /**
  * Setter de l'attribut licate.
- */
-/**
  * @param newLicate newLicate
  */
 public void setLicate(String newLicate) { 
@@ -102,8 +96,6 @@ public String getLigrad() {
 }
 /**
  * Setter de l'attribut ligrad.
- */
-/**
  * @param newLigrad newLigrad
  */
 public void setLigrad(String newLigrad) { 
@@ -118,8 +110,6 @@ public String getForf() {
 }
 /**
  * Setter de l'attribut forf.
- */
-/**
  * @param newForf newForf
  */
 public void setForf(String newForf) { 
@@ -134,8 +124,6 @@ public String getIban() {
 }
 /**
  * Setter de l'attribut iban.
- */
-/**
  * @param newIban newIban
  */
 public void setIban(String newIban) { 
@@ -150,8 +138,6 @@ public String getIna() {
 }
 /**
  * Setter de l'attribut ina.
- */
-/**
  * @param newIna newIna
  */
 public void setIna(String newIna) { 
@@ -166,8 +152,6 @@ public String getInm() {
 }
 /**
  * Setter de l'attribut inm.
- */
-/**
  * @param newInm newInm
  */
 public void setInm(String newInm) { 
@@ -182,8 +166,6 @@ public String getLimodr() {
 }
 /**
  * Setter de l'attribut limodr.
- */
-/**
  * @param newLimodr newLimodr
  */
 public void setLimodr(String newLimodr) { 
@@ -198,8 +180,6 @@ public String getLibhor() {
 }
 /**
  * Setter de l'attribut libhor.
- */
-/**
  * @param newLibhor newLibhor
  */
 public void setLibhor(String newLibhor) { 
@@ -214,8 +194,6 @@ public String getNbcong() {
 }
 /**
  * Setter de l'attribut nbcong.
- */
-/**
  * @param newNbcong newNbcong
  */
 public void setNbcong(String newNbcong) { 
@@ -230,8 +208,6 @@ public String getNom() {
 }
 /**
  * Setter de l'attribut nom.
- */
-/**
  * @param newNom newNom
  */
 public void setNom(String newNom) { 
@@ -246,8 +222,6 @@ public String getPrenom() {
 }
 /**
  * Setter de l'attribut prenom.
- */
-/**
  * @param newPrenom newPrenom
  */
 public void setPrenom(String newPrenom) { 
@@ -262,8 +236,6 @@ public String getNuretr() {
 }
 /**
  * Setter de l'attribut nuretr.
- */
-/**
  * @param newNuretr newNuretr
  */
 public void setNuretr(String newNuretr) { 
@@ -278,8 +250,6 @@ public String getNumutu() {
 }
 /**
  * Setter de l'attribut numutu.
- */
-/**
  * @param newNumutu newNumutu
  */
 public void setNumutu(String newNumutu) { 
@@ -294,8 +264,6 @@ public String getLiserv() {
 }
 /**
  * Setter de l'attribut liserv.
- */
-/**
  * @param newLiserv newLiserv
  */
 public void setLiserv(String newLiserv) { 
@@ -310,8 +278,6 @@ public String getLiecol() {
 }
 /**
  * Setter de l'attribut liecol.
- */
-/**
  * @param newLiecol newLiecol
  */
 public void setLiecol(String newLiecol) { 
@@ -326,8 +292,6 @@ public String getCdcate() {
 }
 /**
  * Setter de l'attribut cdcate.
- */
-/**
  * @param newCdcate newCdcate
  */
 public void setCdcate(String newCdcate) { 
@@ -342,8 +306,6 @@ public String getCdchar() {
 }
 /**
  * Setter de l'attribut cdchar.
- */
-/**
  * @param newCdchar newCdchar
  */
 public void setCdchar(String newCdchar) { 
@@ -358,8 +320,6 @@ public String getCdbanq() {
 }
 /**
  * Setter de l'attribut cdbanq.
- */
-/**
  * @param newCdbanq newCdbanq
  */
 public void setCdbanq(String newCdbanq) { 
@@ -374,8 +334,6 @@ public String getCdguic() {
 }
 /**
  * Setter de l'attribut cdguic.
- */
-/**
  * @param newCdguic newCdguic
  */
 public void setCdguic(String newCdguic) { 
@@ -390,8 +348,6 @@ public String getNocpte() {
 }
 /**
  * Setter de l'attribut nocpte.
- */
-/**
  * @param newNocpte newNocpte
  */
 public void setNocpte(String newNocpte) { 
@@ -406,8 +362,6 @@ public String getClerib() {
 }
 /**
  * Setter de l'attribut clerib.
- */
-/**
  * @param newClerib newClerib
  */
 public void setClerib(String newClerib) { 
@@ -422,8 +376,6 @@ public String getLibanq() {
 }
 /**
  * Setter de l'attribut libanq.
- */
-/**
  * @param newLibanq newLibanq
  */
 public void setLibanq(String newLibanq) { 
@@ -438,8 +390,6 @@ public String getIndcor() {
 }
 /**
  * Setter de l'attribut indcor.
- */
-/**
  * @param newIndcor newIndcor
  */
 public void setIndcor(String newIndcor) { 
@@ -454,8 +404,6 @@ public String getVap() {
 }
 /**
  * Setter de l'attribut vap.
- */
-/**
  * @param newVap newVap
  */
 public void setVap(String newVap) { 
@@ -470,8 +418,6 @@ public String getCoef() {
 }
 /**
  * Setter de l'attribut coef.
- */
-/**
  * @param newCoef newCoef
  */
 public void setCoef(String newCoef) { 
@@ -486,8 +432,6 @@ public String getPtcafat() {
 }
 /**
  * Setter de l'attribut ptcafat.
- */
-/**
  * @param newPtcafat newPtcafat
  */
 public void setPtcafat(String newPtcafat) { 
@@ -502,8 +446,6 @@ public String getSmig() {
 }
 /**
  * Setter de l'attribut smig.
- */
-/**
  * @param newSmig newSmig
  */
 public void setSmig(String newSmig) { 
@@ -518,8 +460,6 @@ public String getModreg() {
 }
 /**
  * Setter de l'attribut modreg.
- */
-/**
  * @param newModreg newModreg
  */
 public void setModreg(String newModreg) { 
@@ -534,8 +474,6 @@ public String getIpomp() {
 }
 /**
  * Setter de l'attribut ipomp.
- */
-/**
  * @param newIpomp newIpomp
  */
 public void setIPomp(String newIpomp) { 
@@ -550,8 +488,6 @@ public String getSolde1() {
 }
 /**
  * Setter de l'attribut solde1.
- */
-/**
  * @param newSolde1 newSolde1
  */
 public void setSolde1(String newSolde1) { 
@@ -566,8 +502,6 @@ public String getSolde2() {
 }
 /**
  * Setter de l'attribut solde2.
- */
-/**
  * @param newSolde2 newSolde2
  */
 public void setSolde2(String newSolde2) { 
@@ -582,8 +516,6 @@ public String getNbrcp() {
 }
 /**
  * Setter de l'attribut nbrcp.
- */
-/**
  * @param newNbrcp newNbrcp
  */
 public void setNbrcp(String newNbrcp) { 

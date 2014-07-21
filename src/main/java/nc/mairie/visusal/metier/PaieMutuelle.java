@@ -24,8 +24,6 @@ public String getCdmutu() {
 }
 /**
  * Setter de l'attribut cdmutu.
- */
-/**
  * @param newCdmutu newCdmutu
  */
 public void setCdmutu(String newCdmutu) { 
@@ -40,8 +38,6 @@ public String getTxsal() {
 }
 /**
  * Setter de l'attribut txsal.
- */
-/**
  * @param newTxsal newTxsal
  */
 public void setTxsal(String newTxsal) { 
@@ -56,8 +52,6 @@ public String getTxpat() {
 }
 /**
  * Setter de l'attribut txpat.
- */
-/**
  * @param newTxpat newTxpat
  */
 public void setTxpat(String newTxpat) { 
@@ -72,8 +66,6 @@ public String getLimutu() {
 }
 /**
  * Setter de l'attribut limutu.
- */
-/**
  * @param newLimutu newLimutu
  */
 public void setLimutu(String newLimutu) { 

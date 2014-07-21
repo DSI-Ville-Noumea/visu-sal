@@ -30,8 +30,6 @@ public String getPercou() {
 }
 /**
  * Setter de l'attribut percou.
- */
-/**
  * @param newPercou newPercou
  */
 public void setPercou(String newPercou) { 
@@ -46,8 +44,6 @@ public String getPerrap() {
 }
 /**
  * Setter de l'attribut perrap.
- */
-/**
  * @param newPerrap newPerrap
  */
 public void setPerrap(String newPerrap) { 
@@ -62,8 +58,6 @@ public String getNomatr() {
 }
 /**
  * Setter de l'attribut nomatr.
- */
-/**
  * @param newNomatr newNomatr
  */
 public void setNomatr(String newNomatr) { 
@@ -78,8 +72,6 @@ public String getNorubr() {
 }
 /**
  * Setter de l'attribut norubr.
- */
-/**
  * @param newNorubr newNorubr
  */
 public void setNorubr(String newNorubr) { 
@@ -94,8 +86,6 @@ public String getTxsal() {
 }
 /**
  * Setter de l'attribut txsal.
- */
-/**
  * @param newTxsal newTxsal
  */
 public void setTxsal(String newTxsal) { 
@@ -110,8 +100,6 @@ public String getNb() {
 }
 /**
  * Setter de l'attribut nb.
- */
-/**
  * @param newNb newNb
  */
 public void setNb(String newNb) { 
@@ -126,8 +114,6 @@ public String getMtbase() {
 }
 /**
  * Setter de l'attribut mtbase.
- */
-/**
  * @param newMtbase newMtbase
  */
 public void setMtbase(String newMtbase) { 
@@ -142,8 +128,6 @@ public String getMtpsal() {
 }
 /**
  * Setter de l'attribut mtpsal.
- */
-/**
  * @param newMtpsal newMtpsal
  */
 public void setMtpsal(String newMtpsal) { 
@@ -158,8 +142,6 @@ public String getTxpat() {
 }
 /**
  * Setter de l'attribut txpat.
- */
-/**
  * @param newTxpat newTxpat
  */
 public void setTxpat(String newTxpat) { 
@@ -174,8 +156,6 @@ public String getMtppat() {
 }
 /**
  * Setter de l'attribut mtppat.
- */
-/**
  * @param newMtppat newMtppat
  */
 public void setMtppat(String newMtppat) { 

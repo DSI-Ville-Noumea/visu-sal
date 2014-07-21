@@ -23,8 +23,6 @@ public PaieElement() {
 }
 /**
  * Getter de l'attribut percou.
- */
-/**
  * @return String
  */
 public String getPercou() {
@@ -32,8 +30,6 @@ public String getPercou() {
 }
 /**
  * Setter de l'attribut percou.
- */
-/**
  * @param newPercou newPercou
  */
 public void setPercou(String newPercou) { 
@@ -41,8 +37,6 @@ public void setPercou(String newPercou) {
 }
 /**
  * Getter de l'attribut nomatr.
- */
-/**
  * @return String
  */
 public String getNomatr() {
@@ -50,8 +44,6 @@ public String getNomatr() {
 }
 /**
  * Setter de l'attribut nomatr.
- */
-/**
  * @param newNomatr newNomatr
  */
 public void setNomatr(String newNomatr) { 
@@ -59,8 +51,6 @@ public void setNomatr(String newNomatr) {
 }
 /**
  * Getter de l'attribut norubr.
- */
-/**
  * @return String
  */
 public String getNorubr() {
@@ -68,8 +58,6 @@ public String getNorubr() {
 }
 /**
  * Setter de l'attribut norubr.
- */
-/**
  * @param newNorubr newNorubr
  */
 public void setNorubr(String newNorubr) { 
@@ -77,8 +65,6 @@ public void setNorubr(String newNorubr) {
 }
 /**
  * Getter de l'attribut txsal.
- */
-/**
  * @return String
  */
 public String getTxsal() {
@@ -86,8 +72,6 @@ public String getTxsal() {
 }
 /**
  * Setter de l'attribut txsal.
- */
-/**
  * @param newTxsal newTxsal
  */
 public void setTxsal(String newTxsal) { 
@@ -95,8 +79,6 @@ public void setTxsal(String newTxsal) {
 }
 /**
  * Getter de l'attribut nb.
- */
-/**
  * @return String
  */
 public String getNb() {
@@ -104,8 +86,6 @@ public String getNb() {
 }
 /**
  * Setter de l'attribut nb.
- */
-/**
  * @param newNb newNb
  */
 public void setNb(String newNb) { 
@@ -113,8 +93,6 @@ public void setNb(String newNb) {
 }
 /**
  * Getter de l'attribut mtbase.
- */
-/**
  * @return String
  */
 public String getMtbase() {
@@ -122,8 +100,6 @@ public String getMtbase() {
 }
 /**
  * Setter de l'attribut mtbase.
- */
-/**
  * @param newMtbase newMtbase
  */
 public void setMtbase(String newMtbase) { 
@@ -131,8 +107,6 @@ public void setMtbase(String newMtbase) {
 }
 /**
  * Getter de l'attribut mtpsal.
- */
-/**
  * @return String
  */
 public String getMtpsal() {
@@ -140,8 +114,6 @@ public String getMtpsal() {
 }
 /**
  * Setter de l'attribut mtpsal.
- */
-/**
  * @param newMtpsal newMtpsal
  */
 public void setMtpsal(String newMtpsal) { 
@@ -149,8 +121,6 @@ public void setMtpsal(String newMtpsal) {
 }
 /**
  * Getter de l'attribut txpat.
- */
-/**
  * @return String
  */
 public String getTxpat() {
@@ -158,8 +128,6 @@ public String getTxpat() {
 }
 /**
  * Setter de l'attribut txpat.
- */
-/**
  * @param newTxpat newTxpat
  */
 public void setTxpat(String newTxpat) { 
@@ -167,8 +135,6 @@ public void setTxpat(String newTxpat) {
 }
 /**
  * Getter de l'attribut mtppat.
- */
-/**
  * @return String
  */
 public String getMtppat() {
@@ -176,8 +142,6 @@ public String getMtppat() {
 }
 /**
  * Setter de l'attribut mtppat.
- */
-/**
  * @param newMtppat newMtppat
  */
 public void setMtppat(String newMtppat) { 
@@ -185,8 +149,6 @@ public void setMtppat(String newMtppat) {
 }
 /**
  * Getter de l'attribut dattrt.
- */
-/**
  * @return String
  */
 public String getDattrt() {
@@ -194,8 +156,6 @@ public String getDattrt() {
 }
 /**
  * Setter de l'attribut dattrt.
- */
-/**
  * @param newDattrt newDattrt
  */
 public void setDattrt(String newDattrt) { 
@@ -252,8 +212,6 @@ public static PaieElement chercherPaieElement(nc.mairie.technique.Transaction aT
 /**
  * Methode creerObjetMetier qui retourne
  * true ou false
- */
-/**
  * @param aTransaction Transaction
  * @return boolean
  * @throws Exception Exception
@@ -265,8 +223,6 @@ public boolean creerPaieElement(nc.mairie.technique.Transaction aTransaction )  
 /**
  * Methode modifierObjetMetier qui retourne
  * true ou false
- */
-/**
  * @param aTransaction Transaction
  * @return boolean
  * @throws Exception Exception
@@ -278,8 +234,6 @@ public boolean modifierPaieElement(nc.mairie.technique.Transaction aTransaction)
 /**
  * Methode supprimerObjetMetier qui retourne
  * true ou false
- */
-/**
  * @param aTransaction Transaction
  * @return boolean
  * @throws Exception Exception

@@ -29,8 +29,6 @@ public String getNorubr() {
 }
 /**
  * Setter de l'attribut norubr.
- */
-/**
  * @param newNorubr newNorubr
  */
 public void setNorubr(String newNorubr) { 
@@ -45,8 +43,6 @@ public String getLirubr() {
 }
 /**
  * Setter de l'attribut lirubr.
- */
-/**
  * @param newLirubr newLirubr
  */
 public void setLirubr(String newLirubr) { 
@@ -61,8 +57,6 @@ public String getTyimpo() {
 }
 /**
  * Setter de l'attribut tyimpo.
- */
-/**
  * @param newTyimpo newTyimpo
  */
 public void setTyimpo(String newTyimpo) { 
@@ -77,8 +71,6 @@ public String getCdrcaf() {
 }
 /**
  * Setter de l'attribut cdrcaf.
- */
-/**
  * @param newCdrcaf newCdrcaf
  */
 public void setCdrcaf(String newCdrcaf) { 
@@ -93,8 +85,6 @@ public String getRubrap() {
 }
 /**
  * Setter de l'attribut rubrap.
- */
-/**
  * @param newRubrap newRubrap
  */
 public void setRubrap(String newRubrap) { 
@@ -109,8 +99,6 @@ public String getTyprim() {
 }
 /**
  * Setter de l'attribut typrim.
- */
-/**
  * @param newTyprim newTyprim
  */
 public void setTyprim(String newTyprim) { 
@@ -125,8 +113,6 @@ public String getTyrubr() {
 }
 /**
  * Setter de l'attribut tyrubr.
- */
-/**
  * @param newTyrubr newTyrubr
  */
 public void setTyrubr(String newTyrubr) { 
@@ -141,8 +127,6 @@ public String getCatpos() {
 }
 /**
  * Setter de l'attribut catpos.
- */
-/**
  * @param newCatpos newCatpos
  */
 public void setCatpos(String newCatpos) { 
@@ -157,8 +141,6 @@ public String getDatina() {
 }
 /**
  * Setter de l'attribut datina.
- */
-/**
  * @param newDatina newDatina
  */
 public void setDatina(String newDatina) { 
