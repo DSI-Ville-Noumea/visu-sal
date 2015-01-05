@@ -21,8 +21,8 @@
 		<version>${project.version}</version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<svnurl>https://svn.ville-noumea.nc/sed/visu-sal</svnurl>
-		<framework_version>2.1</framework_version>
-		<DroitsApplisClient_version>2.1</DroitsApplisClient_version>
+		<framework_version>2.2</framework_version>
+		<DroitsApplisClient_version>2.2</DroitsApplisClient_version>
         <java.version>1.7</java.version>
 	</properties>
 
