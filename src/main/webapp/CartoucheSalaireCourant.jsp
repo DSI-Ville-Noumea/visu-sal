@@ -121,7 +121,7 @@
 	</TD>
 </TR>
 <TR><TD width="100%">
-<%= cscbp.generateELEMENTS_PAIE() %>
+<%= cscbp.getElementPaieFormatee() %>
 </TD></TR>
 <TR><TD width="100%">
 	<FIELDSET style="text-align : center;">

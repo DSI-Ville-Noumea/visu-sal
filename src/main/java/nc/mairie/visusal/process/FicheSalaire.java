@@ -57,7 +57,22 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	private String sTBA="";
 	private String sDemiJoursRCN="0";
 	private String sDemiJoursRCN_1="0";
+	private String elementPaieFormatee;
 
+	/**
+	 * @return elementPaieFormatee
+	 */
+	public String getElementPaieFormatee() {
+		return elementPaieFormatee;
+	}
+
+	/**
+	 * @param elementPaieFormatee elementPaieFormatee
+	 */
+	public void setElementPaieFormatee(String elementPaieFormatee) {
+		this.elementPaieFormatee = elementPaieFormatee;
+	}
+	
 	/**
 	 * Initialisation des zones à afficher dans la JSP
 	 * Alimentation des listes, s'il y en a, avec setListeLB_XXX()
@@ -73,6 +88,10 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 		if (null!=agentMCourant){
 			initialiseMenuGauche(request);
 			initialiseSalaire(request);
+		}
+		
+		if (getPaieElementMoisCourant() != null) {
+			setElementPaieFormatee(generateELEMENTS_PAIE());
 		}
 	}
 	
@@ -1310,7 +1329,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
  * @throws Exception Exception
  * @throws NumberFormatException NumberFormatException
  */
-	public String generateELEMENTS_PAIE() throws Exception, NumberFormatException{
+	private String generateELEMENTS_PAIE() throws Exception, NumberFormatException{
 		listeBulletinSalarie= new ArrayList<BulletinElement> ();
 		listeBulletinPatronal= new ArrayList<BulletinElement> ();
 		BulletinElement bulletinElemSal=null;
@@ -2059,7 +2078,6 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			//mois
 			out.write(StringUtils.rightPad(Utils.TraiterMoisFr(paieEnteteMoisCourant.getPercou()),9," "));
 			//annee
-			System.out.println(paieEnteteMoisCourant.getPercou());
 			out.write(StringUtils.leftPad(Utils.TraiterAnneeFr(paieEnteteMoisCourant.getPercou()),4," "));
 			//libcat
 			out.write(StringUtils.rightPad(paieEnteteMoisCourant.getLicate().trim(),30," "));
