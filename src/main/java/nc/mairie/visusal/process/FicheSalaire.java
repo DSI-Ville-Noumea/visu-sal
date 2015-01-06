@@ -1630,6 +1630,8 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							//LES RAPPELS SONT ICI !!!!
 							//la rubrique correspondante entre 1000 et 8000
 							PaieRubrique paieRubriquedeRappel=(PaieRubrique)PaieRubrique.chercherPaieRubriqueRappelCorrespondante(getTransaction(),pe.getNorubr());
+							//#12744 Si pas trouvé le rappel alors pas de message d'erreur
+							if (getTransaction().isErreur()) getTransaction().traiterErreur();
 							if (null!=paieRubriquedeRappel.getNorubr() || pe.getNorubr().equals("8000") || pe.getNorubr().equals("8001")){
 								java.util.ArrayList<PaieRappel> a=new ArrayList<PaieRappel>();
 								
