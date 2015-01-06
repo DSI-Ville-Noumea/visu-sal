@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import nc.mairie.technique.FormateListe;
 import nc.mairie.technique.MairieMessages;
@@ -32,6 +33,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	/**
 	 * 
 	 */
+	private static Logger logger = Logger.getLogger(FicheSalaire.class.getName());
 	private static final long serialVersionUID = -5571225984096176183L;
 	public static final int STATUT_RECHERCHER_AGENT = 1;
 	public static final int STATUT_SALAIRE_RAPPEL = 2;
@@ -83,7 +85,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 */
 	public void initialiseZones(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
-		//System.out.println("PASS initZone FicheSalaire");
+		//logger.info("PASS initZone FicheSalaire");
 		initialiseAgent(request);
 		if (null!=agentMCourant){
 			initialiseMenuGauche(request);
@@ -98,16 +100,16 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	public void initialiseAgent(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
-		//System.out.println("PASS initZone initialiseAgent");
+		//logger.info("PASS initZone initialiseAgent");
 		if(null!=VariableActivite.recuperer(this, VariableActivite.ACTIVITE_AGENT_MAIRIE)){
-			//System.out.println("PASS recherche initialiseAgent");	
+			//logger.info("PASS recherche initialiseAgent");	
 			agentMCourant=(AgentMairie)AgentMairie.chercherAgentMairie(getTransaction(),(String)VariableActivite.recuperer(this,VariableActivite.ACTIVITE_AGENT_MAIRIE));
 			VariableActivite.enlever(this, VariableActivite.ACTIVITE_AGENT_MAIRIE);
 			setPaieElementMoisCourant(null);
 			setListeMoisAnciennete(null);
 			setListeElementsPaye(null);
 		}else if (null!=VariableGlobale.recuperer(request, VariableGlobale.GLOBAL_AGENT_MAIRIE)){
-			//System.out.println("PASS recupere initialiseAgent");
+			//logger.info("PASS recupere initialiseAgent");
 			agentMCourant=(AgentMairie)VariableGlobale.recuperer(request,VariableGlobale.GLOBAL_AGENT_MAIRIE);
 		}
 		
@@ -127,18 +129,18 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	 */
 	public void initialiseMenuGauche(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
-		//System.out.println("PASS initZone initialiseMenuGauche allmois");
+		//logger.info("PASS initZone initialiseMenuGauche allmois");
 		java.util.ArrayList<PaieElement> a;
 			if(null==getListeMoisAnciennete()){
 				//long timestart=System.currentTimeMillis();
 					a=PaieElement.listerdatesPaiesforAgent(getTransaction(),agentMCourant.getNomatr());
 				//long timestop=System.currentTimeMillis();
 				//timestop=timestop-timestart;
-				//System.out.println("PASS initZone initialiseMenuGauche RECHERCHE ANCIENNETE EFFECTUEE en "+timestop+"ms !!");
+				//logger.info("PASS initZone initialiseMenuGauche RECHERCHE ANCIENNETE EFFECTUEE en "+timestop+"ms !!");
 				setListeMoisAnciennete(a);
 			}else{
 				a=getListeMoisAnciennete();
-				//System.out.println("PASS recupere l'init MenuGauche");
+				//logger.info("PASS recupere l'init MenuGauche");
 			}
 
 		
@@ -160,11 +162,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 	
 	public void initialiseSalaire(javax.servlet.http.HttpServletRequest request) throws Exception{
 		
-		//System.out.println("PASS initZone initialiseSalaire");
+		//logger.info("PASS initZone initialiseSalaire");
 		
 		//MODIF OFONTENEAU 20090410 SELCTION DU MOIS D'ANCIENNETE
 		if (null==getPaieElementMoisCourant()&&null!=getListeMoisAnciennete()){
-			//System.out.println("ON SELECTIONNE LE DERNIER BULLETIN DANS LA LISTE");
+			//logger.info("ON SELECTIONNE LE DERNIER BULLETIN DANS LA LISTE");
 			addZone(getNOM_LB_MOIS_ANCIENNETE_SELECT(),"0");
 			performPB_MOIS_ANCIENNETE(request);
 		}
@@ -217,7 +219,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			try{
 				joursconges=(Integer.parseInt(paieEnteteMoisCourant.getPercou())>=200708) ? paieEnteteMoisCourant.getNbcong() : "-,--";
 			}catch (Exception eI){
-				System.out.println("ERREUR de parsing de Percou "+eI);
+				logger.severe("ERREUR de parsing de Percou "+eI);
 			}
 			
 			//ofonteneau ajout 17 mai 2011
@@ -259,7 +261,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 					sDemiJoursRCN_1=Utils.getDemiJournees(solden_1);
 				}
 			}catch (Exception eI){
-				System.out.println("ERREUR de parsing de Percou "+eI);
+				logger.severe("ERREUR de parsing de Percou "+eI);
 			}
 			addZone(getNOM_ST_DROITS_RC_N(), rcn);
 			addZone(getNOM_ST_DROITS_RC_N_1(), rcn_1);
@@ -286,7 +288,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 				double dValP=Double.parseDouble(paieEnteteMoisCourant.getVap().replace(',','.'))/100;
 				dValeurPoint=new Double(dValP);
 			}catch (Exception e){
-				System.out.println("Erreur dans ma division Double:"+paieEnteteMoisCourant.getVap()+"/100");
+				logger.severe("Erreur dans ma division Double:"+paieEnteteMoisCourant.getVap()+"/100");
 			}
 			sValeurPoint=Utils.TraiterNombreIt(dValeurPoint.toString(),4);
 			addZone(getNOM_ST_VALEUR_POINT(),sValeurPoint);
@@ -298,7 +300,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 				double dcalcultba=Double.parseDouble(paieEnteteMoisCourant.getVap().replace(',','.'))*Double.parseDouble(paieEnteteMoisCourant.getInm().replace(',','.'))/100;
 				dTBA=new Double(dcalcultba);
 			}catch (Exception e){
-				System.out.println("Erreur dans ma multiplication Double:"+paieEnteteMoisCourant.getVap()+" x "+paieEnteteMoisCourant.getInm());
+				logger.severe("Erreur dans ma multiplication Double:"+paieEnteteMoisCourant.getVap()+" x "+paieEnteteMoisCourant.getInm());
 			}
 			if (dTBA==0)
 				sTBA="";
@@ -1393,7 +1395,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 				for (java.util.ListIterator<PaieElement> list = listeElementsPaye.listIterator(); list.hasNext(); ) {
 					PaieElement pe = (list.next());
 					
-					//System.out.println("LIGNE:"+i+" RUBRNBR="+pe.getNorubr());
+					//logger.info("LIGNE:"+i+" RUBRNBR="+pe.getNorubr());
 					
 					int iNoRubrique=Integer.parseInt(pe.getNorubr());
 
@@ -1407,7 +1409,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 							dEurosNet=Double.parseDouble(pe.getMtpsal())/dValeurEuroXPF;
 							addZone(getNOM_ST_NET_EUROS(),Utils.TraiterNombreIt(""+dEurosNet,2));
 							}catch (Exception e){
-								System.out.println("Exception XPF TO EUROS===="+e);
+								logger.severe("Exception XPF TO EUROS===="+e);
 							}
 
 					}else if(iNoRubrique==9001){
@@ -1495,7 +1497,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						try{
 							iPSal=Integer.parseInt(pe.getMtpsal());
 						}catch (Exception e){
-							System.out.println("ERREUR Mtpsal="+pe.getMtpsal());
+							logger.severe("ERREUR Mtpsal="+pe.getMtpsal());
 						}
 						if (iPSal>0){
 							aPayerSal.append(Utils.TraiterNombreIt(pe.getMtpsal()));
@@ -1511,7 +1513,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						try{
 							iPPat=Integer.parseInt(pe.getMtppat());
 						}catch (Exception e){
-							System.out.println("ERREUR getMtppat="+pe.getMtppat());
+							logger.severe("ERREUR getMtppat="+pe.getMtppat());
 						}
 						if (iPPat>0){
 							aPayerPat.append("(").append(Utils.TraiterNombreIt(pe.getMtppat())).append(")");
@@ -1732,7 +1734,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 										try{
 											iPSalRap=Integer.parseInt(paieRappel.getMtpsal());
 										}catch (Exception e){
-											System.out.println("ERREUR RAPPEL getMtppat="+paieRappel.getMtpsal());
+											logger.severe("ERREUR RAPPEL getMtppat="+paieRappel.getMtpsal());
 										}
 										if (iPSalRap>0)
 											aPayerRappelSal.append(Utils.TraiterNombreIt(paieRappel.getMtpsal()));
@@ -1742,7 +1744,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 										try{
 											iPPatRap=Integer.parseInt(paieRappel.getMtppat());
 										}catch (Exception e){
-											System.out.println("ERREUR RAPPEL getMtppat="+paieRappel.getMtppat());
+											logger.severe("ERREUR RAPPEL getMtppat="+paieRappel.getMtppat());
 										}
 										if (iPPatRap>0)
 											aPayerRappelPat.append(Utils.TraiterNombreIt(paieRappel.getMtppat()));
@@ -1880,7 +1882,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 
 		}catch (Exception e){
 			getTransaction().rollbackTransaction();
-			System.out.println("Ex ==== "+e);
+			logger.severe("Ex ==== "+e);
 			e.printStackTrace();
 		}
 
@@ -2018,7 +2020,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			
 			return NombreouTaux;
 		}catch (Exception e){
-			System.out.println("Pb Norubr ="+noRubr+" \nException e="+e);
+			logger.severe("Pb Norubr ="+noRubr+" \nException e="+e);
 			return"";
 		}
 	}

@@ -1,5 +1,7 @@
 package nc.mairie.visusal.servlets;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 
 import nc.mairie.droitsapplis.client.CheckDroits;
@@ -16,6 +18,7 @@ public class ServletSalRap extends nc.mairie.servlets.Frontale {
 /**
 	 * 
 	 */
+	private static Logger logger = Logger.getLogger(ServletSalRap.class.getName());
 	private static final long serialVersionUID = -8083786799882558216L;
 /**
  * Insérez la description de la méthode ici.
@@ -34,7 +37,7 @@ public class ServletSalRap extends nc.mairie.servlets.Frontale {
 
 	public void init() {
 		super.init();
-		System.out.println("BASE DE DONNEE SUR "+getMesParametres().get("HOST_SGBD"));
+		logger.info("BASE DE DONNEE SUR "+getMesParametres().get("HOST_SGBD"));
 	}
 	
 	public void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException, ClassCastException {
@@ -48,13 +51,13 @@ public class ServletSalRap extends nc.mairie.servlets.Frontale {
        try{
     	   aUserAppli.setListeDroits(CheckDroits.getListDroitsFromCompteAppli(t, aUserAppli.getUserName(), (String)Frontale.getMesParametres().get("APPLICATION")));
            t.rollbackTransaction();
-    	 //  System.out.println("setListeDroits("+aUserAppli.getUserName()+" - "+(String)Frontale.getMesParametres().get("APPLICATION")+" de taille="+aUserAppli.getListeDroits().size());
+    	 //  logger.info("setListeDroits("+aUserAppli.getUserName()+" - "+(String)Frontale.getMesParametres().get("APPLICATION")+" de taille="+aUserAppli.getListeDroits().size());
     	//   for (int i=0;i<aUserAppli.getListeDroits().size();i++){
-    	//	   System.out.println("TTTTTT-"+aUserAppli.getListeDroits().get(i)+"-TTTTTT");
+    	//	   logger.info("TTTTTT-"+aUserAppli.getListeDroits().get(i)+"-TTTTTT");
     	 //  }
    		nc.mairie.technique.VariableGlobale.ajouter(request,nc.mairie.technique.VariableGlobale.GLOBAL_USER_APPLI,aUserAppli);
    	}catch (Exception e){
-   		System.out.println("ERREUR de CHECKDROITS "+e);
+   		logger.severe("ERREUR de CHECKDROITS "+e);
    	}
 }
 
@@ -71,7 +74,7 @@ protected boolean performControleHabilitation(HttpServletRequest request)
                               //Si pas d'habilitation alors erreur
                                if (aUserAppli.getListeDroits().size() == 0) {
                                            String message = "L'utilisateur "+aUserAppli.getUserName()+" n'est pas habilité à utiliser l'application";
-                                           System.out.println(message);
+                                           logger.severe(message);
                                            //throw new Exception (message);
                                            //return false;
                                            }

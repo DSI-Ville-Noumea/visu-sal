@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 /**
  * @author fonol77
@@ -20,6 +21,8 @@ import java.util.Locale;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class Utils {
+	
+	private static Logger logger = Logger.getLogger(Utils.class.getName());
 	
 	public static int IHeuresParJour=8;
 	
@@ -32,8 +35,8 @@ public class Utils {
 	 */
 	public static ArrayList<?> Elim_doubure(ArrayList<?> l1,ArrayList<?> l2)
 	{
-		//System.out.println("L1="+l1);
-		//System.out.println("L2="+l2);
+		//logger.info("L1="+l1);
+		//logger.info("L2="+l2);
 		if (null==l1)
 			return null;
 		
@@ -41,8 +44,8 @@ public class Utils {
 			for(int i = 0; i <l2.size(); i++){
 				for(int j = 0; j <l1.size(); j++)
 				{
-					//System.out.println("L2:"+l2.get(i));
-					//System.out.println("L1:"+l1.get(j));
+					//logger.info("L2:"+l2.get(i));
+					//logger.info("L1:"+l1.get(j));
 					if(l2.get(i) == l1.get(j))
 						l1.remove(j);
 					
@@ -81,7 +84,7 @@ public class Utils {
 		try{	
 		madate = dateformentree.parse(datePerCou);			
 		}catch (Exception e){
-			System.out.println("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
+			logger.severe("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
 			return "";
 		}
 		return dateformsortie.format(madate).toUpperCase();
@@ -97,7 +100,7 @@ public class Utils {
 		try{	
 		madate = dateformentree.parse(datePerCou);			
 		}catch (Exception e){
-			System.out.println("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
+			logger.severe("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
 			return "";
 		}
 		return dateformsortie.format(madate).toUpperCase();
@@ -113,7 +116,7 @@ public class Utils {
 		try{	
 		madate = dateformentree.parse(datePerCou);			
 		}catch (Exception e){
-			System.out.println("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
+			logger.severe("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
 			return "";
 		}
 		return dateformsortie.format(madate).toUpperCase();
@@ -132,7 +135,7 @@ public class Utils {
 		try{	
 		madate = dateformentree.parse(datePerCou);			
 		}catch (Exception e){
-			System.out.println("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
+			logger.severe("Erreur de format de date AAAAMM impossible de traiter :"+datePerCou);
 			return "";
 		}
 		datesortie=dateformsortie.format(madate).toUpperCase();
@@ -157,7 +160,7 @@ public class Utils {
 			dNombre=Double.parseDouble(sNombre.replace(',','.'));
 			sNombre=nfi.format(dNombre);
 		}catch(Exception e){
-			System.out.println("Erreur de format de nombre impossible de traiter :"+sNombre);
+			logger.severe("Erreur de format de nombre impossible de traiter :"+sNombre);
 			return sNombre;
 		}
 		return sNombre;

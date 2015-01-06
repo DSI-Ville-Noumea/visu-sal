@@ -1,5 +1,7 @@
 package nc.mairie.visusal.robot;
 
+import java.util.logging.Logger;
+
 import nc.mairie.visusal.process.FicheSalaire;
 import nc.mairie.visusal.process.OeAGENTSelection;
 import nc.mairie.visusal.test.ZZZTESTEUR;
@@ -14,6 +16,7 @@ public class RobotSalRap extends nc.mairie.robot.Robot{
 /**
 	 * 
 	 */
+	private static Logger logger = Logger.getLogger(RobotSalRap.class.getName());
 	private static final long serialVersionUID = -1372860056078662006L;
 /**
  * Commentaire relatif au constructeur Robot.
@@ -34,12 +37,12 @@ public BasicProcess getDefaultProcess() {
  */
 public BasicProcess getFirstProcess(String activite) throws Exception {
 
-	//System.out.println("ACTIVITE="+activite);
+	//logger.info("ACTIVITE="+activite);
 	if (activite.equals("FicheSalaire")) {
 		return new nc.mairie.visusal.process.FicheSalaire();
 	}else {
 		//return null;
-		System.out.println("ACTIVITE IMPOSSIBLE: "+activite);
+		logger.severe("ACTIVITE IMPOSSIBLE: "+activite);
 	}
 
 	throw new Exception("Activite "+activite+" non déclarée dans le robot de navigation");

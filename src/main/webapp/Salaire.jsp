@@ -9,9 +9,7 @@
 <SCRIPT language="javascript" src="js/GestionBoutonDroit.js"></SCRIPT>
 </HEAD>
 <%
-	//System.out.println("TESTPAGE"+nc.mairie.technique.VariableActivite.ACTIVITE_TEST);
 	if (!ServletSalRap.controlerHabilitation(request)) {
-	//System.out.println("controlerHabilitation ServletSalRap = false");
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); 
 		response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour la Mairie\"");
 		javax.servlet.ServletContext sc= getServletContext();
