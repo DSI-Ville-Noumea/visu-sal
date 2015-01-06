@@ -307,7 +307,9 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 			addZone(getNOM_ST_TBA(),sTBA);
 			
 			
-			addZone(getNOM_ST_COEFF_MAJORATION(),Utils.TraiterNombreIt(paieEnteteMoisCourant.getCoef()));
+			//#12429 Modifier VISUSAL de la même façon que les bulletins papier
+			addZone(getNOM_ST_COEFF_MAJORATION(), Integer.parseInt(paieEnteteMoisCourant.getPercou()) <201412 ? Utils.TraiterNombreIt(paieEnteteMoisCourant.getCoef()): "");
+			
 			addZone(getNOM_ST_POINT_CAFAT(),Utils.TraiterNombreIt(paieEnteteMoisCourant.getPtcafat()));
 			addZone(getNOM_ST_SMIG(),Utils.TraiterNombreIt(paieEnteteMoisCourant.getSmig()));
 
@@ -1956,6 +1958,11 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 					//Prime VIE CHèRE (présentation) 
 				case 1250: case 8051:
 					NombreouTaux=Utils.TraiterNombreIt(""+(Double.parseDouble(TxSal)*100),2);
+					break;
+				
+				case 1320 :
+					//Action #12429 Modifier VISUSAL de la même façon que les bulletins papier
+					NombreouTaux= Integer.parseInt(paieEnteteMoisCourant.getPercou()) <201412 ? Utils.TraiterNombreIt(TxSal,2) : Utils.TraiterNombreIt(""+(Double.parseDouble(TxSal)*100),2);
 					break;
 					
 				default :
