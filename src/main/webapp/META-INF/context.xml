@@ -11,7 +11,7 @@
 		timeBetweenEvictionRunsMillis="30000" maxActive="300" maxIdle="30"
 		maxWait="30000" initialSize="10" removeAbandonedTimeout="500"
 		removeAbandoned="true" logAbandoned="true" minEvictableIdleTimeMillis="30000"
-		jmxEnabled="true" username="***REMOVED***" password="***REMOVED***"
+		jmxEnabled="true" username="REMOVED" password="REMOVED"
 		driverClassName="com.ibm.as400.access.AS400JDBCDriver" url="jdbc:as400://robinnw" />
 
 
@@ -40,16 +40,16 @@
 	<Parameter name="CRITERE_RECHERCHE_LDAP" value="samaccountname"
 		override="false" />
 	
-	<Parameter name="HOST_LDAP_ADMIN" value="cn=***REMOVED***,ou=WAS,ou=APPLI,ou=Z-users" 
+	<Parameter name="HOST_LDAP_ADMIN" value="cn=REMOVED,ou=WAS,ou=APPLI,ou=Z-users" 
 	    override="false" />
 	
-	<Parameter name="HOST_LDAP" value="ldap://***REMOVED***.site-mairie.noumea.nc:389 ldap://***REMOVED***.site-mairie.noumea.nc:389 ldap://***REMOVED***.site-mairie.noumea.nc:389" 
+	<Parameter name="HOST_LDAP" value="ldap://REMOVED.site-mairie.noumea.nc:389 ldap://REMOVED.site-mairie.noumea.nc:389 ldap://REMOVED.site-mairie.noumea.nc:389" 
 	    override="false" />
 	
 	<Parameter name="INITCTX_LDAP" value="com.sun.jndi.ldap.LdapCtxFactory" 
 	    override="false" />
 	
-	<Parameter name="HOST_LDAP_PASSWORD" value="***REMOVED***" 
+	<Parameter name="HOST_LDAP_PASSWORD" value="REMOVED" 
 	    override="false"/>
 	
 	<Parameter name="BASE_LDAP" value="dc=site-mairie,dc=noumea,dc=nc" 

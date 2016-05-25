@@ -7,11 +7,11 @@
 <!-- 	</context-param> -->
 <!-- 	<context-param> -->
 <!-- 		<param-name>HOST_SGBD_ADMIN</param-name> -->
-<!-- 		<param-value>***REMOVED***</param-value> -->
+<!-- 		<param-value>adminwas</param-value> -->
 <!-- 	</context-param> -->
 <!-- 	<context-param> -->
 <!-- 		<param-name>HOST_SGBD_PWD</param-name> -->
-<!-- 		<param-value>***REMOVED***</param-value> -->
+<!-- 		<param-value>planet</param-value> -->
 <!-- 	</context-param> -->
 <!-- 	<context-param> -->
 <!-- 		<param-name>URL_PHOTO</param-name> -->
