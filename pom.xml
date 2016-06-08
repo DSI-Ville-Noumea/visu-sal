@@ -7,7 +7,7 @@
 	<version>2.00-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>visusal</name>
+	<name>visu-sal</name>
 	<url>http://maven.apache.org</url>
 
 	<prerequisites>
@@ -20,7 +20,7 @@
 		<artifactId>${project.artifactId}</artifactId>
 		<version>${project.version}</version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<svnurl>https://svn.ville-noumea.nc/sed/visu-sal</svnurl>
+		<giturl>github.com/DSI-Ville-Noumea/${project.name}</giturl>
 		<framework_version>2.4</framework_version>
 		<DroitsApplisClient_version>2.3</DroitsApplisClient_version>
         <java.version>1.8</java.version>
@@ -28,9 +28,9 @@
 
 
 	<scm>
-		<connection>scm:svn:${svnurl}/trunk</connection>
-		<developerConnection>scm:svn:${svnurl}/trunk</developerConnection>
-		<url>${svnurl}/trunk</url>
+		<connection>scm:git:git://${giturl}.git</connection>
+		<developerConnection>scm:git:git@github.com:DSI-Ville-Noumea/${project.name}.git</developerConnection>
+		<url>https://${giturl}</url>
 	</scm>
 
 
@@ -258,9 +258,9 @@
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<webAccessUrl>https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</webAccessUrl>
-					<anonymousConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</anonymousConnection>
-					<developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/visu-sal/trunk</developerConnection>
+					<webAccessUrl>https://${giturl}</webAccessUrl>
+					<anonymousConnection>scm:git:git:https://${giturl}.git</anonymousConnection>
+					<developerConnection>scm:git:git:https://${giturl}.git</developerConnection>
 				</configuration>
 				<reportSets>
 					<reportSet>
