@@ -65,6 +65,7 @@
 			<groupId>net.sf.jt400</groupId>
 			<artifactId>jt400</artifactId>
 			<version>9.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
