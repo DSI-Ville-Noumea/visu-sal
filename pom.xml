@@ -4,7 +4,7 @@
 
 	<groupId>nc.mairie</groupId>
 	<artifactId>visusal</artifactId>
-	<version>2.00-SNAPSHOT</version>
+	<version>2.00</version>
 	<packaging>war</packaging>
 
 	<name>visu-sal</name>
