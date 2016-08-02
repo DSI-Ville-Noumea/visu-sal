@@ -149,7 +149,7 @@
 						<phase>package</phase>
 						<configuration>
 							<tasks>
-								<copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}" tofile="src/site/resources/war/${project.version}/${project.artifactId}##${project.version}.${project.packaging}"/>
+								<copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}" tofile="src/site/resources/war/${project.version}/ROOT##${project.artifactId}-${project.version}.${project.packaging}"/>
 								<checksum algorithm="md5">
 									<fileset dir="src/site/resources/war/${project.version}">
 										<include name="*.war"/>
