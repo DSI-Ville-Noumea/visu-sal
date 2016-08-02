@@ -27,7 +27,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<giturl>github.com/DSI-Ville-Noumea/${project.name}</giturl>
 		<framework_version>framework-2.5</framework_version>
-		<DroitsApplisClient_version>2.3</DroitsApplisClient_version>
+		<DroitsApplisClient_version>droits-applis-client-2.4</DroitsApplisClient_version>
         <java.version>1.8</java.version>
 	</properties>
 
@@ -61,8 +61,8 @@
 			<version>${framework_version}</version>
 		</dependency>
 		<dependency>
-			<groupId>nc.mairie</groupId>
-			<artifactId>DroitsApplisClient</artifactId>
+			<groupId>com.github.DSI-Ville-Noumea</groupId>
+			<artifactId>droits-applis-client</artifactId>
 			<version>${DroitsApplisClient_version}</version>
 		</dependency>
 
