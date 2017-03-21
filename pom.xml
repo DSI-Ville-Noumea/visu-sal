@@ -27,7 +27,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<giturl>github.com/DSI-Ville-Noumea/${project.name}</giturl>
 		<framework_version>framework-2.5</framework_version>
-		<DroitsApplisClient_version>droits-applis-client-2.4</DroitsApplisClient_version>
+		<DroitsApplisClient_version>droits-applis-client-2.5</DroitsApplisClient_version>
         <java.version>1.8</java.version>
         <versioneye-maven-plugin.version>3.11.1</versioneye-maven-plugin.version>
    		<versioneye-maven-plugin.apiKey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apiKey>
