@@ -1,3 +1,7 @@
 /target
 /.settings
-/src/site/resources/war/*-SNAPSHOT
+/src/site/resources/war/*-SNAPSHOT.projects
+src/main/webapp/META-INF/.classpath
+target/visusal##2.03-SNAPSHOT/META-INF/.classpath
+.idea
+visusal.iml
