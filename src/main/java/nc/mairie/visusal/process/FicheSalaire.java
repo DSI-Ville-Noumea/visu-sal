@@ -1478,7 +1478,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 						nombreTauxSal = new StringBuffer(calculerNombreTaux(pe,true));
 						nombreTauxPat = new StringBuffer(calculerNombreTaux(pe,false));
 						//test sur la virgule pour savoir si c'est bien un taux renvoyé par AS400
-						if (nombreTauxSal.indexOf(",")!=-1)
+						if (nombreTauxSal.indexOf(",")!=-1 && iNoRubrique != 1001)
 							bulletinElemSal.setTaux(nombreTauxSal.toString().replace(",", ""));
 						else
 							bulletinElemSal.setNombre(nombreTauxSal.toString());
@@ -2171,7 +2171,7 @@ public class FicheSalaire extends nc.mairie.technique.BasicProcess {
 					}
 					out.write(StringUtils.rightPad(lirubr.trim(),40," "));
 					//nbresal
-					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getNombre(),5," "));
+					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getNombre(),7," "));
 					//TauxSal
 					out.write(StringUtils.leftPad(listeBulletinSalarie.get(i).getTaux(),5," "));
 					//MtBase
