@@ -19,19 +19,19 @@
 	<Parameter name="HOST_SGBD" value="DS" 
 	    description="Hote SGBD (ROBINNW ou NOUMEA)" override="false" />
 	
-	<Parameter name="STARJET_MODE" value="DVLP" 
-	    description="Environnement starjet (DVLP, TEST ou PROD)" override="false" />
+	<Parameter name="STARJET_MODE" value="QUAL" 
+	    description="Environnement starjet (QUAL, TEST ou PROD)" override="false" />
 	
 	<Parameter name="STARJET_PROJET" value="SALAIRERAPPELS" 
 	    description="Répertoire du projet sur le serveur Starjet" override="false" />
 	
-	<Parameter name="STARJET_SERVER" value="//starjet/edition$/" 
+	<Parameter name="STARJET_SERVER" value="//svpstarjet/edition$/" 
 	    description="Serveur starjet (URL du serveur Starjet)" override="false" />
 	
-	<Parameter name="STARJET_LOCAL_DIR" value="D:\Edition" 
+	<Parameter name="STARJET_LOCAL_DIR" value="E:\Edition" 
 	    description="Serveur starjet (URL du serveur Starjet)" override="false" />
 	
-	<Parameter name="STARJET_DISPLAYPDF_URL" value="http://starjet/DVLP/cgi/displayPDF.asp" 
+	<Parameter name="STARJET_DISPLAYPDF_URL" value="http://svpstarjet/QUAL/cgi/displayPDF.asp" 
 	    description="URL de l'ASP displayPDF.asp" override="false" />
 	
 	<Parameter name="APPLICATION" value="VisuSalaire" 
